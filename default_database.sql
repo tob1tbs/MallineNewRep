@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Sep 27, 2022 at 10:47 PM
+-- Generation Time: Sep 27, 2022 at 10:57 PM
 -- Server version: 8.0.30-cll-lve
 -- PHP Version: 7.4.30
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `mallline_customer_271de78b_maverick`
+-- Database: `mallline_customer_0adf7b6d_iphone`
 --
 
 -- --------------------------------------------------------
