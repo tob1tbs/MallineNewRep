@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Sep 30, 2022 at 05:32 PM
+-- Generation Time: Sep 27, 2022 at 10:57 PM
 -- Server version: 8.0.30-cll-lve
 -- PHP Version: 7.4.30
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `mallline_customer_271de78b_maverick`
+-- Database: `mallline_customer_0adf7b6d_iphone`
 --
 
 -- --------------------------------------------------------
@@ -243,9 +243,9 @@ CREATE TABLE `new_info_parameters` (
 --
 
 INSERT INTO `new_info_parameters` (`id`, `label`, `snippet`, `value`, `key`, `type`, `disabled`, `active`, `sortable`, `updated_at`, `deleted_at`, `deleted_at_int`) VALUES
-(6, 'ელ-ფოსტა', 'ელ-ფოსტა რომელიც გსურთ გამოჩნდეს ვებ-გვერდზე', 'info@asdasdasdasd.com', 'email', 'input', 0, 1, 1, '2022-09-27 15:54:46', NULL, 1),
-(15, 'ტელეფონის ნომერი', 'ტელეფონის ნომერი რომელიც გსურთ გამოჩნდეს ვებ-გვერდზე', '599 002 452123', 'phone', 'input', 0, 1, 1, '2022-09-27 15:54:46', NULL, 1),
-(16, 'მისამართი', 'მისამართი რომელიც გსურთ გამოჩნდეს ვებ-გვერდზე', 'ჯავახეთის ქუჩა N120 / Javakheti Street N1204444', 'address', 'input', 0, 1, 1, '2022-09-27 15:54:46', NULL, 1);
+(6, 'ელ-ფოსტა', 'ელ-ფოსტა რომელიც გსურთ გამოჩნდეს ვებ-გვერდზე', 'info@asdasdasdasd.com', 'email', 'input', 0, 1, 1, '2022-09-27 13:53:55', NULL, 1),
+(15, 'ტელეფონის ნომერი', 'ტელეფონის ნომერი რომელიც გსურთ გამოჩნდეს ვებ-გვერდზე', '599 002 452123', 'phone', 'input', 0, 1, 1, '2022-09-27 13:53:55', NULL, 1),
+(16, 'მისამართი', 'მისამართი რომელიც გსურთ გამოჩნდეს ვებ-გვერდზე', 'ჯავახეთის ქუჩა N120 / Javakheti Street N1204444', 'address', 'input', 0, 1, 1, '2022-09-27 13:53:55', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -270,9 +270,9 @@ CREATE TABLE `new_navigation` (
 --
 
 INSERT INTO `new_navigation` (`id`, `url`, `title`, `sortable`, `active`, `cretead_at`, `updated_at`, `deleted_at`, `deleted_at_int`) VALUES
-(2, 'actionMainAboutUs', '{\"ge\":\"ჩვენ შესახებ\",\"en\":\"About us\"}', 2, 1, '2022-06-03 18:03:28', '2022-09-27 15:41:38', NULL, 1),
-(3, 'actionProductsIndex', '{\"ge\":\"პროდუქცია\",\"en\":\"All products\"}', 3, 1, '2022-06-03 18:03:28', '2022-09-27 15:37:36', NULL, 1),
-(6, 'actionMainContact', '{\"ge\":\"კონტაქტი\",\"en\":\"Contact\"}', 5, 1, '2022-06-03 18:03:28', '2022-09-27 15:37:36', NULL, 1);
+(2, 'actionMainAboutUs', '{\"ge\":\"ჩვენ შესახებ\",\"en\":\"About us\"}', 2, 1, '2022-06-03 18:03:28', '2022-09-26 11:35:08', NULL, 1),
+(3, 'actionProductsIndex', '{\"ge\":\"პროდუქცია\",\"en\":\"All products\"}', 3, 1, '2022-06-03 18:03:28', '2022-09-26 11:35:08', NULL, 1),
+(6, 'actionMainContact', '{\"ge\":\"კონტაქტი\",\"en\":\"Contact\"}', 5, 1, '2022-06-03 18:03:28', NULL, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -463,15 +463,6 @@ CREATE TABLE `new_products` (
   `deleted_at` timestamp NULL DEFAULT NULL,
   `deleted_at_int` int NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
-
---
--- Dumping data for table `new_products`
---
-
-INSERT INTO `new_products` (`id`, `parent_id`, `name_ge`, `name_en`, `description`, `vendor_id`, `category_id`, `child_category_id`, `brand_id`, `discount_percent`, `discount_price`, `count`, `photo`, `stock`, `used`, `preorder`, `facebook`, `status`, `active`, `created_at`, `updated_at`, `deleted_at`, `deleted_at_int`) VALUES
-(1, 0, 'test', 'test', '{\"ge\":\"dsfdsafdsfdsfsd\",\"en\":\"sdasdasdasd\"}', 1, 1, 0, 0, 10, 2300, 5, 'http://127.0.0.1:8000/storage/files/7/633352c11a285.png', 1, 0, NULL, 0, 1, 1, '2022-09-27 15:47:23', '2022-09-27 15:47:23', NULL, 1),
-(2, 0, 'test555', 'test555', '{\"ge\":\"test555\",\"en\":\"test555\"}', 1, 1, 0, 0, 123, 12300, 123, 'http://acer.mallline.ge/storage/files/7/633352fa7ce58.png', 1, 0, NULL, 0, 1, 1, '2022-09-27 15:56:02', '2022-09-27 15:56:02', NULL, 1),
-(3, 0, 'klimati', 'კლიმატი', '{\"ge\":\"asdasdas\",\"en\":\"adasd\"}', 1, 7, 0, 0, 40, 2500, 3, 'http://acer.mallline.ge/storage/files/7/633352fdd4cd9.jpg', 1, 0, NULL, 0, 1, 1, '2022-09-27 15:59:25', '2022-09-27 15:59:25', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -666,6 +657,11 @@ INSERT INTO `new_product_gallery` (`id`, `product_id`, `path`, `active`, `create
 (97, 107, 'https://dashboard.turbopc.ge/storage/files/3/626a5e5d7e93d.png', 1, '2022-04-28 05:34:54', '2022-04-28 05:34:54', NULL, 1),
 (98, 107, ' https://dashboard.turbopc.ge/storage/files/3/626a5e5c6dd1d.png', 1, '2022-04-28 05:34:54', '2022-04-28 05:34:54', NULL, 1),
 (99, 135, 'https://images.unsplash.com/photo-1566275529824-cca6d008f3da?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cGhvdG98ZW58MHx8MHx8&w=1000&q=80', 1, '2022-06-03 15:17:43', '2022-06-03 15:17:43', NULL, 1),
+(100, 1, 'https://images.unsplash.com/photo-1566275529824-cca6d008f3da?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cGhvdG98ZW58MHx8MHx8&w=1000&q=80', 1, '2022-06-24 05:17:13', '2022-06-24 05:17:13', NULL, 1),
+(101, 2, 'http://127.0.0.1:8181/storage/files/1/62b97d5569d28.png', 1, '2022-06-27 06:24:39', '2022-06-27 06:24:39', NULL, 1),
+(102, 3, 'http://127.0.0.1:8181/storage/files/1/62b97d522f0a9.png', 1, '2022-06-27 11:08:56', '2022-06-27 11:08:56', NULL, 1),
+(103, 3, 'http://127.0.0.1:8181/storage/files/1/62b97d5569d28.png', 1, '2022-06-27 11:08:56', '2022-06-27 11:08:56', NULL, 1),
+(104, 3, 'http://127.0.0.1:8181/storage/files/1/62b97fd6dbacb.png', 1, '2022-06-27 11:08:56', '2022-06-27 11:08:56', NULL, 1),
 (105, 4, 'https://dashboard.mallline.ge/storage/files/1/62bae8c7b7ee0.png', 1, '2022-06-28 12:23:20', '2022-06-28 12:23:20', NULL, 1),
 (106, 4, 'https://dashboard.mallline.ge/storage/files/1/62bae6c26505f.png', 1, '2022-06-28 12:23:20', '2022-06-28 12:23:20', NULL, 1),
 (107, 5, 'https://dashboard.mallline.ge/storage/files/1/62bae6c26505f.png', 1, '2022-06-28 13:28:09', '2022-06-28 13:28:09', NULL, 1),
@@ -723,12 +719,7 @@ INSERT INTO `new_product_gallery` (`id`, `product_id`, `path`, `active`, `create
 (159, 126, 'http://maverick.mallline.ge/storage/files/7/63332d27deb95.png', 1, '2022-09-27 13:44:32', '2022-09-27 13:44:32', NULL, 1),
 (160, 127, 'http://maverick.mallline.ge/storage/files/7/63332d27deb95.png', 1, '2022-09-27 13:44:58', '2022-09-27 13:44:58', NULL, 1),
 (161, 128, 'http://maverick.mallline.ge/storage/files/7/63332d27deb95.png', 1, '2022-09-27 13:45:07', '2022-09-27 13:45:07', NULL, 1),
-(162, 129, 'http://maverick.mallline.ge/storage/files/7/63332b7403c48.png', 1, '2022-09-27 13:55:16', '2022-09-27 13:55:16', NULL, 1),
-(163, 2, 'http://acer.mallline.ge/storage/files/7/633352f9de7b3.png', 1, '2022-09-27 15:56:02', '2022-09-27 15:56:02', NULL, 1),
-(164, 2, 'http://acer.mallline.ge/storage/files/7/633352f9dfdac.png', 1, '2022-09-27 15:56:02', '2022-09-27 15:56:02', NULL, 1),
-(165, 2, 'http://acer.mallline.ge/storage/files/7/633352fa62ad5.png', 1, '2022-09-27 15:56:02', '2022-09-27 15:56:02', NULL, 1),
-(166, 2, 'http://acer.mallline.ge/storage/files/7/633352fa7ce58.png', 1, '2022-09-27 15:56:02', '2022-09-27 15:56:02', NULL, 1),
-(167, 3, 'http://acer.mallline.ge/storage/files/7/633352fdd4cd9.jpg', 1, '2022-09-27 15:59:25', '2022-09-27 15:59:25', NULL, 1);
+(162, 129, 'http://maverick.mallline.ge/storage/files/7/63332b7403c48.png', 1, '2022-09-27 13:55:16', '2022-09-27 13:55:16', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -995,10 +986,7 @@ INSERT INTO `new_product_meta` (`id`, `product_id`, `keywords`, `description`, `
 (241, 126, '{\"ge\":\"123\",\"en\":\"123\"}', '{\"ge\":\"123\",\"en\":\"123\"}', '2022-09-27 13:44:32', NULL, 1),
 (242, 127, '{\"ge\":\"123\",\"en\":\"123\"}', '{\"ge\":\"123\",\"en\":\"123\"}', '2022-09-27 13:44:58', NULL, 1),
 (243, 128, '{\"ge\":\"123\",\"en\":\"123\"}', '{\"ge\":\"123\",\"en\":\"123\"}', '2022-09-27 13:45:07', NULL, 1),
-(244, 129, '{\"ge\":\"123\",\"en\":\"123\"}', '{\"ge\":\"123\",\"en\":\"123\"}', '2022-09-27 13:55:16', NULL, 1),
-(245, 1, '{\"ge\":\"asdasdasd\",\"en\":\"sdsadasd\"}', '{\"ge\":\"asdsdas\",\"en\":\"asdsadas\"}', '2022-09-27 15:47:23', NULL, 1),
-(246, 2, '{\"ge\":\"123\",\"en\":\"123\"}', '{\"ge\":\"123\",\"en\":\"123\"}', '2022-09-27 15:56:02', NULL, 1),
-(247, 3, '{\"ge\":\"adasd\",\"en\":\"adsasd\"}', '{\"ge\":\"adsasdas\",\"en\":\"adsasd\"}', '2022-09-27 15:59:25', NULL, 1);
+(244, 129, '{\"ge\":\"123\",\"en\":\"123\"}', '{\"ge\":\"123\",\"en\":\"123\"}', '2022-09-27 13:55:16', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -1099,10 +1087,7 @@ INSERT INTO `new_product_price` (`id`, `product_id`, `price`, `created_at`, `upd
 (78, 126, '12300', '2022-09-27 13:44:32', '2022-09-27 13:44:32', NULL, 1),
 (79, 127, '12300', '2022-09-27 13:44:58', '2022-09-27 13:44:58', NULL, 1),
 (80, 128, '12300', '2022-09-27 13:45:07', '2022-09-27 13:45:07', NULL, 1),
-(81, 129, '12300', '2022-09-27 13:55:16', '2022-09-27 13:55:16', NULL, 1),
-(82, 1, '4500', '2022-09-27 15:47:23', '2022-09-27 15:47:23', NULL, 1),
-(83, 2, '12300', '2022-09-27 15:56:02', '2022-09-27 15:56:02', NULL, 1),
-(84, 3, '10000', '2022-09-27 15:59:25', '2022-09-27 15:59:25', NULL, 1);
+(81, 129, '12300', '2022-09-27 13:55:16', '2022-09-27 13:55:16', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -1294,9 +1279,9 @@ CREATE TABLE `new_social_parameters` (
 --
 
 INSERT INTO `new_social_parameters` (`id`, `label`, `snippet`, `value`, `key`, `type`, `disabled`, `active`, `sortable`, `updated_at`, `deleted_at`, `deleted_at_int`) VALUES
-(6, 'Facebook', 'Facebook გვერდის ბმული რომელიც გსურთ რომ გამოჩნდეს ვებ-გვერდზე', 'Facebook.com/altage', 'facebook', 'input', 0, 1, 1, '2022-09-27 15:54:46', NULL, 1),
-(7, 'Instagram', 'Instagram გვერდის ბმული რომელიც გსურთ რომ გამოჩნდეს ვებ-გვერდზე', NULL, 'instagram', 'input', 0, 1, 1, '2022-09-27 15:54:46', NULL, 1),
-(8, 'Youtube', 'Youtube გვერდის ბმული რომელიც გსურთ რომ გამოჩნდეს ვებ-გვერდზე', NULL, 'youtube', 'input', 0, 1, 1, '2022-09-27 15:54:46', NULL, 1);
+(6, 'Facebook', 'Facebook გვერდის ბმული რომელიც გსურთ რომ გამოჩნდეს ვებ-გვერდზე', 'Facebook.com/altage', 'facebook', 'input', 0, 1, 1, '2022-09-27 13:53:55', NULL, 1),
+(7, 'Instagram', 'Instagram გვერდის ბმული რომელიც გსურთ რომ გამოჩნდეს ვებ-გვერდზე', 'https://insta.com', 'instagram', 'input', 0, 1, 1, '2022-09-27 13:53:55', NULL, 1),
+(8, 'Youtube', 'Youtube გვერდის ბმული რომელიც გსურთ რომ გამოჩნდეს ვებ-გვერდზე', 'https://yout.com', 'youtube', 'input', 0, 1, 1, '2022-09-27 13:53:55', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -1544,14 +1529,14 @@ CREATE TABLE `new_webparameters` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
   `deleted_at_int` int NOT NULL DEFAULT '1'
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Dumping data for table `new_webparameters`
 --
 
 INSERT INTO `new_webparameters` (`id`, `host`, `name_ge`, `name_en`, `logotype`, `google_auth`, `google_auth_key`, `fb_auth`, `fb_auth_key`, `smsoffice`, `active`, `created_at`, `updated_at`, `deleted_at`, `deleted_at_int`) VALUES
-(1, 'maverick.mallline.ge', 'maveriki', 'maveric', 'fa7b49529d6fa707bbd2f73574298852.png', 2, '55555', 1, 'asdasdasd', 'b7a41cb33e014860ae0363cd091206fc', 1, '2022-09-12 12:05:48', '2022-09-27 15:39:00', NULL, 1);
+(1, 'maverick.mallline.ge', 'maveriki', 'maveric', '5defc100e5bef605fc7f5abd0080498d.png', 2, '55555', 1, 'asdasdasd', 'b7a41cb33e014860ae0363cd091206fc', 1, '2022-09-12 12:05:48', '2022-09-27 12:34:44', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -1884,7 +1869,7 @@ ALTER TABLE `new_plugin_parameters`
 -- AUTO_INCREMENT for table `new_products`
 --
 ALTER TABLE `new_products`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `new_product_category`
@@ -1908,19 +1893,19 @@ ALTER TABLE `new_product_count_log_item`
 -- AUTO_INCREMENT for table `new_product_gallery`
 --
 ALTER TABLE `new_product_gallery`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=168;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=163;
 
 --
 -- AUTO_INCREMENT for table `new_product_meta`
 --
 ALTER TABLE `new_product_meta`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=248;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=245;
 
 --
 -- AUTO_INCREMENT for table `new_product_price`
 --
 ALTER TABLE `new_product_price`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
 
 --
 -- AUTO_INCREMENT for table `new_product_statuses`
