@@ -82,7 +82,11 @@
         <div class="preloader d-flex align-items-center justify-content-center">
             <div class="preloader-inner position-relative">
                 <div class="text-center">
+					@if(!empty($web_data->logotype))
+					<img src="{{ asset('uploads/logotype/'.$web_data->logotype) }}">
+					@else
                     <img src="{{ asset('assets/imgs/theme/mallline.png') }}" alt="" />
+					@endif
                 </div>
                 <div class="loader loader--style2" title="1">
                     <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -116,13 +120,6 @@
                         </ul>
                     </div>
                     <div class="footer-link-widget col">
-                        <h4 class="widget-title">{{ trans('site.corporate') }}</h4>
-                        <ul class="footer-list mb-sm-4 mb-md-0">
-                            <li><a href="{{ route('actionVendorsIndex') }}">{{ trans('site.vendors') }}</a></li>
-                            <li><a href="{{ route('actionVendorsGuide') }}">{{ trans('site.vendors_guide') }}</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-link-widget col">
                         <h4 class="widget-title">{{ trans('site.quick_links') }}</h4>
                         <ul class="footer-list mb-sm-4 mb-md-0">
                             <li><a href="{{ route('actionMainWishlist') }}">{{ trans('site.wishlist') }}</a></li>
@@ -137,13 +134,13 @@
                         </form>
                         <div class="mobile-social-icon">
                             @if(!empty($parametersArray['facebook']))
-                            <a href="{{ $parametersArray['facebook'] }}" target="_blank"><img src="{{ url('assets/imgs/theme/icons/icon-facebook-white.svg') }}" alt="" /></a>
+                            <a href="{{ $parametersArray['facebook'] }}"><img src="{{ url('assets/imgs/theme/icons/icon-facebook-white.svg') }}" alt="" /></a>
                             @endif
                             @if(!empty($parametersArray['instagram']))
-                            <a href="{{ $parametersArray['instagram'] }}" target="_blank"><img src="{{ url('assets/imgs/theme/icons/icon-instagram-white.svg') }}" alt="" /></a>
+                            <a href="{{ $parametersArray['instagram'] }}"><img src="{{ url('assets/imgs/theme/icons/icon-instagram-white.svg') }}" alt="" /></a>
                             @endif
                             @if(!empty($parametersArray['youtube']))
-                            <a href="{{ $parametersArray['youtube'] }}" target="_blank"><img src="{{ url('assets/imgs/theme/icons/icon-youtube-white.svg') }}" alt="" /></a>
+                            <a href="{{ $parametersArray['youtube'] }}"><img src="{{ url('assets/imgs/theme/icons/icon-youtube-white.svg') }}" alt="" /></a>
                             @endif
                         </div>
                     </div>
