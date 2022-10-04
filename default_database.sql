@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Sep 30, 2022 at 05:32 PM
+-- Generation Time: Oct 04, 2022 at 09:14 PM
 -- Server version: 8.0.30-cll-lve
 -- PHP Version: 7.4.30
 
@@ -145,20 +145,6 @@ CREATE TABLE `new_customers` (
   `deleted_at` timestamp NULL DEFAULT NULL,
   `deleted_at_int` int NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
-
---
--- Dumping data for table `new_customers`
---
-
-INSERT INTO `new_customers` (`id`, `name`, `lastname`, `personal_number`, `bdate`, `phone`, `email`, `type`, `password`, `remember_token`, `last_login`, `active`, `google_id`, `is_admin`, `created_at`, `updated_at`, `deleted_at`, `deleted_at_int`) VALUES
-(7, 'Mito', 'Chikhladze', '44433311122', '2022-06-29', '599002111', 'chikhladze.mt@gmail.com', NULL, '$2y$10$E9ICfzSK.5pkERMDb/LLnubcN3dfjvmFiDVlyVIln3YAS51beQM0S', NULL, NULL, 1, NULL, 1, '2022-06-28 05:07:00', '2022-07-08 07:24:27', NULL, 1),
-(8, 'mito', 'chikhladze', '62001044774', '1996-07-23', '555111222', 'test@gmail.com', NULL, '$2y$10$URThKL4bGsuqWIac5mIoB.83nIQKmXDzX.AnrSb88zklN/eNZEpeO', NULL, NULL, 1, NULL, 0, '2022-06-28 05:10:10', '2022-06-28 05:10:10', NULL, 1),
-(9, 'test', 'test', '123123123', '2022-06-28', '599002444', 'chikhladze.mt1@gmail.com', NULL, '$2y$10$9uzDRQ4KnqfvpnvdMnX6cei2Yq1ljJlbUQ..r4xiPSxtEpLpyczMm', NULL, NULL, 1, NULL, 0, '2022-06-28 05:14:52', '2022-06-28 05:14:52', NULL, 1),
-(10, '123', '123', '5555111144', '2022-06-13', '599055444', 'chikhladze.mt11@gmail.com', NULL, '$2y$10$4czcshgw0kZcoK9EfX2zl.g7SKvjJ9.k/iNa7L989/0y2RdqMSaHi', NULL, NULL, 0, NULL, 0, '2022-06-28 12:26:41', '2022-09-09 01:42:23', NULL, 1),
-(11, 'gio.kenchuashvili', 'giorgi', 'kencho', '1991-01-04', '555132000', 'gio.kenchuashvili@gmail.com', NULL, '$2y$10$9R9OKRjSIbE4MWcdHayP0euolYoarCIP1/ldXlLXykfIkTd9o9s.K', NULL, NULL, 1, NULL, 0, '2022-06-29 02:43:22', '2022-06-29 02:43:22', NULL, 1),
-(12, 'Mito', 'Chikhladze', NULL, NULL, NULL, 'mito@citypay.io', NULL, '1cbcaa5abbb6b70f378a3a03d0c26386', NULL, NULL, 1, NULL, 0, '2022-07-10 11:25:50', '2022-07-10 11:25:50', NULL, 1),
-(13, 'Shota', 'Zhvania', NULL, NULL, NULL, 'zhvaniabeqa97@gmail.com', NULL, '0a09c8844ba8f0936c20bd791130d6b6', NULL, NULL, 1, NULL, 0, '2022-07-10 15:18:06', '2022-07-10 15:18:06', NULL, 1),
-(14, 'jumber', 'patiashvili', '6200111333', '2022-01-01', '12312311', 'jumberiko@gmail.com', NULL, '$2y$10$KPKr851H4MhlNl0yNLUOh.slUBSmwUlo4VJ7fhbD/cXa2hOqo2nOK', NULL, NULL, 1, NULL, 0, '2022-09-09 01:33:47', '2022-09-09 01:33:47', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -1539,6 +1525,7 @@ CREATE TABLE `new_webparameters` (
   `fb_auth` int DEFAULT NULL,
   `fb_auth_key` varchar(255) DEFAULT NULL,
   `smsoffice` varchar(100) DEFAULT NULL,
+  `vendor_id` int DEFAULT NULL,
   `active` int NOT NULL DEFAULT '0',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -1550,8 +1537,8 @@ CREATE TABLE `new_webparameters` (
 -- Dumping data for table `new_webparameters`
 --
 
-INSERT INTO `new_webparameters` (`id`, `host`, `name_ge`, `name_en`, `logotype`, `google_auth`, `google_auth_key`, `fb_auth`, `fb_auth_key`, `smsoffice`, `active`, `created_at`, `updated_at`, `deleted_at`, `deleted_at_int`) VALUES
-(1, 'maverick.mallline.ge', 'maveriki', 'maveric', 'fa7b49529d6fa707bbd2f73574298852.png', 2, '55555', 1, 'asdasdasd', 'b7a41cb33e014860ae0363cd091206fc', 1, '2022-09-12 12:05:48', '2022-09-27 15:39:00', NULL, 1);
+INSERT INTO `new_webparameters` (`id`, `host`, `name_ge`, `name_en`, `logotype`, `google_auth`, `google_auth_key`, `fb_auth`, `fb_auth_key`, `smsoffice`, `vendor_id`, `active`, `created_at`, `updated_at`, `deleted_at`, `deleted_at_int`) VALUES
+(1, 'maverick.mallline.ge', 'maveriki', 'maveric', 'fa7b49529d6fa707bbd2f73574298852.png', 2, '55555', 1, 'asdasdasd', 'b7a41cb33e014860ae0363cd091206fc', 59, 1, '2022-09-12 12:05:48', '2022-10-04 13:13:16', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -1818,7 +1805,7 @@ ALTER TABLE `new_compare`
 -- AUTO_INCREMENT for table `new_customers`
 --
 ALTER TABLE `new_customers`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `new_delivery_parameters`
