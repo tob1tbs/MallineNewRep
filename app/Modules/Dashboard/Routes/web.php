@@ -9,10 +9,15 @@ Route::group(['middleware' => [], 'prefix' => LaravelLocalization::setLocale()],
 
 // AJAX ROUTES
 Route::group(['prefix' => 'dashboard/ajax', 'middleware' => []], function () {
+	
 	Route::post('/contact', 'DashboardAjaxController@ajaxDashboardContact')->name('ajaxDashboardContact');
 	Route::post('/navigation', 'DashboardAjaxController@ajaxDashboardNavigation')->name('ajaxDashboardNavigation');
 	Route::post('/slider/add', 'DashboardAjaxController@ajaxDashboardSliderAdd')->name('ajaxDashboardSliderAdd');
 	Route::post('/product/add', 'DashboardAjaxController@ajaxDashboardProductAdd')->name('ajaxDashboardProductAdd');
 	Route::post('/product/delete', 'DashboardAjaxController@ajaxProductDelete')->name('ajaxProductDelete');
 	Route::post('/slider/delete', 'DashboardAjaxController@ajaxSliderDeletePhoto')->name('ajaxSliderDeletePhoto');
+});
+
+Route::group(['prefix' => 'dashboard/api', 'middleware' => []], function () {
+	Route::post('/create', 'DashboardAjaxController@ajaxApiCreateData')->name('ajaxApiCreateData')->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class]);
 });

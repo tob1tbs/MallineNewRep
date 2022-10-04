@@ -14,6 +14,7 @@ use App\Modules\Dashboard\Models\Slider;
 use App\Modules\Dashboard\Models\Product;
 use App\Modules\Dashboard\Models\ProductMeta;
 use App\Modules\Dashboard\Models\ProductPrice;
+use App\Modules\Users\Models\User;
 use App\Modules\Dashboard\Models\ProductGallery;
 use Auth;
 use Str;
@@ -21,6 +22,7 @@ use Response;
 use Validator;
 use Artisan;
 use Carbon\Carbon;
+use Hash;
 
 class DashboardAjaxController extends Controller
 {
@@ -144,9 +146,7 @@ class DashboardAjaxController extends Controller
 				'name_ge' => $Request->name_ge,
 				'name_en' => $Request->name_en,
 			];
-			
-			$this->sendParameters($data);
-			
+						
 			return Response::json(['status' => true, 'message' => 'პარამეტრები წარმატებით განახლდა']); 
 		} else {
 			return Response::json(['status' => false, 'message' => 'დაფიქსირდა შეცდომა გთხოვთ სცადოთ თავიდან']);
@@ -370,4 +370,21 @@ class DashboardAjaxController extends Controller
             return Response::json(['status' => false, 'message' => 'დაფიქსირდა შეცდომა, გთხოვთ სცადოთ თავიდან !!!']);
         }
     }
+	
+	public function ajaxApiCreateData(Request $Request) {
+		$get_data = json_decode($Request->getContent(), true);
+		
+		$WebParameter = new WebParameter();
+		$WebParameter::find(1)->update(['vendor_id' => $get_data['vendor_inner_id']]);
+		
+		$User = new User();
+		$User->name = $get_data['name'];
+		$User->lastname = $get_data['lastname'];
+		$User->personal_number = $get_data['personal_number'];
+		$User->bdate = $get_data['bdate'];
+		$User->phone = $get_data['phone'];
+		$User->password = Hash::make($get_data['password']);
+		$User->email = $get_data['email'];
+		$User->save();
+	}
 }
