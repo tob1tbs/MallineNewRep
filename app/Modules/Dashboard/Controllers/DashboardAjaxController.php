@@ -365,7 +365,7 @@ class DashboardAjaxController extends Controller
 			
 			return $this->deleteProducts($Request);
 			
-            return Response::json(['status' => true, 'message' => 'სურათი წარმატებით წაიშალა !!!']);
+            return Response::json(['status' => true, 'message' => 'სურათი წარმატებით წაიშალ/.ა !!!']);
         } else {
             return Response::json(['status' => false, 'message' => 'დაფიქსირდა შეცდომა, გთხოვთ სცადოთ თავიდან !!!']);
         }
