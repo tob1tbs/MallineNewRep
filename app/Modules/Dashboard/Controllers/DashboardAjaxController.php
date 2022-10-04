@@ -376,15 +376,5 @@ class DashboardAjaxController extends Controller
 		
 		$WebParameter = new WebParameter();
 		$WebParameter::find(1)->update(['vendor_id' => $get_data['vendor_inner_id']]);
-		
-		$User = new User();
-		$User->name = $get_data['name'];
-		$User->lastname = $get_data['lastname'];
-		$User->personal_number = $get_data['personal_number'];
-		$User->bdate = $get_data['bdate'];
-		$User->phone = $get_data['phone'];
-		$User->password = Hash::make($get_data['password']);
-		$User->email = $get_data['email'];
-		$User->save();
 	}
 }

@@ -289,11 +289,13 @@
     }
 
     #fmhoverbtn4{
-        background: white;
-        border: none;
-        width: 40%;
-        margin-right: 0.5rem;
+        background: #2491e00d;
+		border-radius: 10px;
+		border: none;
+		width: 20%;
+		margin-right: .5rem;
     }
+	
     #fmhoverbtn4:hover{
       background-color: #d9f2f9 !important;
     }

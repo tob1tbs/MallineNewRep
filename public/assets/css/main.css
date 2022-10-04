@@ -220,7 +220,18 @@ li.hr span {
   display: inline-block;
   vertical-align: top;
 }
-
+.group2{
+  display: block;
+  padding-top: 10px;
+  font: 22px sans-serif;
+  position: relative;
+}
+.group2 i{
+  position: absolute;
+  right: 25px;
+  bottom: 15px;
+  cursor: pointer
+}
 .bg-img {
   background-position: center center;
   background-size: cover;
@@ -4746,6 +4757,11 @@ table .product-thumbnail img {
 
 .product-cart-wrap .product-content-wrap h2 a {
   color: #253D4E;
+  display: block;
+  white-space: nowrap;
+  width: 15em;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .product-cart-wrap .product-content-wrap h2 a:hover {
@@ -5404,6 +5420,19 @@ input[type=number]{
   height: auto;
 }
 
+/*Color Picker*/
+.pcr-app.visible {
+    width: 450px !important;
+    height: 240px !important;
+    position: relative !important;
+    margin-bottom: 2rem;
+}
+.pcr-button{
+  display: none !important;
+}
+.color-name {
+  display: none;
+}
 .product-list .product-cart-wrap h2 {
   font-size: 32px;
 }
@@ -6384,6 +6413,18 @@ table.no-border td, table.no-border th, table.no-border thead {
   line-height: 72px;
   margin-bottom: 32px;
 }
+.css-1bcwkbe {
+  border: 0px;
+  background: transparent;
+  outline: none;
+  margin: 0px;
+  padding: 0px;
+  width: 24px;
+  height: 24px;
+}
+.css-1bcwkbe svg {
+  fill: rgb(165, 172, 183);
+}
 
 .single-content h2 {
   font-size: 48px;
@@ -6392,9 +6433,9 @@ table.no-border td, table.no-border th, table.no-border thead {
 }
 
 .single-content h3 {
-  font-size: 36px;
-  line-height: 48px;
-  margin-bottom: 28px;
+  font-size: 25px;
+  line-height: 30px;
+  margin-bottom: 10px;
 }
 
 .single-content h4 {
@@ -8106,6 +8147,7 @@ h6.post-title {
   background-color: #F2FAFF !important;
   color:black
 }
+
 .fmhoveran{
   color:black;
   text-align: center;

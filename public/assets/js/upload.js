@@ -9713,7 +9713,7 @@ const pickr = Pickr.create({
       const y = 0.2126*rgb[0] + 0.7152*rgb[1] + 0.0722*rgb[2]
 	  	document.querySelector(".color-name").style.color = y > 128 ? '#333' : 'white';
       document.querySelector(".color-name").innerHTML = colorName(color);
-      document.querySelector(".dashboard-menu ul li a.active").style.backgroundColor = color;
+      document.querySelector(".categories-button-active").style.backgroundColor = color;
     },
 
 });

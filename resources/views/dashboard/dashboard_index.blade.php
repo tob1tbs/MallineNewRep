@@ -837,6 +837,33 @@ function DeleteProduct(product_id) {
         }
     });
 }
+
+function SaveDomainInfo() {
+	Swal.fire({
+        title: "ნამდვილად გსურთ დომეინის მიბმა?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: 'დადასტურება',
+        cancelButtonText: "გათიშვა",
+        preConfirm: () => {
+            $.ajax({
+                dataType: 'json',
+				url: "/dashboard/ajax/domain/add",
+                type: "POST",
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function(data) {
+                    Swal.fire({
+                      icon: 'success',
+                      text: data['message'],
+                    })
+                    location.reload();
+                }
+            });
+        }
+    });
+}
 </script>
 
 @endsection
