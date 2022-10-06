@@ -163,15 +163,13 @@ class MainController extends Controller
             $WishlistData = $Wishlist;
 
             if(Auth::check() == true) {
-                $WishlistData  = $Wishlist->where('user_id', Auth::user()->id)->orWhere('session_id', Cookie::get()['laravel_session']);
+                $WishlistData  = $Wishlist->where('user_id', Auth::user()->id);
             } else {
                 $WishlistData  = $Wishlist->where('session_id', Cookie::get()['laravel_session']);
             }
 
             $WishlistData = $Wishlist->where('deleted_at_int', '!=', 0)->get();
-
-            // dd($WishlistData);
-
+			
             $data = [
                 'wishlist_list' => $WishlistData,
             ];
