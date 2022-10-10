@@ -200,13 +200,13 @@
                 </div>
                 <div class="hotline d-none d-lg-flex">
                     @if(!empty($parametersArray['facebook']))
-                    <a href="{{ $parametersArray['facebook'] }}"><img src="{{ url('assets/imgs/theme/icons/icon-facebook-white.svg') }}" alt="" /></a>
+                    <a href="{{ $parametersArray['facebook'] }}" target="_blank"><img src="{{ url('assets/imgs/theme/icons/icon-facebook-white.svg') }}" alt="" /></a>
                     @endif
                     @if(!empty($parametersArray['instagram']))
-                    <a href="{{ $parametersArray['instagram'] }}"><img src="{{ url('assets/imgs/theme/icons/icon-instagram-white.svg') }}" alt="" /></a>
+                    <a href="{{ $parametersArray['instagram'] }}" target="_blank"><img src="{{ url('assets/imgs/theme/icons/icon-instagram-white.svg') }}" alt="" /></a>
                     @endif
                     @if(!empty($parametersArray['youtube']))
-                    <a href="{{ $parametersArray['youtube'] }}"><img src="{{ url('assets/imgs/theme/icons/icon-youtube-white.svg') }}" alt="" /></a>
+                    <a href="{{ $parametersArray['youtube'] }}" target="_blank"><img src="{{ url('assets/imgs/theme/icons/icon-youtube-white.svg') }}" alt="" /></a>
                     @endif
                 </div>
                 <div class="header-action-icon-2 d-block d-lg-none">

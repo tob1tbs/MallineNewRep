@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Oct 04, 2022 at 10:26 PM
+-- Generation Time: Oct 10, 2022 at 02:52 PM
 -- Server version: 8.0.30-cll-lve
 -- PHP Version: 7.4.30
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `mallline_customer_17a09062_nikaragua`
+-- Database: `mallline_customer_3eac91f3_newsatesto`
 --
 
 -- --------------------------------------------------------
@@ -456,16 +456,6 @@ CREATE TABLE `new_products` (
   `deleted_at` timestamp NULL DEFAULT NULL,
   `deleted_at_int` int NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
-
---
--- Dumping data for table `new_products`
---
-
-INSERT INTO `new_products` (`id`, `parent_id`, `name_ge`, `name_en`, `description`, `vendor_id`, `category_id`, `child_category_id`, `brand_id`, `discount_percent`, `discount_price`, `count`, `photo`, `stock`, `used`, `preorder`, `facebook`, `status`, `active`, `created_at`, `updated_at`, `deleted_at`, `deleted_at_int`) VALUES
-(1, 0, 'test', 'test', '{\"ge\":\"dsfdsafdsfdsfsd\",\"en\":\"sdasdasdasd\"}', 1, 1, 0, 0, 10, 2300, 5, 'http://127.0.0.1:8000/storage/files/7/633352c11a285.png', 1, 0, NULL, 0, 1, 1, '2022-09-27 15:47:23', '2022-09-27 15:47:23', NULL, 1),
-(2, 0, 'test555', 'test555', '{\"ge\":\"test555\",\"en\":\"test555\"}', 1, 1, 0, 0, 123, 12300, 123, 'http://acer.mallline.ge/storage/files/7/633352fa7ce58.png', 1, 0, NULL, 0, 1, 1, '2022-09-27 15:56:02', '2022-09-27 15:56:02', NULL, 1),
-(3, 0, 'klimati', 'კლიმატი', '{\"ge\":\"asdasdas\",\"en\":\"adasd\"}', 1, 7, 0, 0, 40, 2500, 3, 'http://acer.mallline.ge/storage/files/7/633352fdd4cd9.jpg', 1, 0, NULL, 0, 1, 1, '2022-09-27 15:59:25', '2022-09-27 15:59:25', NULL, 1),
-(4, 0, '1111', '1111', '{\"ge\":\"asdasd\",\"en\":\"asdasd\"}', 1, 1, 0, 0, 22, 4400, 123, 'https://nikaragua.mallline.ge/storage/files/19/633c6ff267d0b.png', 1, 0, NULL, 0, 1, 1, '2022-10-04 13:49:29', '2022-10-04 13:49:29', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -1566,22 +1556,6 @@ CREATE TABLE `new_wishlist` (
   `deleted_at` timestamp NULL DEFAULT NULL,
   `deleted_at_int` int NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
-
---
--- Dumping data for table `new_wishlist`
---
-
-INSERT INTO `new_wishlist` (`id`, `user_id`, `product_id`, `session_id`, `updated_at`, `deleted_at`, `deleted_at_int`) VALUES
-(25, 0, 7, '1TwaVMCNXQy6s3UB43ARdMnVRFHez1RbDSHtjpfN', '2022-07-07 04:04:13', '2022-07-07 04:04:13', 0),
-(26, 0, 6, '62HdVDPMC0L8mxWvKE1uDxMVicWd9FRA4x2Hwqnj', '2022-07-07 04:04:38', '2022-07-07 04:04:38', 0),
-(27, 0, 6, 'xENiplpwrP14eCjPpcd1sT8Mw04E1K0X6pgovNAz', '2022-07-08 07:12:51', '2022-07-08 07:12:51', 0),
-(28, 0, 6, 'xENiplpwrP14eCjPpcd1sT8Mw04E1K0X6pgovNAz', '2022-07-08 07:13:26', NULL, 1),
-(29, 0, 6, 'XXQ5YbqBbNEQJjH8EKVxnWSb6aIAntWEKEhgu0kG', '2022-07-10 09:25:16', '2022-07-10 09:25:16', 0),
-(30, 7, 7, 'ARXPy1u3cISj2eZp5wfLjPGEm5ltIwB7KTdpJREQ', '2022-07-10 09:25:14', '2022-07-10 09:25:14', 0),
-(31, 0, 23, 'COVNhq68kY1vUkSaU4Z79dsleb43zgkEXksPv76e', '2022-08-09 04:01:03', NULL, 1),
-(32, 0, 24, 'COVNhq68kY1vUkSaU4Z79dsleb43zgkEXksPv76e', '2022-08-09 04:01:05', NULL, 1),
-(33, 7, 24, 'WE439awzghJb5vySfecG7ImXhZPFuuSPznY7clmC', '2022-09-12 15:16:36', NULL, 1),
-(34, 7, 64, '2HEeQTz5tiCWGJc6IAcbVhWDoSlNqhJxaihILAvs', '2022-09-27 12:56:54', NULL, 1);
 
 --
 -- Indexes for dumped tables

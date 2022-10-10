@@ -210,12 +210,15 @@
             $.ajax({
                 dataType: 'json',
                 url: "/products/ajax/price",
-                type: "GET",
+                type: "POST",
                 data: {
                     price_from: moneyFormat.from(values[0]),
                     price_to: moneyFormat.from(values[1]),
                     current_url: '{{ url()->current().'?'.http_build_query(array_merge(request()->except('page', 'price_from', 'price_to'))) }}',
                 },
+				headers: {
+					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+				},
                 success: function(data) {
                     if(data['status'] == true) {
                         window.location.href = data['redirect_url'];

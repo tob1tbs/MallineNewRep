@@ -515,7 +515,7 @@
                                                         </select>
                                                     </div>
                                                     <div class="form-group col-md-6">
-                                                        <label for="">სათაური * (ინგლისურად)</label>
+                                                        <label for="">სათაური * (ქართულად)</label>
                                                         <input type="text" class="form-control" name="product_name_ge" id="product_name_ge" />
                                                     </div>
                                                     <div class="form-group col-md-6">

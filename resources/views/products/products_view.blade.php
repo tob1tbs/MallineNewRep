@@ -42,11 +42,12 @@
                                 @endif
                                 <a class="action-btn hover-up"><img src="{{ asset('assets/imgs/theme/icons/chat.png') }}" alt=""></a>
                                 <h2 class="title-detail">{{ $product_data->{"name_" . app()->getLocale()} }}</h2>
-                                <!-- <div class="product-detail-rating">
+                                <div class="product-detail-rating">
                                     <ul class="float-start">
-                                        <li class="mb-5">გამყიდველი: <a href="">Molline Food Store</a></li>
+                                        <li class="mb-5">კატეგორია: <a href="{{ route('actionProductsIndex', ['category_id' => $product_data->getCategoryData->id]) }}">{{ json_decode($product_data->getCategoryData->name)->{app()->getLocale()} }}</a></li>
+                                        <li class="mb-5">გამყიდველი: <a href="">Mallline</a></li>
                                     </ul>
-                                </div> -->
+                                </div>
                                 @if(!empty($product_data->discount_price))
                                 <div class="clearfix product-price-cover">
                                     <div class="product-price primary-color float-left">
@@ -73,7 +74,7 @@
                                     @endif
                                     <div class="product-extra-link2">
                                         <a aria-label="Add To Wishlist" class="action-btn hover-up" onclick="AddToWishlis({{ $product_data->id }})"><i class="fi-rs-heart"></i></a>
-                                        <a aria-label="Compare" class="action-btn hover-up" href="compare.html"><i class="fi-rs-shuffle"></i></a>
+                                        <a aria-label="Compare" class="action-btn hover-up" href="javascript:;" onclick="ProductCompare({{ $product_data->id }})"><i class="fi-rs-shuffle"></i></a>
                                         @if($product_data['count'] > 0)
                                         <button type="button" class="button button-add-to-cart" onclick="AddToCart({{ $product_data->id }})"><i class="fi-rs-shopping-cart"></i>{{ trans('site.add_to_cart') }}</button>
                                         @endif
@@ -98,16 +99,6 @@
                                     <div class="">
                                     </div>
                                     {!! json_decode($product_data->description)->ge !!}                                        
-                                    <!-- <table class="font-md">
-                                        <tbody>
-                                            <tr class="stand-up">
-                                                <th>ადექი</th>
-                                                <td>
-                                                    <p>35″L x 24″W x 37-45″H (წინა უკანა ბორბალი)</p>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table> -->
                                 </div>
                                 <div class="tab-pane fade" id="Reviews">
                                 <div class="comments-area">
@@ -193,7 +184,7 @@
                         <div class="container no-padding">
                             <div class="section-title">
                                 <div class="title">
-                                <img src="{{ url('assets\imgs\theme\icons\Group 6820.png') }}" class="titleleftimg">  <h3>{{ trans('site.related_products') }} |</h3>  <a href="{{ route('actionProductsView', $product_data->category_id) }}" class="allprod">{{ trans('site.all_products') }}</a>
+                                <img src="{{ url('assets\imgs\theme\icons\Group 6820.png') }}" class="titleleftimg">  <h3>{{ trans('site.related_products') }} |</h3>  <a href="{{ route('actionProductsIndex', ['category_id' => $product_data->category_id]) }}" class="allprod">{{ trans('site.all_products') }}</a>
                                 </div>
                                 <div class="slider-arrow slider-arrow-2 flex-right carausel-9-columns-arrow" id="carausel-9-columns-arrows"></div>
                             </div>
@@ -232,7 +223,7 @@
                                                 </div>
                                                 @else
                                                 <div class="product-price">
-                                                    
+                                                    <span>{{ $product_data->getProductPrice->price / 100 }} ₾</span>
                                                 </div>
                                                 @endif
                                                 <div class="add-cart" onclick="AddToCart({{ $product_data->id }})">
