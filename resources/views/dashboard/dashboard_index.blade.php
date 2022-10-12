@@ -88,9 +88,11 @@
                                                         <input class="form-control" name="{{ $social_parameter[2]->key }}" type="text" value="{{ $social_parameter[2]->value }}" />
                                                     </div>
 													<h3 class="mb-20 mt-20 text-brand">ვებ გვერდის ლოგო</h3>
-                                                    <div class="form-group col-md-4 newfrm">
+                                                    <div class="form-group col-md-12 newfrm">
                                                         <label for="">აირჩიეთ სურათი</label>
                                                         <input class="form-control" name="logotype" type="file"/>
+                                                       	<span class="text-brand" style="font-size: 13px; position: relative; top: 10px;">იმისათვის რომ სურათი კაგად გამოჩნდეს ვებ გვერდზე გთხოვთ ატვირთოთ (275px X 65px) ზომის სურათი</span>
+
                                                     </div>
 													<h3 class="mb-20 mt-20 text-brand">სოციალური ქსელებით ავტორიზაცია</h3>
 													<div class="form-group col-md-6 newfrm">
@@ -508,7 +510,8 @@
                                                 <div class="row">
                                                     <div class="form-group col-md-12">
                                                         <label for="category">აირჩიეთ კატეგორია *</label>
-                                                        <select name="product_category" id="product_category">
+                                                        <select name="product_category" id="cat">
+                                                        	<option value="0"></option>
                                                             @foreach($dash_product_category_list as $category_item)
                                                             <option value="{{ $category_item->id }}">{{ json_decode($category_item->name)->{app()->getLocale()} }}</option>
 															@endforeach
@@ -772,7 +775,10 @@ function ProductSubmit() {
 				})
 				location.reload();
             } else {
-				console.log(123);
+				$.each(data['message'], function(key, value) {
+                    $('#'+key).addClass('input-error');
+                    toastr.warning(value);
+                })
 			}
         }
     });

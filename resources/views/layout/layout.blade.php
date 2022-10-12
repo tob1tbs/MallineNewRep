@@ -114,9 +114,14 @@
                         <h4 class="widget-title">{{ trans('site.company') }}</h4>
                         <ul class="footer-list mb-sm-4 mb-md-0">
                             <li><a href="{{ route('actionMainAboutUs') }}">{{ trans('site.about_us') }}</a></li>
+                            <li><a href="{{ route('actionMainContact') }}">{{ trans('site.contact') }}</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-link-widget col">
+                        <h4 class="widget-title">{{ trans('site.quiq_links') }}</h4>
+                        <ul class="footer-list mb-sm-4 mb-md-0">
                             <li><a href="{{ route('actionMainPrivacy') }}">{{ trans('site.privacy') }}</a></li>
                             <li><a href="{{ route('actionMainTerms') }}">{{ trans('site.terms') }}</a></li>
-                            <li><a href="{{ route('actionMainContact') }}">{{ trans('site.contact') }}</a></li>
                         </ul>
                     </div>
                     <div class="footer-link-widget col">

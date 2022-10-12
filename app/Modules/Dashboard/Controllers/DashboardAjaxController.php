@@ -30,9 +30,9 @@ class DashboardAjaxController extends Controller
     public function __construct() {
         //
     }
-	
-	public function sendParameters($data) {
-		$curl = curl_init();
+    
+    public function sendParameters($data) {
+        $curl = curl_init();
 
         curl_setopt_array($curl, array(
           CURLOPT_URL => 'https://mallline.ge/builder/api/parameters',
@@ -49,11 +49,11 @@ class DashboardAjaxController extends Controller
           ),
         ));
         $response = curl_exec($curl);
-		return $response;
-	}
-	
-	public function deleteProducts($Request) {
-		$curl = curl_init();
+        return $response;
+    }
+    
+    public function deleteProducts($Request) {
+        $curl = curl_init();
 
         curl_setopt_array($curl, array(
           CURLOPT_URL => 'https://dashboard.mallline.ge/products/ajax/delete/api',
@@ -70,11 +70,11 @@ class DashboardAjaxController extends Controller
           ),
         ));
         $response = curl_exec($curl);
-		return $response;
-	}
-	
-	public function sendProducts($Request) {	
-		$curl = curl_init();
+        return $response;
+    }
+    
+    public function sendProducts($Request) {    
+        $curl = curl_init();
 
         curl_setopt_array($curl, array(
           CURLOPT_URL => 'https://dashboard.mallline.ge/products/ajax/submit/api',
@@ -91,70 +91,70 @@ class DashboardAjaxController extends Controller
           ),
         ));
         $response = curl_exec($curl);
-		return $response;
-	}
+        return $response;
+    }
 
     public function ajaxDashboardContact(Request $Request) {
-		if($Request->isMethod('POST')) {
-			
-			Artisan::call('storage:link');
-			
-			foreach($Request->only(['email', 'phone', 'address']) as $info_key => $info_item) {
-				$InfoParameter = new InfoParameter();
-				$InfoParameter::where('key', $info_key)->update(['value' => $info_item]);
-			}
-			
-			foreach($Request->only(['facebook', 'youtube', 'instagram']) as $social_key => $social_item) {
-				$SocialParameter = new SocialParameter();
-				$SocialParameter::where('key', $social_key)->update(['value' => $social_item]);
-			}
-			
-			if($Request->has('logotype') && !empty($Request->logotype)) {
-				$Logotype = $Request->logotype;
-				$LogotypeName =  md5(Str::random(20).time().$Logotype).'.'.$Logotype->getClientOriginalExtension();
-				$Logotype->move(public_path('uploads/logotype/'), $LogotypeName);
-				
-				$WebParameter = new WebParameter();
-				$WebParameter::find(1)->update(['logotype' => $LogotypeName]);
-			} else {
-				$WebParameter = new WebParameter();
-				$LogotypeName = $WebParameter::find(1)->logotype;
-			}
-			
-			foreach($Request->only(['fb_auth_key', 'google_auth_key', 'google_auth', 'fb_auth']) as $auth_key => $auth_item) {
-				$WebParameter = new WebParameter();
-				$WebParameter::find(1)->update([$auth_key => $auth_item]);
-			}
-			
-			
-			foreach($Request->only(['name_ge', 'name_en']) as $name_key => $name_item) {
-				$WebParameter = new WebParameter();
-				$WebParameter::find(1)->update([$name_key => $name_item]);
-			}
-			
-			if($Request->has('sms_office') && !empty($Request->sms_office)) {
-				$WebParameter = new WebParameter();
-				$WebParameter::find(1)->update(['smsoffice' => $Request->sms_office]);
-			}
-				
-			$data = [
-				'host' => $WebParameter::find(1)->host,
-				'logotype' => $LogotypeName,
-				'email' => $Request->email,
-				'phone' => $Request->phone,
-				'address' => $Request->address,
-				'name_ge' => $Request->name_ge,
-				'name_en' => $Request->name_en,
-			];
-						
-			return Response::json(['status' => true, 'message' => 'პარამეტრები წარმატებით განახლდა']); 
-		} else {
-			return Response::json(['status' => false, 'message' => 'დაფიქსირდა შეცდომა გთხოვთ სცადოთ თავიდან']);
-		}
+        if($Request->isMethod('POST')) {
+            
+            Artisan::call('storage:link');
+            
+            foreach($Request->only(['email', 'phone', 'address']) as $info_key => $info_item) {
+                $InfoParameter = new InfoParameter();
+                $InfoParameter::where('key', $info_key)->update(['value' => $info_item]);
+            }
+            
+            foreach($Request->only(['facebook', 'youtube', 'instagram']) as $social_key => $social_item) {
+                $SocialParameter = new SocialParameter();
+                $SocialParameter::where('key', $social_key)->update(['value' => $social_item]);
+            }
+            
+            if($Request->has('logotype') && !empty($Request->logotype)) {
+                $Logotype = $Request->logotype;
+                $LogotypeName =  md5(Str::random(20).time().$Logotype).'.'.$Logotype->getClientOriginalExtension();
+                $Logotype->move(public_path('uploads/logotype/'), $LogotypeName);
+                
+                $WebParameter = new WebParameter();
+                $WebParameter::find(1)->update(['logotype' => $LogotypeName]);
+            } else {
+                $WebParameter = new WebParameter();
+                $LogotypeName = $WebParameter::find(1)->logotype;
+            }
+            
+            foreach($Request->only(['fb_auth_key', 'google_auth_key', 'google_auth', 'fb_auth']) as $auth_key => $auth_item) {
+                $WebParameter = new WebParameter();
+                $WebParameter::find(1)->update([$auth_key => $auth_item]);
+            }
+            
+            
+            foreach($Request->only(['name_ge', 'name_en']) as $name_key => $name_item) {
+                $WebParameter = new WebParameter();
+                $WebParameter::find(1)->update([$name_key => $name_item]);
+            }
+            
+            if($Request->has('sms_office') && !empty($Request->sms_office)) {
+                $WebParameter = new WebParameter();
+                $WebParameter::find(1)->update(['smsoffice' => $Request->sms_office]);
+            }
+                
+            $data = [
+                'host' => $WebParameter::find(1)->host,
+                'logotype' => $LogotypeName,
+                'email' => $Request->email,
+                'phone' => $Request->phone,
+                'address' => $Request->address,
+                'name_ge' => $Request->name_ge,
+                'name_en' => $Request->name_en,
+            ];
+                        
+            return Response::json(['status' => true, 'message' => 'პარამეტრები წარმატებით განახლდა']); 
+        } else {
+            return Response::json(['status' => false, 'message' => 'დაფიქსირდა შეცდომა გთხოვთ სცადოთ თავიდან']);
+        }
     }
-	
-	public function ajaxDashboardNavigation(Request $Request) {
-		if($Request->isMethod('POST') && !empty($Request->navigation_id) && $Request->navigation_id > 1) {
+    
+    public function ajaxDashboardNavigation(Request $Request) {
+        if($Request->isMethod('POST') && !empty($Request->navigation_id) && $Request->navigation_id > 1) {
 
             $Navigation = new Navigation();
             $Navigation::find($Request->navigation_id)->update([
@@ -166,10 +166,10 @@ class DashboardAjaxController extends Controller
         } else {
             return Response::json(['status' => false, 'message' => 'დაფიქსირდა შეცდომა გთხოვთ სცადოთ თავიდან !!!']);
         }
-	}
-	
-	public function ajaxDashboardSliderAdd(Request $Request) {
-		if($Request->isMethod('POST')) {
+    }
+    
+    public function ajaxDashboardSliderAdd(Request $Request) {
+        if($Request->isMethod('POST')) {
             $messages = array(
                 'required' => 'გთხოვთ შეავსოთ ყველა აუცილებელი ველი!!!',
                 'slider_photo.required' => 'გთხოვთ აირჩიოთ ფოტო !!!',
@@ -207,10 +207,10 @@ class DashboardAjaxController extends Controller
             return Response::json(['status' => true, 'errors' => false, 'message' => 'სურათი წარმატებით დაემატა.']);
         } else {
             return Response::json(['status' => false, 'message' => 'დაფიქსირდა შეცდომა, გთხოვთ სცადოთ თავიდან !!!']);
-        }		
-	}
-	
-	public function ajaxSliderDeletePhoto(Request $Request) {
+        }       
+    }
+    
+    public function ajaxSliderDeletePhoto(Request $Request) {
         if($Request->isMethod('POST') && !empty($Request->slider_id)) {
             $Slider = new Slider();
             $Slider::find($Request->slider_id)->update([
@@ -223,13 +223,14 @@ class DashboardAjaxController extends Controller
             return Response::json(['status' => false, 'message' => 'დაფიქსირდა შეცდომა, გთხოვთ სცადოთ თავიდან !!!']);
         }
     }
-	
-	public function ajaxDashboardProductAdd(Request $Request) {
-		if($Request->isMethod('POST')) {
-							
+    
+    public function ajaxDashboardProductAdd(Request $Request) {
+        if($Request->isMethod('POST')) {
+                            
             $messages = array(
                 'product_name_ge.required' => 'გთხოვთ შეიყვანოთ პროდუქტის დასახელება',
                 'product_category.required' => 'გთხოვთ აირჩიოთ პროდუქტის კატეგორია',
+                'product_category.not_in' => 'გთხოვთ აირჩიოთ პროდუქტის კატეგორია',
                 'product_meta_keywords_ge.required' => 'გთხოვთ შეიყვანოთ მეტა ქივორდები',
                 'product_meta_description_ge.required' => 'გთხოვთ შეიყვანოთ მეტა აღწერა',
                 'product_price.required' => 'გთხოვთ შეიყვანოთ პროდუქტის ფასი',
@@ -240,7 +241,7 @@ class DashboardAjaxController extends Controller
 
             $validator = Validator::make($Request->all(), [
                 'product_name_ge' => 'required|max:255',
-                'product_category' => 'required|max:255',
+                'product_category' => 'required|max:255:not_in:0',
                 'product_meta_keywords_ge' => 'required|max:255',
                 'product_meta_description_ge' => 'required|max:255',
                 'product_price' => 'required|max:255|not_in:0',
@@ -276,7 +277,7 @@ class DashboardAjaxController extends Controller
                         'used' => 0,
                     ],
                 );
-				
+                
                 $ProductMeta = new ProductMeta();
                 $ProductMeta->product_id = $ProductData->id;
 
@@ -289,7 +290,7 @@ class DashboardAjaxController extends Controller
                     'ge' => $Request->product_meta_description_ge,
                     'en' => $Request->product_meta_description_en,
                 ];
-				
+                
                 $ProductMeta = new ProductMeta();
                 $ProductMeta::updateOrCreate(
                     ['id' => $Request->product_meta_id],
@@ -343,38 +344,38 @@ class DashboardAjaxController extends Controller
                         return Response::json(['status' => true, 'errors' => true, 'message' => ['0' => 'დამატებითი სურათების რაოდენობა აღემატება 5ს']]);
                     }
                 }
-				$Request->request->add(['product_id' => $ProductData->id]);
-				
-				$this->sendProducts($Request);
-				
+                $Request->request->add(['product_id' => $ProductData->id]);
+                
+                $this->sendProducts($Request);
+                
                 return Response::json(['status' => true, 'message' => 'პროდუქტი წარმატებით დაემატა']);
             }
 
         } else {
             return Response::json(['status' => false, 'message' => 'დაფიქსირდა შეცდომა გთხოვთ სცადოთ თავიდან !!!']);
         }
-	}
-	
-	public function ajaxProductDelete(Request $Request) {
+    }
+    
+    public function ajaxProductDelete(Request $Request) {
         if($Request->isMethod('POST') && !empty($Request->product_id)) {
             $Product = new Product();
             $Product::find($Request->product_id)->update([
                 'deleted_at' => Carbon::now(),
                 'deleted_at_int' => 0,
             ]);
-			
-			return $this->deleteProducts($Request);
-			
+            
+            return $this->deleteProducts($Request);
+            
             return Response::json(['status' => true, 'message' => 'სურათი წარმატებით წაიშალ/.ა !!!']);
         } else {
             return Response::json(['status' => false, 'message' => 'დაფიქსირდა შეცდომა, გთხოვთ სცადოთ თავიდან !!!']);
         }
     }
-	
-	public function ajaxApiCreateData(Request $Request) {
-		$get_data = json_decode($Request->getContent(), true);
-		
-		$WebParameter = new WebParameter();
-		$WebParameter::find(1)->update(['vendor_id' => $get_data['vendor_inner_id']]);
-	}
+    
+    public function ajaxApiCreateData(Request $Request) {
+        $get_data = json_decode($Request->getContent(), true);
+        
+        $WebParameter = new WebParameter();
+        $WebParameter::find(1)->update(['vendor_id' => $get_data['vendor_inner_id']]);
+    }
 }

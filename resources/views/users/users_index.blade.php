@@ -24,17 +24,18 @@
                                     <li class="nav-item">
                                         <a class="nav-link active" id="account-detail-tab" data-bs-toggle="tab" href="#account-detail" role="tab" aria-controls="account-detail" aria-selected="true"><i class="fi-rs-user mr-10"></i>{{ trans('site.acc_details') }}</a>
                                     </li>
+                                    @if(Auth::user()->is_admin == 1)
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="productscard-tab" href="{{ route('actionDashboardIndex') }}" role="tab" aria-controls="productscard" aria-selected="true">
+                                            <i class="fi-dashboard mr-10"></i>{{ trans('site.dashboard') }}</a>
+                                        </a>
+                                    </li>
+                                    @else
                                     <li class="nav-item">
                                         <a class="nav-link" id="track-orders-tab" data-bs-toggle="tab" href="#orders-tab" role="tab" aria-controls="orders-tab" aria-selected="false">
                                             <i class="fi-rs-shopping-bag mr-10"></i>{{ trans('site.my_orders') }}</a>
                                     </li>
-									@if(Auth::user()->is_admin == 1)
-                                    <li class="nav-item">
-                                        <a class="nav-link" id="productscard-tab" href="{{ route('actionDashboardIndex') }}" role="tab" aria-controls="productscard" aria-selected="true">
-											<i class="fi-dashboard mr-10"></i>{{ trans('site.dashboard') }}</a>
-										</a>
-                                    </li>
-									@endif
+                                    @endif
                                     <!-- <li class="nav-item">
                                         <a class="nav-link" id="dashboard-tab" data-bs-toggle="tab" href="#dashboard" role="tab" aria-controls="dashboard" aria-selected="false"><i class="fi-rs-settings-sliders mr-10"></i>Dashboard</a>
                                     </li>

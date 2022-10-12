@@ -39,7 +39,7 @@ class DashboardController extends Controller
 				$ProductList = $Product::where('deleted_at_int', '!=', 0)->orderBy('id', 'DESC')->get();
 				
 				$ProductCategory = new ProductCategory();
-				$ProductCategoryList = $ProductCategory::where('deleted_at_int', '!=', 0)->get();
+				$ProductCategoryList = $ProductCategory::where('deleted_at_int', '!=', 0)->where('id', '!=', 1)->where('id', '!=', 2)->get();
 				
 				$Slider = new Slider();
 				$SliderList = $Slider::where('deleted_at_int', '!=', 0)->get();
