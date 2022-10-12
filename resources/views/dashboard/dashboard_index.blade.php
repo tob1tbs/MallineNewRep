@@ -549,15 +549,15 @@
                                                     </div>
                                                     <div class="form-group col-md-3">
                                                         <label for="">ფასი *</label>
-                                                        <input  class="form-control" name="product_price" id="product_price" type="number"  placeholder="ფასი" />
+                                                        <input  class="form-control" name="product_price" id="product_price" type="number"  placeholder="ფასი" onkeyup="CalculatePercent(), CalculateDiscountPrice()"/>
                                                     </div>
                                                     <div class="form-group col-md-3">
                                                         <label for=""> ფასდაკლების ფასი</label>
-                                                        <input class="form-control" name="product_discount_price" id="product_discount_price" type="number"   placeholder="ფასდაკლება"/>
+                                                        <input class="form-control" name="product_discount_price" id="product_discount_price" type="number"   placeholder="ფასდაკლება" onkeyup="CalculatePercent()" />
                                                     </div>
                                                     <div class="form-group col-md-3">
                                                         <label for=""> ფასდაკლების %</label>
-                                                        <input class="form-control" name="product_discount_percent" id="product_discount_percent" type="number"   placeholder="ფასდაკლება"/>
+                                                        <input class="form-control" name="product_discount_percent" id="product_discount_percent" type="number"   placeholder="ფასდაკლება" onkeyup="CalculateDiscountPrice()"/>
                                                     </div>
                                                     <div class="form-group col-md-3">
                                                         <label for=""> რაოდენობა *</label>
@@ -869,6 +869,31 @@ function SaveDomainInfo() {
             });
         }
     });
+}
+
+function CalculatePercent() {
+	var price_1 = $("#product_price").val();
+	var price_2 = $("#product_discount_price").val();
+	var percent = ((price_1 - price_2) / price_1) * 100;
+
+
+	if(document.getElementById("product_discount_price").value.length != 0 && document.getElementById("product_price").value.length != 0) {
+		$("#product_discount_percent").val(percent);
+	}
+
+}
+
+
+function CalculateDiscountPrice() {
+	var price_1 = $("#product_price").val();
+	var price_2 = $("#product_discount_percent").val();
+
+	var price = price_1 - ((price_1 / 100) * price_2);
+
+
+	if(document.getElementById("product_price").value.length != 0 && document.getElementById("product_discount_percent").value.length != 0) {
+		$("#product_discount_price").val(price);
+	}
 }
 </script>
 
