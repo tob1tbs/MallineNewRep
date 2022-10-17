@@ -451,6 +451,7 @@ CREATE TABLE `new_products` (
   `facebook` int NOT NULL DEFAULT '0',
   `status` int NOT NULL DEFAULT '1',
   `active` int NOT NULL DEFAULT '1',
+  `root_id` int NULL DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,

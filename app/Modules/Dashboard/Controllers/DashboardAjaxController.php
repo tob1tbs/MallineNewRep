@@ -348,6 +348,10 @@ class DashboardAjaxController extends Controller
                 
                 $this->sendProducts($Request);
                 
+                $SendResponse = json_decode($this->sendProducts($Request));
+                $Product = new Product();
+                $Product::find($ProductData->id)->update(['root_id' => $SendResponse->root_id]);
+                
                 return Response::json(['status' => true, 'message' => 'პროდუქტი წარმატებით დაემატა']);
             }
 
