@@ -15,6 +15,7 @@ Route::group(['prefix' => 'dashboard/ajax', 'middleware' => []], function () {
 	Route::post('/slider/add', 'DashboardAjaxController@ajaxDashboardSliderAdd')->name('ajaxDashboardSliderAdd');
 	Route::post('/product/add', 'DashboardAjaxController@ajaxDashboardProductAdd')->name('ajaxDashboardProductAdd');
 	Route::post('/product/delete', 'DashboardAjaxController@ajaxProductDelete')->name('ajaxProductDelete');
+	Route::get('/product/get', 'DashboardAjaxController@ajaxProductGet')->name('ajaxProductGet');
 	Route::post('/slider/delete', 'DashboardAjaxController@ajaxSliderDeletePhoto')->name('ajaxSliderDeletePhoto');
 });
 
