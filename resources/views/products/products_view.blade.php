@@ -101,7 +101,10 @@
                                     {!! json_decode($product_data->description)->ge !!}                                        
                                 </div>
                                 <div class="tab-pane fade" id="Reviews">
-                                <div class="comments-area">
+                                <div class="container mb-80 mt-50">
+                                    <div class="alert alert-primary" role="alert">{{ trans('site.add_review_text') }}</div>
+                                </div>
+                                <!-- <div class="comments-area">
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <h4 class="mb-30 Center">მომხმარებელთა შეფასებები</h4>
@@ -175,7 +178,7 @@
                                             </form>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                             </div>
                         </div>
