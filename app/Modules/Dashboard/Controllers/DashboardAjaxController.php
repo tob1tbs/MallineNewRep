@@ -110,6 +110,20 @@ class DashboardAjaxController extends Controller
             }
             
             if($Request->has('logotype') && !empty($Request->logotype)) {
+
+                $messages = array(
+                    'logotype.mimes' => 'ლოგოს ფორმატი არასწორია, დასაშვები ფორმატებია: jpeg, jpg, png, gif',
+                    'logotype.dimensions' => 'ლოგოს ზომები არასწორია, დასაშვები ზომებია: 275px X 65px',
+                );
+
+                $validator = Validator::make($Request->all(), [
+                    'logotype' => 'mimes:jpeg,jpg,png,gif|dimensions:max_width=275,max_height=65',
+                ], $messages);
+
+                if ($validator->fails()) {
+                    return Response::json(['status' => false, 'errors' => true, 'message' => $validator->getMessageBag()->toArray()], 200);
+                }
+            
                 $Logotype = $Request->logotype;
                 $LogotypeName =  md5(Str::random(20).time().$Logotype).'.'.$Logotype->getClientOriginalExtension();
                 $Logotype->move(public_path('uploads/logotype/'), $LogotypeName);
@@ -351,7 +365,7 @@ class DashboardAjaxController extends Controller
                 $SendResponse = json_decode($this->sendProducts($Request));
                 $Product = new Product();
                 $Product::find($ProductData->id)->update(['root_id' => $SendResponse->root_id]);
-                
+
                 return Response::json(['status' => true, 'message' => 'პროდუქტი წარმატებით დაემატა']);
             }
 
