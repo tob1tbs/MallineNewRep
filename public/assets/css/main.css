@@ -1391,7 +1391,7 @@ h5.widget-title {
   width: 100%;
   text-align: center;
 }
-.progress_holder.activated_step {
+.progress_holder.activated_step2 {
     color: white;
     background-color: #2491e0;
     -webkit-box-shadow: 5px 5px 15px rgb(0 0 0 / 5%);
@@ -1401,10 +1401,26 @@ h5.widget-title {
     font-size: 17px;  
     cursor: pointer;
 }
+
+.progress_holder.activated_step2:hover{
+  transform: translateY(-3px);
+  transition: 0.2s;
+}
+.progress_holder.activated_step {
+  color: white;
+  background-color: #2491e0;
+  -webkit-box-shadow: 5px 5px 15px rgb(0 0 0 / 5%);
+  box-shadow: 5px 5px 15px rgb(0 0 0 / 5%);
+  border-radius: 10px;
+  margin-right: 10px;
+  font-size: 17px;  
+  cursor: pointer;
+}
 .progress_holder.activated_step:hover{
   transform: translateY(-3px);
   transition: 0.2s;
 }
+
 .progress_holder:hover{
   transform: translateY(-3px);
   transition: 0.2s;
@@ -1429,14 +1445,7 @@ h5.widget-title {
   padding: 4px;
   border-radius: 50px;
 }
-#multi_step_form .container fieldset.step .prevStep {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  padding: 10px;
-  width: 100px;
-  border: 1px solid black;
-}
+
 #multi_step_form .container fieldset.step:not(:first-of-type) {
   display: none;
 }
@@ -4149,7 +4158,19 @@ table .product-thumbnail img {
   -webkit-transform: none;
           transform: none;
 }
-
+.stepbtn{
+  font-size: 16px;
+  font-weight: 500;
+  padding: 8px 40px;
+  color: #ffffff;
+  border: none;
+  background-color: #2491e0;
+  border: 1px solid white;
+  border-radius: 10px;
+}
+.stepbtn:hover {
+    background-color: #2491e0;
+}
 .banner-img.style-3 {
   border-radius: 30px;
   overflow: hidden;
@@ -7575,6 +7596,7 @@ h6.post-title {
 
 .vendor-wrap .vendor-img-action-wrap {
   padding: 25px 25px 0 25px;
+  aspect-ratio: 390 /193;
 }
 
 .vendor-wrap .vendor-img-action-wrap img {

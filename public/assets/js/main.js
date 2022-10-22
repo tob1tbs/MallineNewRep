@@ -857,6 +857,54 @@ $('#submit-payment').on('click', function() {
         $(".more_slide_open").slideToggle();
     });
 
+
+
+    //Tabs
+    $('#step11').click(function(){
+        $('#step33').removeClass('activated_step2');
+        $('#step22').removeClass('activated_step2');
+        $('#step44').removeClass('activated_step2');
+        $('#step11').addClass('activated_step2');
+        $("#step1").show();
+        $("#step2").hide();
+        $("#step3").hide();
+        $("#step4").hide();
+    });
+    $('#step22').click(function(){
+        $('#step11').removeClass('activated_step2');
+        $('#step11').removeClass('activated_step');
+        $('#step33').removeClass('activated_step2');
+        $('#step44').removeClass('activated_step2');
+        $('#step22').addClass('activated_step2'); 
+        $("#step2").show();
+        $("#step1").hide();
+        $("#step3").hide();
+        $("#step4").hide();
+    });
+    $('#step33').click(function(){
+        $('#step11').removeClass('activated_step2');
+        $('#step11').removeClass('activated_step');
+        $('#step22').removeClass('activated_step2');
+        $('#step44').removeClass('activated_step2');
+        $('#step33').addClass('activated_step2');
+        $("#step3").show();
+        $("#step2").hide();
+        $("#step1").hide();
+        $("#step4").hide();
+    });
+    $('#step44').click(function(){
+        $('#step11').removeClass('activated_step2');
+        $('#step11').removeClass('activated_step');
+        $('#step22').removeClass('activated_step2');
+        $('#step33').removeClass('activated_step2');
+        $('#step44').addClass('activated_step2');
+        $("#step3").hide();
+        $("#step2").hide();
+        $("#step1").hide();
+        $("#step4").show();
+    });
+    
+
     // Install Page steps //
     $('.progress_holder:nth-child(1)').addClass('activated_step');
 
@@ -893,9 +941,12 @@ $('#submit-payment').on('click', function() {
         if ($('fieldset.current').attr('id') == 'step3') {
             $('.progress_holder:nth-child(2)').removeClass('activated_step');
         }
+        if ($('fieldset.current').attr('id') == 'step3') {
+            $('.progress_holder:nth-child(2)').removeClass('activated_step2');
+        }
         if ($('fieldset.current').attr('id') == 'step4') {
             $('.progress_holder:nth-child(3)').removeClass('activated_step');
-        }
+        }        
     });
     $(".prevStep").click(function(e){
         e.preventDefault();
@@ -905,6 +956,15 @@ $('#submit-payment').on('click', function() {
         previous_fs.fadeIn(150,'linear');
         //hide the current fieldset with style
         current_fs.fadeOut(0,'linear');
+        if ($('fieldset.current').attr('id') == 'step2') {
+            $('.progress_holder:nth-child(1)').addClass('activated_step');
+            }
+        if ($('fieldset.current').attr('id') == 'step3') {
+        $('.progress_holder:nth-child(2)').addClass('activated_step');
+        }
+        if ($('fieldset.current').attr('id') == 'step4') {
+        $('.progress_holder:nth-child(3)').addClass('activated_step');
+        }
 
         if ($(previous_fs).attr('id') == 'step1') {
             $('.progress_holder:nth-child(2)').removeClass('activated_step');
@@ -913,10 +973,19 @@ $('#submit-payment').on('click', function() {
             $('.progress_holder:nth-child(3)').removeClass('activated_step');
         }
         if ($(previous_fs).attr('id') == 'step3') {
-            $('.progress_holder:nth-child(4)').removeClass('activated_step');
+            $('.progress_holder:nth-child(2)').removeClass('activated_step2');
         }
-        if ($(previous_fs).attr('id') == 'step4') {
-            $('.progress_holder:nth-child(5)').removeClass('activated_step');
+        if ($(previous_fs).attr('id') == 'step2') {
+            $('.progress_holder:nth-child(2)').addClass('activated_step');
+        }
+        if ($(previous_fs).attr('id') == 'step1') {
+            $('.progress_holder:nth-child(1)').addClass('activated_step');
+        }
+        if ($(previous_fs).attr('id') == 'step1') {
+            $('.progress_holder:nth-child(3)').removeClass('activated_step');
+        }
+        if ($(previous_fs).attr('id') == 'step3') {
+            $('.progress_holder:nth-child(4)').removeClass('activated_step');
         }
     });
 
@@ -968,8 +1037,6 @@ $('#submit-payment').on('click', function() {
 		}
 	});
 });
-
-in1.addEventListener('input', splitNumber);
 
 
     /*-----Modal----*/

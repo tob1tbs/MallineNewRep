@@ -13,16 +13,16 @@
 		                    	<div id="multi_step_form">
 		                    		<div class="container">
 	                                    <div id="multistep_nav">
-	                                        <div class="progress_holder">
+	                                        <div class="progress_holder" id="step11">
 	                                            <span>01</span> თქვენი პირველი მომხმარებელი
 	                                        </div>
-	                                        <div class="progress_holder">
+	                                        <div class="progress_holder" id="step22">
 	                                            <span>02</span> ძირითადი პარამეტრები
 	                                        </div>
-	                                        <div class="progress_holder">
+	                                        <div class="progress_holder" id="step33">
 	                                            <span>03</span> საკონტაქტო ინფორმაცია
 	                                        </div>
-	                                        <div class="progress_holder">
+	                                        <div class="progress_holder" id="step44">
 	                                            <span>04</span> ლოგო
 	                                        </div>
 	                                    </div>
@@ -70,7 +70,7 @@
 		                                                </div>
 	                                                </div>
 	                                            </div>
-	                                            <button type="button" class="btn-block nextStep" name="contactinfo">შემდეგი</button>
+                                            	<button class="btn-block stepbtn nextStep">შემდეგი</button>
 	                                        </div>
 	                                    </fieldset>
 	                                    <fieldset class="step" id="step2">
@@ -89,7 +89,8 @@
 		                                                </div>
 	                                                </div>
 	                                            </div>
-	                                            <button type="button" class="btn-block nextStep" name="contactinfo">შემდეგი</button>
+	                                            <button class="btn-block stepbtn prevStep">უკან</button>
+	                                            <button class="btn-block stepbtn nextStep">შემდეგი</button>
 	                                        </div>
 	                                    </fieldset>
 	                                    <fieldset class="step" id="step3">
@@ -108,7 +109,8 @@
 	                                                    <input class="form-control" id="{{ $info_parameter[2]->key }}" name="{{ $info_parameter[2]->key }}" type="text"  value="" />
 	                                                </div>
 	                                            </div>
-	                                            <button type="button" class="btn-block nextStep" name="contactinfo">შემდეგი</button>
+	                                            <button class="btn-block stepbtn prevStep">უკან</button>
+                                                <button class="btn-block stepbtn nextStep">შემდეგი</button>
 									        </div>
 	                                    </fieldset>
 	                                    <fieldset class="step" id="step4">
@@ -120,7 +122,8 @@
 	                                                   	<span class="text-brand" style="font-size: 13px; position: relative; top: 10px;">იმისათვის რომ სურათი კაგად გამოჩნდეს ვებ გვერდზე გთხოვთ ატვირთოთ (275px X 65px) ზომის სურათი</span>
 		                                            </div>
 	                                    		</div>
-	                                    		<button type="button" class="btn-block" type="button" onclick="SaveSetup()">შენახვა</button>
+	                                            <button class="btn-block stepbtn prevStep">უკან</button>
+	                                    		<button type="button" class="btn-block stepbtn" type="button" onclick="SaveSetup()">შენახვა</button>
 	                                    	</div>
 	                                    </fieldset>
 	                                </div>
