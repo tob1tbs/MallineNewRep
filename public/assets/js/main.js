@@ -344,7 +344,7 @@
         var $this = $(this),
             finalDate = $(this).data("countdown");
         $this.countdown(finalDate, function (event) {
-            $(this).html(event.strftime("" + '<span class="countdown-section"><span class="countdown-amount hover-up">%D</span><span class="countdown-period"> დღე </span></span>' + '<span class="countdown-section"><span class="countdown-amount hover-up">%H</span><span class="countdown-period"> საათი </span></span>' + '<span class="countdown-section"><span class="countdown-amount hover-up">%M</span><span class="countdown-period"> წუთი </span></span>'));
+            $(this).html(event.strftime("" + '<span class="countdown-section"><span class="countdown-amount hover-up">%D</span><span class="countdown-period"> áƒ“áƒ¦áƒ” </span></span>' + '<span class="countdown-section"><span class="countdown-amount hover-up">%H</span><span class="countdown-period"> áƒ¡áƒáƒáƒ—áƒ˜ </span></span>' + '<span class="countdown-section"><span class="countdown-amount hover-up">%M</span><span class="countdown-period"> áƒ¬áƒ£áƒ—áƒ˜ </span></span>'));
         });
     });
 
@@ -856,6 +856,121 @@ $('#submit-payment').on('click', function() {
         $(this).toggleClass("show");
         $(".more_slide_open").slideToggle();
     });
+
+    // Install Page steps //
+    $('.progress_holder:nth-child(1)').addClass('activated_step');
+
+    // Manage next and previous buttons //
+    $(".nextStep").click(function(){
+        // button is inside fieldset so set current and next vars //
+        current_fs = $(this).parents('fieldset');
+        next_fs = $(this).parents('fieldset').next();
+        // make sure all fields are filled in //
+        var empty = current_fs.find("input.required-field").filter(function() {
+            return this.value === "";
+        });
+        if (empty.length) {
+            alert('Please fill in all fields.');
+        } else {
+        //show the next fieldset
+        next_fs.fadeIn(150,'linear').addClass('current');
+        //hide the current fieldset with style
+        current_fs.fadeOut(0,'linear').removeClass('current');
+        // change nav class //
+        if ($('fieldset.current').attr('id') == 'step2') {
+        $('.progress_holder:nth-child(2)').addClass('activated_step');
+        }
+        if ($('fieldset.current').attr('id') == 'step3') {
+        $('.progress_holder:nth-child(3)').addClass('activated_step');
+        }
+        if ($('fieldset.current').attr('id') == 'step4') {
+        $('.progress_holder:nth-child(4)').addClass('activated_step');
+        }
+        }
+        if ($('fieldset.current').attr('id') == 'step2') {
+            $('.progress_holder:nth-child(1)').removeClass('activated_step');
+        }
+        if ($('fieldset.current').attr('id') == 'step3') {
+            $('.progress_holder:nth-child(2)').removeClass('activated_step');
+        }
+        if ($('fieldset.current').attr('id') == 'step4') {
+            $('.progress_holder:nth-child(3)').removeClass('activated_step');
+        }
+    });
+    $(".prevStep").click(function(e){
+        e.preventDefault();
+        current_fs = $(this).parents('fieldset');
+        previous_fs = $(this).parents('fieldset').prev();
+        //show the previous fieldset
+        previous_fs.fadeIn(150,'linear');
+        //hide the current fieldset with style
+        current_fs.fadeOut(0,'linear');
+
+        if ($(previous_fs).attr('id') == 'step1') {
+            $('.progress_holder:nth-child(2)').removeClass('activated_step');
+        }
+        if ($(previous_fs).attr('id') == 'step2') {
+            $('.progress_holder:nth-child(3)').removeClass('activated_step');
+        }
+        if ($(previous_fs).attr('id') == 'step3') {
+            $('.progress_holder:nth-child(4)').removeClass('activated_step');
+        }
+        if ($(previous_fs).attr('id') == 'step4') {
+            $('.progress_holder:nth-child(5)').removeClass('activated_step');
+        }
+    });
+
+    /*-----Restore Page----*/
+
+    let in1 = document.getElementById('otc-1'),
+    ins = document.querySelectorAll('input[type="number"]'),
+	 splitNumber = function(e) {
+		let data = e.data || e.target.value; 
+		if ( ! data ) return; 
+		if ( data.length === 1 ) return; 
+		
+		popuNext(e.target, data);
+	},
+	popuNext = function(el, data) {
+		el.value = data[0];
+		data = data.substring(1); 
+		if ( el.nextElementSibling && data.length ) {
+			popuNext(el.nextElementSibling, data);
+		}
+	};
+
+    ins.forEach(function(input) {
+	input.addEventListener('keyup', function(e){
+		if (e.keyCode === 16 || e.keyCode == 9 || e.keyCode == 224 || e.keyCode == 18 || e.keyCode == 17) {
+			 return;
+		}
+		
+		if ( (e.keyCode === 8 || e.keyCode === 37) && this.previousElementSibling && this.previousElementSibling.tagName === "INPUT" ) {
+			this.previousElementSibling.select();
+		} else if (e.keyCode !== 8 && this.nextElementSibling) {
+			this.nextElementSibling.select();
+		}
+		
+		if ( e.target.value.length > 1 ) {
+			splitNumber(e);
+		}
+	});
+	
+	input.addEventListener('focus', function(e) {
+		if ( this === in1 ) return;
+		
+		if ( in1.value == '' ) {
+			in1.focus();
+		}
+
+		if ( this.previousElementSibling.value == '' ) {
+			this.previousElementSibling.focus();
+		}
+	});
+});
+
+in1.addEventListener('input', splitNumber);
+
 
     /*-----Modal----*/
 

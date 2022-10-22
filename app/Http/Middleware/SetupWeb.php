@@ -22,8 +22,8 @@ class SetupWeb
 		$WebParameter = new WebParameter();
 		$WebParameterData = WebParameter::find(1);
 
-		if(empty($WebParameterData) OR $WebParameterData->active == 0) {
-			return redirect()->route('actionDashboardIndex');
+		if($WebParameterData->active == 0) {
+            return redirect()->route('actionDashboardSetup');
 		}
         return $next($request);
     }

@@ -9718,7 +9718,6 @@ const pickr = Pickr.create({
 
 });
 
-
 // File Upload// 
 function ekUpload(){
     function Init() {
@@ -9860,3 +9859,32 @@ function ekUpload(){
     }
   }
   ekUpload();
+
+
+//Image auto resizer
+let imgInput = document.getElementById('file-upload');
+imgInput.addEventListener('change', function (e) {
+    if (e.target.files) {
+        let imageFile = e.target.files[0];
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            var img = document.createElement("img");
+            img.onload = function (event) {
+                // Dynamically create a canvas element
+                var canvas = document.createElement("canvas");
+
+                // var canvas = document.getElementById("canvas");
+                var ctx = canvas.getContext("2d");
+
+                // Actual resizing
+                ctx.drawImage(img, 0, 0, 276, 64);
+
+                // Show resized image in preview element
+                var dataurl = canvas.toDataURL(imageFile.type);
+                document.getElementById("preview").src = dataurl;
+            }
+            img.src = e.target.result;
+        }
+        reader.readAsDataURL(imageFile);
+    }
+});

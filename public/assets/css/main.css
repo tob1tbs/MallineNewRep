@@ -1135,6 +1135,7 @@ strong,
   padding-bottom: 20px;
   font-size: 18px;
 }
+
 .wthbg{
   background-color: transparent !important;
   color:black !important
@@ -1382,11 +1383,62 @@ h5.widget-title {
   border-color: #2491e0;
 }
 
-.btn-heading, button.btn-heading[type="submit"] {
-  background-color: #253D4E;
-  border-color: #253D4E;
-  font-weight: 700;
-  border: 0;
+#multi_step_form .container #multistep_nav {
+  display: flex;
+}
+#multi_step_form .container #multistep_nav .progress_holder {
+  padding: 20px 0px 20px 0px;
+  width: 100%;
+  text-align: center;
+}
+.progress_holder.activated_step {
+    color: white;
+    background-color: #2491e0;
+    -webkit-box-shadow: 5px 5px 15px rgb(0 0 0 / 5%);
+    box-shadow: 5px 5px 15px rgb(0 0 0 / 5%);
+    border-radius: 10px;
+    margin-right: 10px;
+    font-size: 17px;  
+    cursor: pointer;
+}
+.progress_holder.activated_step:hover{
+  transform: translateY(-3px);
+  transition: 0.2s;
+}
+.progress_holder:hover{
+  transform: translateY(-3px);
+  transition: 0.2s;
+}
+.progress_holder {
+  color: #1E2B4D;
+  background-color: #bce4fc;
+  -webkit-box-shadow: 5px 5px 15px rgb(0 0 0 / 5%);
+  box-shadow: 5px 5px 15px rgb(0 0 0 / 5%);
+  border-radius: 10px;
+  margin-right: 10px;
+  font-size: 17px;
+  cursor: pointer;
+
+}
+#multi_step_form .container fieldset.step {
+  position: relative;
+  padding: 50px;
+}
+.progress_holder span {
+  border: 1px solid;
+  padding: 4px;
+  border-radius: 50px;
+}
+#multi_step_form .container fieldset.step .prevStep {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  padding: 10px;
+  width: 100px;
+  border: 1px solid black;
+}
+#multi_step_form .container fieldset.step:not(:first-of-type) {
+  display: none;
 }
 
 button.submit, button[type='submit'] {
@@ -1772,6 +1824,7 @@ textarea:focus {
   padding-left: 20px;
   font-size: 16px;
   width: 100%;
+  text-align: left;
 }
 .form-group input:focus {
   background: transparent;
@@ -3034,10 +3087,6 @@ input.qty-val {
   transition: 0.2s;
 }
 
-.nav-tabs .nav-link:first-child {
-  margin-left: 0 !important;
-  padding-left: 0 !important;
-}
 
 .nav-tabs.links .nav-link {
   padding: 0 10px;
@@ -4102,7 +4151,7 @@ table .product-thumbnail img {
 }
 
 .banner-img.style-3 {
-  border-radius: 15px;
+  border-radius: 30px;
   overflow: hidden;
   height: 538px;
   background: url(../imgs/banner/banner-11.png) no-repeat center bottom;
@@ -5715,15 +5764,15 @@ input[type=number]{
 }
 
 .detail-extralink .detail-qty {
-  margin: 0 6px 15px 0;
+  margin: 0 5px 5px 0;
   background: #fff;
-  border: 2px solid #2491e0 !important;
+  border: 1px solid #2491e0 !important;
   font-size: 16px;
   font-weight: 700;
   color: #2491e0;
   border-radius: 5px;
-  padding: 11px 20px 11px 30px;
-  max-width: 90px;
+  padding: 11px 30px 11px 36px;
+  max-width: 100px;
 }
 
 .stock-status {
@@ -5859,6 +5908,7 @@ input[type=number]{
   border-radius: 15px;
   padding: 20px 50px;
 }
+
 /*Star Review*/
 input.star{
   display: none;
@@ -5907,7 +5957,7 @@ label.star:before{
 
 .tab-style3 .nav-tabs li.nav-item a {
   display: block;
-  padding: 10px 40px !important;
+  padding: 15px 50px;
   text-align: center;
   text-transform: none;
   font-size: 17px;
@@ -8155,7 +8205,7 @@ h6.post-title {
   font-size: 2rem;
 }
 .sociallgn{
-  width: 70%;
+  width: 30%;
   padding: 10px;
 }
 /*otp-field*/
@@ -8195,16 +8245,42 @@ h6.post-title {
   font-weight: normal;
   border: none;
 }
+input {
+  text-align:center;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+.number button{
+  background: transparent;
+  border: none;
+  color: #2491e0;
+  font-size: 25px;
+  position: absolute;
+  right: 0px;
+  margin-top: -0.1rem;
+}
+.number .right{
+  padding-right: 60px;
+}
+.loginmenu{
+  width: 230px;
+}
 #fmhoverbtn3{
     background: #2491e00d;
-    border-radius: 10px;
-    border: none;
-    width: 20%;
+    border: 1px solid #2491e024;
+    width: 45%;
     margin-right: 0.5rem;
+    border-radius: 50px;
+    filter: drop-shadow(0px -1px 0px #c5c5c5);
 }
 #fmhoverbtn3:hover{
   background-color: #d9f2f9 !important;
-  border-radius: 10px;
 }
 #fmhoverbtn2:hover{
   background-color: #F2FAFF !important;
@@ -9151,6 +9227,7 @@ h6.post-title {
   margin-left: 20px;
   background-color: #fff;
   border: none;
+  text-align: left;
 }
 
 .header-style-1 .header-bottom-bg-color {
@@ -9350,37 +9427,222 @@ span.fi-rs-apps {
   margin: auto;
   text-align: center;
 }
-.checkmark__circle {
-  stroke-dasharray: 166;
-  stroke-dashoffset: 166;
-  stroke-width: 2;
-  stroke-miterlimit: 10;
-  stroke: #7ac142;
-  fill: none;
-  animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
-}
-
-.checkmark2 {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
+.yas5 {
+  position: relative;
+  margin: 30px auto;
   display: block;
-  stroke-width: 2;
-  stroke: #fff;
-  stroke-miterlimit: 10;
-  margin: auto;
-  margin-top: 3rem;
-  box-shadow: inset 0px 0px 0px #7ac142;
-  animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
+  width: 305px;
+  height: 277px;
+}
+.yas5 .All {
+	position: absolute;
+	width: 100%;
+	height: 100%;
 }
 
-.checkmark__check {
-  transform-origin: 50% 50%;
-  stroke-dasharray: 48;
-  stroke-dashoffset: 48;
-  animation: stroke 0.9s cubic-bezier(0.65, 0, 0.45, 1) 0.9s forwards;
+.yas5 .svgWrapper {
+	position: absolute;
+	width: 305px;
+	height: 277px;
+	position: absolute;
+	top: 0px;
+	left: 0px;
 }
 
+.yas5 .tickC {
+	position: absolute;
+	fill: none;
+	stroke: #2491e0;
+	stroke-width: 5;
+	stroke-linecap: round;
+	stroke-miterlimit: 10;
+	stroke-dasharray: 304;
+	stroke-dashoffset: 0;
+	animation-name: yatickC0;
+	animation-duration: 490ms;
+	animation-delay: 1368ms;
+	animation-timing-function: cubic-bezier(0.250, 0.460, 0.450, 0.940);
+	animation-fill-mode: both;
+}
+
+@keyframes yatickC0 {
+	0% {
+		animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+		stroke-dashoffset: 304;
+	}
+	100% {
+		animation-timing-function: linear;
+		stroke-dashoffset: 0;
+	}
+}
+
+.yas5 .tick-B {
+	position: absolute;
+	fill: none;
+	stroke: #fb0;
+	stroke-width: 5;
+	stroke-linecap: round;
+	stroke-miterlimit: 10;
+	stroke-dasharray: 304;
+	stroke-dashoffset: 0;
+	animation-name: yatick-B0;
+	animation-duration: 492ms;
+	animation-delay: 1237ms;
+	animation-timing-function: cubic-bezier(0.250, 0.460, 0.450, 0.940);
+	animation-fill-mode: both;
+}
+
+@keyframes yatick-B0 {
+	0% {
+		animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+		stroke-dashoffset: 304;
+	}
+	100% {
+		animation-timing-function: linear;
+		stroke-dashoffset: 0;
+	}
+}
+
+.yas5 .tick-gray {
+	position: absolute;
+	fill: none;
+	stroke: #ECECEC;
+	stroke-width: 5;
+	stroke-linecap: round;
+	stroke-miterlimit: 10;
+	stroke-dasharray: 304;
+	stroke-dashoffset: 0;
+	animation-name: yatick-gray0;
+	animation-duration: 476ms;
+	animation-delay: 1037ms;
+	animation-timing-function: cubic-bezier(0.250, 0.460, 0.450, 0.940);
+	animation-fill-mode: both;
+}
+
+@keyframes yatick-gray0 {
+	0% {
+		animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+		stroke-dashoffset: 304;
+	}
+	100% {
+		animation-timing-function: linear;
+		stroke-dashoffset: 0;
+	}
+}
+
+.yas5 .circleDarkBlue {
+	position: absolute;
+	fill: none;
+	stroke: #2491e0;
+	stroke-width: 5;
+	stroke-linecap: round;
+	stroke-miterlimit: 10;
+	transform-origin: 138px 138px;
+	stroke-dasharray: 675;
+	animation-name: yacircleDarkBlue0, yacircleDarkBlue1;
+	animation-duration: 1017ms, 1029ms;
+	animation-delay: 570ms, 578ms;
+	animation-timing-function: cubic-bezier(0.250, 0.460, 0.450, 0.940), cubic-bezier(0.250, 0.460, 0.450, 0.940);
+	animation-fill-mode: both, both;
+}
+
+@keyframes yacircleDarkBlue0 {
+	0% {
+		animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+		transform: rotate(-180deg);
+	}
+	100% {
+		animation-timing-function: linear;
+		transform: rotate(0deg);
+	}
+}
+
+@keyframes yacircleDarkBlue1 {
+	0% {
+		animation-timing-function: ease-in-out;
+		stroke-dashoffset: -675;
+	}
+	100% {
+		animation-timing-function: linear;
+		stroke-dashoffset: 0;
+	}
+}
+
+.yas5 .circleLightBlue {
+	position: absolute;
+	fill: none;
+	stroke: #fb0;
+	stroke-width: 5;
+	stroke-linecap: round;
+	stroke-miterlimit: 10;
+	transform-origin: 138px 138px;
+	stroke-dasharray: 675;
+	animation-name: yacircleLightBlue0, yacircleLightBlue1;
+	animation-duration: 1017ms, 1029ms;
+	animation-delay: 359ms, 357ms;
+	animation-timing-function: cubic-bezier(0.250, 0.460, 0.450, 0.940), cubic-bezier(0.250, 0.460, 0.450, 0.940);
+	animation-fill-mode: both, both;
+}
+
+@keyframes yacircleLightBlue0 {
+	0% {
+		animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+		transform: rotate(-180deg);
+	}
+	100% {
+		animation-timing-function: linear;
+		transform: rotate(0deg);
+	}
+}
+
+@keyframes yacircleLightBlue1 {
+	0% {
+		animation-timing-function: ease-out;
+		stroke-dashoffset: -675;
+	}
+	100% {
+		animation-timing-function: linear;
+		stroke-dashoffset: 0;
+	}
+}
+
+.yas5 .circleGray {
+	position: absolute;
+	fill: none;
+	stroke: #ECECEC;
+	stroke-width: 5;
+	stroke-linecap: round;
+	stroke-miterlimit: 10;
+	transform-origin: 138px 138px;
+	stroke-dasharray: 675;
+	animation-name: yacircleGray0, yacircleGray1;
+	animation-duration: 1017ms, 1029ms;
+	animation-delay: 128ms, 128ms;
+	animation-timing-function: cubic-bezier(0.250, 0.460, 0.450, 0.940), cubic-bezier(0.250, 0.460, 0.450, 0.940);
+	animation-fill-mode: both, both;
+}
+
+@keyframes yacircleGray0 {
+	0% {
+		animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+		transform: rotate(-180deg);
+	}
+	100% {
+		animation-timing-function: linear;
+		transform: rotate(0deg);
+	}
+}
+
+@keyframes yacircleGray1 {
+	0% {
+		animation-timing-function: ease-in-out;
+		stroke-dashoffset: -675;
+	}
+	100% {
+		animation-timing-function: linear;
+		stroke-dashoffset: 0;
+	}
+}
 @keyframes stroke {
   100% {
     stroke-dashoffset: 0;
@@ -12428,8 +12690,7 @@ input[type="number"]{
     margin-top: 0;
   }
   .detail-info .detail-extralink .detail-qty {
-    padding: 11px 20px 11px 10px;
-    max-width: 60px;
+    max-width: 100px;
   }
   .detail-info .product-extra-link2 .button.button-add-to-cart {
     padding: 0px 15px;
@@ -12447,8 +12708,23 @@ input[type="number"]{
   .shopping-summery h6 {
     font-size: 14px;
   }
+  .number .right{
+    padding-right: 62px;
+  }
+  .number button{
+    margin-top: -0.2rem;
+  }
   .shopping-summery td.pl-30 {
-    padding-left: 0 !important;
+    padding: 0 !important; 
+  }
+  input[type="number"]{
+    font-size: 20px;
+  }
+  .fi-rs-sign-out {
+    margin-right: 15px;
+  }
+  .btn, .button{
+    padding: .375rem .75rem;
   }
   .shopping-summery button.btn {
     width: 120px;
@@ -12781,6 +13057,16 @@ input[type="number"]{
     height: 34px;
     line-height: 40px;
     font-size: 13px;
+  }
+  #multi_step_form .container #multistep_nav{
+    display: block;
+  }
+  #multi_step_form .container #multistep_nav .progress_holder{
+    margin-bottom: 1rem;
+  }
+  #multi_step_form .container fieldset.step{
+    padding: 0;
+    margin-top: 2rem;
   }
   .banner-big h1 {
     font-size: 22px;
@@ -13176,6 +13462,7 @@ input[type="number"]{
   .entry-bottom {
     margin-bottom: 0 !important;
   }
+  
   section.pt-150.pb-150 {
     padding: 50px 0 !important;
   }
@@ -13183,7 +13470,7 @@ input[type="number"]{
     margin-bottom: 20px;
   }
   .product-detail .tab-style3 .nav-tabs li.nav-item a {
-    padding: 0.5rem;
+    padding: 16px 30px;
     text-transform: none;
   }
   .related-products .product-cart-wrap {

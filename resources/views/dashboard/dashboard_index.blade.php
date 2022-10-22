@@ -549,7 +549,7 @@
                                                     </div>
                                                     <div class="form-group col-md-3">
                                                         <label for="">ფასი *</label>
-                                                        <input  class="form-control" name="product_price" id="product_price" type="number"  placeholder="ფასი" onkeyup="CalculatePercent(), CalculateDiscountPrice()"/>
+                                                        <input  class="form-control" name="product_price" id="product_price" type="number" min="1" step="1"  placeholder="ფასი" onkeyup="CalculatePercent(), CalculateDiscountPrice()"/>
                                                     </div>
                                                     <div class="form-group col-md-3">
                                                         <label for=""> ფასდაკლების ფასი</label>
@@ -686,7 +686,9 @@ function SaveInfoParameters() {
 			if(data['status'] == true) {
              	toastr.success(data['message']);
             } else {
-				toastr.danger(data['message']);
+            	$.each(data['message'], function(key, value) {
+					toastr.warning(value);
+                });
 			}
         }
     });
@@ -737,6 +739,7 @@ function SliderSubmit() {
                 if(data['errors'] == true) {
                 	$(".check-input").removeClass('border-danger'); 
                     $.each(data['message'], function(key, value) {
+
                     });
                 } else {
                     Swal.fire({

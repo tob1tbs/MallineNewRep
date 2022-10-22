@@ -30,6 +30,101 @@ class DashboardAjaxController extends Controller
     public function __construct() {
         //
     }
+
+    public function ajaxDashboardSetup(Request $Request) {
+        $messages = array(
+            'required' => trans('site.place_enter_all_required_fields'),
+            'name_ge.required' => 'გთხოვთ შეავსოთ ვებ გვერდის დასახელება (ქართულად)',
+            'name_en.required' => 'გთხოვთ შეავსოთ ვებ გვერდის დასახელება (ინგლისურად)',
+            'address.required' => 'გთხოვთ შეავსოთ მისამართი',
+            'email.required' => 'გთხოვთ შეავსოთ საკონტაქტო ელ-ფოსტა',
+            'phone.required' => 'გთხოვთ შეავსოთ საკონტაქტო ტელეფონის ნომერი',
+            'admin_password.min' => trans('site.password_lengh_min'),
+            'admin_cpassword.same' => trans('site.password_dont_mach'),
+            'logotype.required' => 'გთხოვთ აირჩიოთ ლოგო',
+            'logotype.mimes' => 'ლოგოს ფორმატი არასწორია, დასაშვები ფორმატებია: jpeg, jpg, png, gif',
+            'logotype.dimensions' => 'ლოგოს ზომები არასწორია, დასაშვები ზომებია: 280px X 65px',
+        );
+        $validator = Validator::make($Request->all(), [
+            'admin_name' => 'required|max:255',
+            'admin_lastname' => 'required|max:255',
+            'admin_personal_id' => 'required|max:255',
+            'admin_bdate' => 'required|max:255',
+            'admin_email' => 'required|max:255',
+            'admin_phone' => 'required|max:255',
+            'admin_password' => 'min:6|same:admin_cpassword|required_with:admin_password',
+            'name_ge' => 'required|max:255',
+            'name_en' => 'required|max:255',
+            'email' => 'required|max:255',
+            'phone' => 'required|max:255',
+            'address' => 'required|max:255',
+            'logotype' => 'required|mimes:jpeg,jpg,png,gif|dimensions:max_width=280,max_height=65',
+        ], $messages);
+
+        if ($validator->fails()) {
+            return Response::json(['status' => false, 'message' => $validator->getMessageBag()->toArray()], 200);
+        } else {
+
+            Artisan::call('storage:link');
+
+            $Host = substr(env("APP_URL"), 8);
+            $WebParameter = new WebParameter();
+            $WebParameter::find(1)->update(['host' => $Host, 'prestage' => 1]);
+
+            if($Request->has('logotype')) {
+                $Logotype = $Request->logotype;
+                $LogotypeName =  md5(Str::random(20).time().$Logotype).'.'.$Logotype->getClientOriginalExtension();
+                $Logotype->move(public_path('uploads/logotype/'), $LogotypeName);
+                
+                $WebParameter = new WebParameter();
+                $WebParameter::find(1)->update(['logotype' => $LogotypeName]);
+            }
+
+            foreach($Request->only(['name_ge', 'name_en']) as $name_key => $name_item) {
+                $WebParameter = new WebParameter();
+                $WebParameter::find(1)->update([$name_key => $name_item]);
+            }
+
+            foreach($Request->only(['email', 'phone', 'address']) as $info_key => $info_item) {
+                $InfoParameter = new InfoParameter();
+                $InfoParameter::where('key', $info_key)->update(['value' => $info_item]);
+            }
+
+            $User = new User();
+            $User->name = $Request->admin_name;
+            $User->lastname = $Request->admin_lastname;
+            $User->personal_number = $Request->admin_personal_id;
+            $User->bdate = $Request->admin_bdate;
+            $User->phone = $Request->admin_phone;
+            $User->email = $Request->admin_email;
+            $User->is_admin = 1;
+            $User->password = Hash::make($Request->admin_password);
+            $User->save();
+
+            $text = 'ახალი მაღაზია ელოდება ჩვენს დასტურს. ქვედომეინი: '.$Host;
+            $sender = 'Mallline.io';
+            $data = 'key=' . urlencode('b7a41cb33e014860ae0363cd091206fc') . '&destination=' . urlencode($Request->admin_phone) . '&sender=' . urlencode($sender). '&content=' . urlencode($text); 
+            $url= "http://smsoffice.ge/api/v2/send?".$data;
+            $sms_response = file_get_contents($url);
+
+            $data = [
+                'host' => $WebParameter::find(1)->host,
+                'logotype' => $LogotypeName,
+                'email' => $Request->email,
+                'phone' => $Request->phone,
+                'address' => $Request->address,
+                'name_ge' => $Request->name_ge,
+                'name_en' => $Request->name_en,
+            ];
+
+            $response = json_decode($this->sendParameters($data));
+
+            $WebParameter = new WebParameter();
+            $WebParameter::find(1)->update(['vendor_id' => $response->inner_id]);
+        
+            return Response::json(['status' => true, 'redirect_url' => route('actionDashboardWaiting')]);
+        }
+    }
     
     public function sendParameters($data) {
         $curl = curl_init();
@@ -52,7 +147,10 @@ class DashboardAjaxController extends Controller
         return $response;
     }
     
-    public function deleteProducts($Request) {
+    public function deleteProducts($root_id) {
+        $data = [
+            'root_id' => $root_id,
+        ];
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
@@ -64,7 +162,7 @@ class DashboardAjaxController extends Controller
           CURLOPT_FOLLOWLOCATION => true,
           CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
           CURLOPT_CUSTOMREQUEST => 'POST',
-          CURLOPT_POSTFIELDS => json_encode($Request->all(), JSON_UNESCAPED_UNICODE),
+          CURLOPT_POSTFIELDS => json_encode($data, JSON_UNESCAPED_UNICODE),
           CURLOPT_HTTPHEADER => array(
             'Content-Type: application/json',
           ),
@@ -97,8 +195,6 @@ class DashboardAjaxController extends Controller
     public function ajaxDashboardContact(Request $Request) {
         if($Request->isMethod('POST')) {
             
-            Artisan::call('storage:link');
-            
             foreach($Request->only(['email', 'phone', 'address']) as $info_key => $info_item) {
                 $InfoParameter = new InfoParameter();
                 $InfoParameter::where('key', $info_key)->update(['value' => $info_item]);
@@ -113,11 +209,11 @@ class DashboardAjaxController extends Controller
 
                 $messages = array(
                     'logotype.mimes' => 'ლოგოს ფორმატი არასწორია, დასაშვები ფორმატებია: jpeg, jpg, png, gif',
-                    'logotype.dimensions' => 'ლოგოს ზომები არასწორია, დასაშვები ზომებია: 275px X 65px',
+                    'logotype.dimensions' => 'ლოგოს ზომები არასწორია, დასაშვები ზომებია: 280px X 65px',
                 );
 
                 $validator = Validator::make($Request->all(), [
-                    'logotype' => 'mimes:jpeg,jpg,png,gif|dimensions:max_width=275,max_height=65',
+                    'logotype' => 'mimes:jpeg,jpg,png,gif|dimensions:max_width=280,max_height=65',
                 ], $messages);
 
                 if ($validator->fails()) {
@@ -271,6 +367,9 @@ class DashboardAjaxController extends Controller
                     'en' => $Request->product_description_en,
                 ];
 
+                $WebParameter = new WebParameter();
+                $WebParameterData = $WebParameter::find(1);
+
                 $Product = new Product();
                 $ProductData = $Product::updateOrCreate(
                     ['id' => $Request->product_id],
@@ -358,9 +457,7 @@ class DashboardAjaxController extends Controller
                         return Response::json(['status' => true, 'errors' => true, 'message' => ['0' => 'დამატებითი სურათების რაოდენობა აღემატება 5ს']]);
                     }
                 }
-                $Request->request->add(['product_id' => $ProductData->id]);
-                
-                $this->sendProducts($Request);
+                $Request->request->add(['product_id' => $ProductData->id, 'vendor_id' => $WebParameterData->vendor_id]);
                 
                 $SendResponse = json_decode($this->sendProducts($Request));
                 $Product = new Product();
@@ -377,14 +474,16 @@ class DashboardAjaxController extends Controller
     public function ajaxProductDelete(Request $Request) {
         if($Request->isMethod('POST') && !empty($Request->product_id)) {
             $Product = new Product();
-            $Product::find($Request->product_id)->update([
+            $ProductData = $Product::find($Request->product_id);
+
+            $ProductData->update([
                 'deleted_at' => Carbon::now(),
                 'deleted_at_int' => 0,
             ]);
+
+            return $this->deleteProducts($ProductData->root_id);
             
-            return $this->deleteProducts($Request);
-            
-            return Response::json(['status' => true, 'message' => 'სურათი წარმატებით წაიშალ/.ა !!!']);
+            return Response::json(['status' => true, 'message' => 'პროდუქტი წარმატებით წაიშალა !!!']);
         } else {
             return Response::json(['status' => false, 'message' => 'დაფიქსირდა შეცდომა, გთხოვთ სცადოთ თავიდან !!!']);
         }

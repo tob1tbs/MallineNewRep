@@ -2,14 +2,18 @@
 
 // GENERAL ROUTES
 Route::group(['middleware' => [], 'prefix' => LaravelLocalization::setLocale()], function () {
+    Route::get('/waiting', 'DashboardController@actionDashboardWaiting')->name('actionDashboardWaiting');
+    
     Route::group(['prefix' => 'dashboard', 'middleware' => ['checkAdmin']], function () {
         Route::get('/', 'DashboardController@actionDashboardIndex')->name('actionDashboardIndex');
+        Route::get('/setup', 'DashboardController@actionDashboardSetup')->name('actionDashboardSetup');
     });
 });
 
 // AJAX ROUTES
 Route::group(['prefix' => 'dashboard/ajax', 'middleware' => []], function () {
 	
+	Route::post('/setup', 'DashboardAjaxController@ajaxDashboardSetup')->name('ajaxDashboardSetup');
 	Route::post('/contact', 'DashboardAjaxController@ajaxDashboardContact')->name('ajaxDashboardContact');
 	Route::post('/navigation', 'DashboardAjaxController@ajaxDashboardNavigation')->name('ajaxDashboardNavigation');
 	Route::post('/slider/add', 'DashboardAjaxController@ajaxDashboardSliderAdd')->name('ajaxDashboardSliderAdd');

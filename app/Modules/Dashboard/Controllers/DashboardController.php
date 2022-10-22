@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Modules\Dashboard\Models\InfoParameter;
 use App\Modules\Dashboard\Models\SocialParameter;
 use App\Modules\Dashboard\Models\Navigation;
+use App\Modules\Dashboard\Models\WebParameter;
 use App\Modules\Dashboard\Models\Product;
 use App\Modules\Dashboard\Models\ProductCategory;
 use App\Modules\Dashboard\Models\Slider;
@@ -19,6 +20,47 @@ class DashboardController extends Controller
 
     public function __construct() {
         //
+    }
+
+    public function actionDashboardSetup(Request $Request) {
+    	$WebParameter = new WebParameter();
+        $WebParameterData = $WebParameter::find(1);
+        
+        if($WebParameterData->active == 1) {
+        	return redirect()->route('actionDashboardWaiting');
+        } else {
+			if (view()->exists('dashboard.dashboard_setup')) {
+
+				$WebParameter = new WebParameter();
+	            $WebParameterData = $WebParameter::find(1);
+	            
+	            if($WebParameterData->prestage == 1) {
+	            	return redirect()->route('actionDashboardWaiting');
+	            } else {
+					$InfoParameter = new InfoParameter();
+					$InfoParameterData = $InfoParameter::all();
+
+					$data = [
+						'info_parameter' => $InfoParameterData,
+					];
+					return view('dashboard.dashboard_setup', $data);
+	            }
+			} else {
+				abort('404');
+			}
+		}
+    }
+
+    public function actionDashboardWaiting() {
+    	if (view()->exists('dashboard.dashboard_waiting')) {
+
+			$data = [
+			];
+
+			return view('dashboard.dashboard_waiting', $data);
+		} else {
+			abort('404');
+		}
     }
 
     public function actionDashboardIndex() {
