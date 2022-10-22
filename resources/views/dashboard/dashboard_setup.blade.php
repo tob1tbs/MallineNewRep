@@ -9,7 +9,7 @@
 	            <div class="row">
 	                <div class="col-xl-12 col-lg-12 m-auto">
 	                    <div class="product-detail accordion-detail">
-	                    	<form id="setup_form">
+	                    	<form id="setup_form" action="">
 		                    	<div id="multi_step_form">
 		                    		<div class="container">
 	                                    <div id="multistep_nav">
@@ -61,16 +61,16 @@
 	                                                </div>
 									        		<div class="col-6">
 		                                                <div class="form-group">
-		                                                    <input type="text" name="admin_password" id="admin_password" placeholder="პაროლი">
+		                                                    <input type="password" name="admin_password" id="admin_password" placeholder="პაროლი">
 		                                                </div>
 	                                                </div>
 	                                                <div class="col-6">
 		                                                <div class="form-group">
-		                                                    <input type="text" name="admin_cpassword" id="admin_cpassword" placeholder="პაროლის განმეორება">
+		                                                    <input type="password" name="admin_cpassword" id="admin_cpassword" placeholder="პაროლის განმეორება">
 		                                                </div>
 	                                                </div>
 	                                            </div>
-                                            	<button class="btn-block stepbtn nextStep">შემდეგი</button>
+                                            	<button type="button" class="btn-block stepbtn nextStep">შემდეგი</button>
 	                                        </div>
 	                                    </fieldset>
 	                                    <fieldset class="step" id="step2">
@@ -89,8 +89,8 @@
 		                                                </div>
 	                                                </div>
 	                                            </div>
-	                                            <button class="btn-block stepbtn prevStep">უკან</button>
-	                                            <button class="btn-block stepbtn nextStep">შემდეგი</button>
+	                                            <button type="button" class="btn-block stepbtn prevStep">უკან</button>
+	                                            <button type="button" class="btn-block stepbtn nextStep">შემდეგი</button>
 	                                        </div>
 	                                    </fieldset>
 	                                    <fieldset class="step" id="step3">
@@ -109,8 +109,8 @@
 	                                                    <input class="form-control" id="{{ $info_parameter[2]->key }}" name="{{ $info_parameter[2]->key }}" type="text"  value="" />
 	                                                </div>
 	                                            </div>
-	                                            <button class="btn-block stepbtn prevStep">უკან</button>
-                                                <button class="btn-block stepbtn nextStep">შემდეგი</button>
+	                                            <button type="button" class="btn-block stepbtn prevStep">უკან</button>
+                                                <button type="button" class="btn-block stepbtn nextStep">შემდეგი</button>
 									        </div>
 	                                    </fieldset>
 	                                    <fieldset class="step" id="step4">
