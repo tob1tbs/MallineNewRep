@@ -18,6 +18,7 @@ use App\Modules\Users\Models\User;
 use App\Modules\Dashboard\Models\ProductGallery;
 use Auth;
 use Str;
+use Storage;
 use Response;
 use Validator;
 use Artisan;
@@ -354,7 +355,7 @@ class DashboardAjaxController extends Controller
                 'product_category' => 'required|max:255:not_in:0',
                 'product_meta_keywords_ge' => 'required|max:255',
                 'product_meta_description_ge' => 'required|max:255',
-                'product_price' => 'required|max:255|not_in:0',
+                'product_price' => 'required|max:255|not_in:0|numeric',
                 'product_photo' => 'required|max:255',
                 'product_count' => 'required|max:255',
             ], $messages);
@@ -370,6 +371,11 @@ class DashboardAjaxController extends Controller
                 $WebParameter = new WebParameter();
                 $WebParameterData = $WebParameter::find(1);
 
+                $MainPhoto = $Request->product_photo;
+                // $MainPhotoName =  md5(Str::random(20).time().$MainPhoto).'.'.$MainPhoto->getClientOriginalExtension();
+
+                $MainPhotoName = Storage::disk('public')->put('/products', $MainPhoto);
+                $FullPath = env("APP_URL").'/storage/products/'.substr($MainPhotoName, 9);
                 $Product = new Product();
                 $ProductData = $Product::updateOrCreate(
                     ['id' => $Request->product_id],
@@ -379,7 +385,7 @@ class DashboardAjaxController extends Controller
                         'name_en' => $Request->product_name_en,
                         'category_id' => $Request->product_category,
                         'description' => json_encode($DescriptionArray),
-                        'photo' => $Request->product_photo,
+                        'photo' => $FullPath,
                         'child_category_id' => $Request->product_child_category,
                         'discount_price' => $Request->product_discount_price * 100,
                         'discount_percent' => $Request->product_discount_percent,
@@ -457,12 +463,10 @@ class DashboardAjaxController extends Controller
                         return Response::json(['status' => true, 'errors' => true, 'message' => ['0' => 'დამატებითი სურათების რაოდენობა აღემატება 5ს']]);
                     }
                 }
-                $Request->request->add(['product_id' => $ProductData->id, 'vendor_id' => $WebParameterData->vendor_id]);
-                
+                $Request->request->add(['product_id' => $ProductData->id, 'vendor_id' => $WebParameterData->vendor_id, 'product_n_photo' => $FullPath]);
                 $SendResponse = json_decode($this->sendProducts($Request));
                 $Product = new Product();
                 $Product::find($ProductData->id)->update(['root_id' => $SendResponse->root_id]);
-
                 return Response::json(['status' => true, 'message' => 'პროდუქტი წარმატებით დაემატა']);
             }
 

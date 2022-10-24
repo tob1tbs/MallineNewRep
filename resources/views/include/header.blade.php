@@ -1,4 +1,18 @@
 <header class="header-area header-style-1 header-height-2">
+    <div class="mobile-promotion">
+        <div class="container">
+            <div class="align-items-center d-flex">
+                <div class="col-lg-6">
+                    <div class="header-info">
+                        <ul>
+                            <li><a href="{{ route('actionMainWishlist') }}">{{ trans('site.heading_text_1') }}</a></li>
+                            <li><a href="{{ route('actionMainHowToBuy') }}">{{ trans('site.heading_text_2') }}</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="header-top header-top-ptb-1 d-none d-lg-block">
         <div class="container">
             <div class="row align-items-center">
@@ -46,17 +60,15 @@
             </div>
         </div>
     </div>
-    <div class="header-middle header-middle-ptb-1 d-none d-lg-block">
+    <div class="header-middle header-middle-ptb-1 d-lg-block">
         <div class="container">
             <div class="header-wrap">
                 <div class="logo logo-width-1">
-                    <a href="{{ route('actionMainIndex') }}">
-						@if(empty($web_data->logotype))
-						<img src="{{ url('assets/imgs/theme/mallline.png') }}" alt="logo" />
-						@else
-						<img src="{{ url('uploads/logotype/'.$web_data->logotype) }}" alt="logo" />
-						@endif
-					</a>
+                    @if(!empty($web_data->logotype))
+                    <a href="{{ route('actionMainIndex') }}"><img src="{{ asset('uploads/logotype/'.$web_data->logotype) }}" alt="logo" /></a>
+                    @else
+                    <a href="{{ route('actionMainIndex') }}"><img src="{{ url('assets/imgs/theme/mallline.png') }}" alt="logo" /></a>
+                    @endif
                 </div>
                 <div class="header-right">
                     <div class="search-style-2">
@@ -137,9 +149,8 @@
                                             <button type="button" id="fmhoverbtn1" type="button" onclick="UserSignInSubmit()">{{ trans('site.sign-in') }}</button>
                                             <button type="button" id="fmhoverbtn2" onclick="javascript:location.href = '{{ route('actionUsersSignUp') }}'">{{ trans('site.sign-up') }}</button>
                                         </div>
-                                        <p class="fmhoveran">{{ trans('site.or') }}</p>
+                                        <p class="fmhoveran mb-2">{{ trans('site.or') }}</p>
                                         <div class="form-group Center">
-											@if($web_data->fb_auth == 1 AND !empty($web_data->fb_auth_key))
                                             <button type="button" id="fmhoverbtn3" onclick="javascript:location.href = '{{ route('actionFacebookRedirect') }}'">
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                                                     <g>
@@ -147,8 +158,6 @@
                                                     </g>
                                                 </svg>    
                                             </button>
-											@endif
-											@if($web_data->google_auth == 1 AND !empty($web_data->google_auth_key))
                                             <button type="button" id="fmhoverbtn4" onclick="javascript:location.href = '{{ route('actionGoogleRedirect') }}'">
                                                 <svg viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
                                                     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -160,14 +169,19 @@
                                                     </g>
                                                 </svg>
                                             </button>
-											@endif
                                         </div>
                                     </form>
                                 </div>
                                 @else
-                                <a href="{{ route('actionUsersIndex') }}">
-                                    <img class="svgInject" alt="Molline" src="{{ asset('assets/imgs/theme/icons/Component20.png') }}" />
-                                </a>
+                                <a href="#0"  id="account">
+                                        <img class="svgInject" alt="Molline" src="{{ asset('assets/imgs/theme/icons/Component20.png') }}" />
+                                    </a>
+                                    <div class="cart-dropdown-wrap cart-dropdown-hm2 loginmenu" id="account-dropdown">
+                                        <ul class="sub-menu">
+                                            <li><a href="{{ route('actionUsersIndex') }}">პირადი კაბინეტი</a></li>
+                                            <li><a href="{{ route('actionUsersLogout') }}">სისტემიდან გამოსვლა</a></li>
+                                        </ul>
+                                    </div>
                                 @endif
                             </div>
                         </div>
@@ -176,11 +190,6 @@
             </div>
         </div>
     </div>
-    <style type="text/css">
-        .main-menu.main-menu-padding-1 > nav > ul > li:first-child {
-            padding-left: 0 !important;
-        }
-    </style>
     <div class="header-bottom header-bottom-bg-color sticky-bar">
         <div class="container">
             <div class="header-wrap position-relative">
@@ -239,7 +248,7 @@
     <div class="mobile-header-wrapper-inner">
         <div class="mobile-header-top">
             <div class="mobile-header-logo">
-                <a href="index.html"><img src="{{ asset('assets/imgs/theme/mallline.png') }}" alt="logo" /></a>
+                <a href="{{ route('actionMainIndex') }}"><img src="{{ asset('assets/imgs/theme/mallline.png') }}" alt="logo" /></a>
             </div>
             <div class="mobile-menu-close close-style-wrap close-style-position-inherit">
                 <button class="close-style search-close">
@@ -249,26 +258,32 @@
             </div>
         </div>
         <div class="mobile-header-content-area">
-            <div class="mobile-search search-style-3 mobile-header-border">
-                <form action="{{ route('actionProductsIndex') }}" method="GET">
-                    <input type="text" name="search_query" placeholder="{{ trans('site.search_query') }}"  value="{{ request()->search_query }}">
-                    <button id="search"><span class="fi-rs-search"></span></button>
-                    <button type="submit"><i class="fi-rs-search"></i></button>
-                </form>
-            </div>
             <div class="mobile-menu-wrap mobile-header-border">
+                <div class="header-info">
+                    <ul id="lang">
+                        <li class="d-flex mb-20">
+                            <a class="mr-25" href="{{ LaravelLocalization::getLocalizedURL('ge') }}"><img src="{{ asset('assets/imgs/theme/geo.png') }}" alt="">{{ trans('site.lang_en') }}</a> <br>
+                            <a class="mr-25" href="{{ LaravelLocalization::getLocalizedURL('en') }}"><img src="{{ asset('assets/imgs/theme/en.png') }}" alt="">{{ trans('site.lang_en') }}</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- mobile menu start -->
                 <nav>
                     <ul class="mobile-menu font-heading">
                         @foreach($navigation_list as $navigation_item)
-                        <li class="menu-item-has-children">
-                            <a href="{{ route($navigation_item->url) }}">{{ json_decode($navigation_item->title)->{app()->getLocale()} }}</a>
-                        </li>
+                        <li><a class="menu-item-has-children" href="{{ route($navigation_item->url) }}">{{ json_decode($navigation_item->title)->{app()->getLocale()} }}</a></li>
                         @endforeach
                     </ul>
                 </nav>
+                <!-- mobile menu end -->
+            </div>
+            <div class="mobile-header-info-wrap">
+                <div class="single-mobile-header-info">
+                    <a href="{{ route('actionUsersSignIn') }}"><i class="fi-rs-user"></i>{{ trans('site.sign-in') }}</a> 
+                </div>
             </div>
             <div class="mobile-social-icon mb-50">
-                <h6 class="mb-15"></h6>
+                <h6 class="mb-15">გამოგვყევი</h6>
                 @if(!empty($parametersArray['facebook']))
                 <a href="{{ $parametersArray['facebook'] }}"><img src="{{ url('assets/imgs/theme/icons/icon-facebook-white.svg') }}" alt="" /></a>
                 @endif
@@ -279,7 +294,7 @@
                 <a href="{{ $parametersArray['youtube'] }}"><img src="{{ url('assets/imgs/theme/icons/icon-youtube-white.svg') }}" alt="" /></a>
                 @endif
             </div>
-            <div class="site-copyright"> 2022 © Molline. All rights reserved.</div>
+            <div class="site-copyright"> 2022 © მოლაინი, ყველა უფლება დაცულია.</div>
         </div>
     </div>
 </div>

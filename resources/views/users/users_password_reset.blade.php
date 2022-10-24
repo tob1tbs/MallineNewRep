@@ -40,13 +40,14 @@
                             <label class="form-check-label"><span>გთხოვთ შეიყვანეთ კოდი რაც გამოგიგზავნეთ თქვენს ტელეფონის ნომერზე</span></label>
                             <form id="restore_code_form">
                                 <div class="otp-field mt-20">
-                                    <input type="text" maxlength="1" name="code_1">
-                                    <input type="text" maxlength="1" name="code_2">
-                                    <input type="text" maxlength="1" name="code_3">
-                                    <input type="text" maxlength="1" name="code_4">
-                                    <input type="text" maxlength="1" name="code_5">
-                                    <input type="text" maxlength="1" name="code_6">
+                                    <input type="number" pattern="[0-9]*" value="" inputtype="numeric" autocomplete="one-time-code" id="otc-1" name="code_1">
+                                    <input type="number" pattern="[0-9]*" value="" inputtype="numeric" autocomplete="one-time-code" id="otc-2" name="code_2">
+                                    <input type="number" pattern="[0-9]*" value="" inputtype="numeric" autocomplete="one-time-code" id="otc-3" name="code_3">
+                                    <input type="number" pattern="[0-9]*" value="" inputtype="numeric" autocomplete="one-time-code" id="otc-4" name="code_4">
+                                    <input type="number" pattern="[0-9]*" value="" inputtype="numeric" autocomplete="one-time-code" id="otc-6" name="code_5">
+                                    <input type="number" pattern="[0-9]*" value="" inputtype="numeric" autocomplete="one-time-code" id="otc-6" name="code_6">
                                 </div>
+                                <input type="hidden" name="restore_code_phone" id="restore_code_phone">
                                 <div class="form-group mt-20 mb-20">
                                     <button type="button" class="btn btn-heading btn-block hover-up" onclick="SubmitRestoreCode()" class="resetbtn">დადასტურება</button>
                                 </div>

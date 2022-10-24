@@ -183,6 +183,8 @@ function PasswordRestore() {
         },
         success: function(data) {
             if(data['status'] == true) {
+                $('#restore_code_form')[0].reset();
+                $("#restore_code_phone").val(data['phone']);
                 $("#resetpasswordmodal").modal('show');
             } else {
                 toastr.options = {
@@ -217,7 +219,10 @@ function SubmitRestoreCode() {
         },
         success: function(data) {
             if(data['status'] == true) {
-               
+                toastr.success(data['message'][0]);
+                setTimeout(function() {
+                    window.location.href = data['redirect_url'];
+                }, 3000);
             } else {
                 toastr.warning(data['message'][0]);
             }

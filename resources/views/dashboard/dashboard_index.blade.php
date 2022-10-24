@@ -528,8 +528,7 @@
 													<div class="col-12 mb-3 mb-2">
 														<label class="form-label">მთავარი სურათი *</label>
 														<div class="form-group">
-															<input id="product_photo" name="product_photo" class="form-control check-input" type="text" style="width: 65%; float: left;">
-															<a id="lfm_1" data-input="product_photo" data-preview="holder" class="btn btn-light font-helvetica-regular" style="max-width: 35%; float: right;">სურათის არჩევა</a>
+															<input id="product_photo" name="product_photo" class="form-control check-input" type="file">
 														</div>
 													</div>
 													<div class="col-12 mb-3 mb-2">
@@ -549,19 +548,19 @@
                                                     </div>
                                                     <div class="form-group col-md-3">
                                                         <label for="">ფასი *</label>
-                                                        <input  class="form-control" name="product_price" id="product_price" type="number" min="1" step="1"  placeholder="ფასი" onkeyup="CalculatePercent(), CalculateDiscountPrice()"/>
+                                                        <input  class="form-control" name="product_price" id="product_price" type="text" min="1" step="1"  placeholder="ფასი" onkeyup="CalculatePercent(), CalculateDiscountPrice()"/>
                                                     </div>
                                                     <div class="form-group col-md-3">
                                                         <label for=""> ფასდაკლების ფასი</label>
-                                                        <input class="form-control" name="product_discount_price" id="product_discount_price" type="number"   placeholder="ფასდაკლება" onkeyup="CalculatePercent()" />
+                                                        <input class="form-control" name="product_discount_price" id="product_discount_price" type="text"   placeholder="ფასდაკლება" onkeyup="CalculatePercent()" />
                                                     </div>
                                                     <div class="form-group col-md-3">
                                                         <label for=""> ფასდაკლების %</label>
-                                                        <input class="form-control" name="product_discount_percent" id="product_discount_percent" type="number"   placeholder="ფასდაკლება" onkeyup="CalculateDiscountPrice()"/>
+                                                        <input class="form-control" name="product_discount_percent" id="product_discount_percent" type="text"   placeholder="ფასდაკლება" onkeyup="CalculateDiscountPrice()"/>
                                                     </div>
                                                     <div class="form-group col-md-3">
                                                         <label for=""> რაოდენობა *</label>
-                                                        <input  class="form-control" name="product_count" id="product_count" type="number">
+                                                        <input  class="form-control" name="product_count" id="product_count" type="text">
                                                     </div>
 													<span class="font-small text-muted">SEO პარამეტრები</span>
                                                     <div class="form-group col-md-6">

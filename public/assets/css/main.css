@@ -1391,6 +1391,15 @@ h5.widget-title {
   width: 100%;
   text-align: center;
 }
+.remove{
+  float: right;
+  margin-top: 1rem;
+  margin-right: 1rem;
+  font-size: 25px;
+}
+.wishlist{
+  padding: 0 !important;
+}
 .progress_holder.activated_step2 {
     color: white;
     background-color: #2491e0;
@@ -5807,16 +5816,22 @@ input[type=number]{
   line-height: 1;
 }
 
-.stock-status.in-stock {
+.discount {
   background: #2491e0;
   color: white;
+}
+.stock-status.in-stock {
+  float: right;
+  background: transparent;
+  color: #2491e0;
 }
 #featured{
   list-style:none;
 }
 .stock-status.out-stock {
   color: #f74b81;
-  background: #fde0e9;
+  float: right;
+  background: transparent;
 }
 
 .detail-info .product-price-cover {
@@ -12443,8 +12458,10 @@ input[type="number"]{
     font-size: 28px;
   }
   .titleleftimg{
-    width: 14%;
-    margin-bottom: 0.6rem;
+    width: 10%;
+  }
+  .form-subcriber input{
+    width: inherit;
   }
   .alert{
     width: 90%;
@@ -12765,8 +12782,8 @@ input[type="number"]{
     display: block;
     padding: 7px 0;
     text-align: center;
-    background: #2491e0;
     color: #fff;
+    border-bottom: 1px solid #fff6f6;
   }
 }
 
@@ -13195,8 +13212,14 @@ input[type="number"]{
     display: block;
     padding: 7px 0;
     text-align: center;
-    background: #2491e0;
     color: #fff;
+    border-bottom: 1px solid #fff6f6;
+  }
+  .header-style-1 .search-style-2 form{
+    filter:drop-shadow(0px 0px 1px #C5C5D2)
+  }
+  .header-style-1 .header-middle-ptb-1{
+    padding: 10px 0;
   }
   .loop-big h2.post-title {
     font-size: 22px;
@@ -13514,7 +13537,7 @@ input[type="number"]{
   .section-title h3 {
     margin-bottom: 0px;
     font-size: 19px;
-    width: 35%;
+    width: 40%;
     line-height: 1.5em;
   }
   .section-title .show-all {
