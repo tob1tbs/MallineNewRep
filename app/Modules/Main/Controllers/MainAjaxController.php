@@ -58,6 +58,7 @@ class MainAjaxController extends Controller
                     'quantity' => $Quantity,
                     'attributes' => [
                         'photo' => $ProductData->photo,
+                        'count' => $ProductData->count,
                     ],
                 ]);
 
@@ -97,6 +98,14 @@ class MainAjaxController extends Controller
 
     public function ajaxGeneralQuantityCart(Request $Request) {
         if($Request->isMethod('POST') & $Request->item_id > 0) {
+
+            $Product = new Product();
+            $ProductData = $Product::find($Request->item_id);
+
+            if($ProductData->count < $Request->quantity) {
+                return Response::json(['status' => false, 'errors' => true, 'message' => [0 => 'მარაგის რაოდენობა ნაკლებია მოთხოვნილზე!!!']]);
+            }
+            
             Cart::update($Request->item_id, [
                 'quantity' => [
                       'relative' => false,
@@ -110,6 +119,7 @@ class MainAjaxController extends Controller
 
             return Response::json([
                 'status' => true, 
+                'errors' => false, 
                 'CartData' => Cart::getContent(),
                 'CartQuantity' => Cart::getTotalQuantity(),
                 'CartTotal' => Cart::getSubTotal(),
@@ -164,12 +174,44 @@ class MainAjaxController extends Controller
     public function ajaxGeneralProductCompare(Request $Request) {
         if($Request->isMethod('POST')) {
 
+            if(Session::missing(['compare_id'])) {
+                $CompareSession = md5(time().rand(1111, 9999));
+                Session::put(['compare_id' => $CompareSession]);   
+            } else {
+                $CompareSession = $Request->session()->get('compare_id');
+            }
+            
             $Compare = new Compare();
-            $Compare->session_id = Cookie::get()['laravel_session'];
-            $Compare->product_id = $Request->product_id;
-            $Compare->save();
+            $CompareData = $Compare::where('product_id', $Request->product_id);
+            $CompareCount = $Compare;
 
-            return Response::json(['status' => true, 'errors' => false, 'message' => 'ნივთი წარმატებით დაემატა შედარების სიაში !!!'], 200);
+            if(Auth::check() == true) {
+                $CompareData = $CompareData->where('user_id', Auth::user()->id)->where('session_id', $CompareSession);
+                $CompareCount = $CompareCount->where('user_id', Auth::user()->id)->where('session_id', $CompareSession);
+                $Auth = Auth::user()->id;
+            } else {
+                $CompareData = $CompareData->where('session_id', $CompareSession);
+                $CompareCount = $CompareCount->where('session_id', $CompareSession);
+                $Auth = 0;
+            }
+
+            $CompareData = $CompareData->where('deleted_at_int', '!=', 0)->get();
+            $CompareCount = $CompareCount->where('deleted_at_int', '!=', 0)->get();
+
+
+            if(count($CompareData) > 0) {
+                return Response::json(['status' => true, 'errors' => true, 'message' => [0 => 'აღნიშნული პროდუქტი უკვე დამატაბულია შედარების სიაში!']]);
+            } else if(count($CompareCount) >= 2) {
+                return Response::json(['status' => true, 'errors' => true, 'message' => 'შესადარებელი პროდუქციის რაოდენობა აღემატება 2 ს, გთხოვთ წაშალოთ ერთი და სცადოთ თავიდან.']);
+            } else {
+                $Compare = new Compare();
+                $Compare->user_id = $Auth;
+                $Compare->product_id = $Request->product_id;
+                $Compare->session_id = $CompareSession;
+                $Compare->save();
+
+                return Response::json(['status' => true, 'errors' => false, 'message' => 'ნივთი წარმატებით დაემატა შედარების სიაში !!!'], 200);
+            }
 
         } else {
             return Response::json(['status' => false, 'errors' => true, 'message' => 'დაფიქსირდა შეცდომა გთხოვთ სცადოთ თავიდან !!!'], 200);
@@ -190,18 +232,22 @@ class MainAjaxController extends Controller
 
     public function ajaxMainWishlistAdd(Request $Request) {
         if($Request->isMethod('POST')) {
-            
-            $Product = new Product();
-            $ProductData = $Product::find($Request->product_id);
+
+            if(Session::missing(['wishlist_id'])) {
+                $WishlistSession = md5(time().rand(1111, 9999));
+                Session::put(['wishlist_id' => $WishlistSession]);   
+            } else {
+                $WishlistSession = $Request->session()->get('wishlist_id');
+            }
 
             $Wishlist = new Wishlist();
             $WishlistData = $Wishlist::where('product_id', $Request->product_id);
 
             if(Auth::check() == true) {
-                $WishlistData = $WishlistData->where('user_id', Auth::user()->id)->where('session_id', Cookie::get()['laravel_session']);
+                $WishlistData = $WishlistData->where('user_id', Auth::user()->id)->where('session_id', $WishlistSession);
                 $Auth = Auth::user()->id;
             } else {
-                $WishlistData = $WishlistData->where('session_id', Cookie::get()['laravel_session']);
+                $WishlistData = $WishlistData->where('session_id', $WishlistSession);
                 $Auth = 0;
             }
 
@@ -213,7 +259,7 @@ class MainAjaxController extends Controller
                 $Wishlist = new Wishlist();
                 $Wishlist->user_id = $Auth;
                 $Wishlist->product_id = $Request->product_id;
-                $Wishlist->session_id = Cookie::get()['laravel_session'];
+                $Wishlist->session_id = $WishlistSession;
                 $Wishlist->save();
 
                 return Response::json(['status' => true, 'message' => [0 => 'პროდუქტი დაემატა სურვილების სია.']]);

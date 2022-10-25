@@ -18,6 +18,7 @@ use App\Modules\Main\Models\Contact;
 use App\Modules\Main\Models\Text;
 
 use Cookie;
+use Session;
 use Auth;
 use Cart;
 
@@ -156,20 +157,26 @@ class MainController extends Controller
         }
     }
 
-    public function actionMainWishlist() {
+    public function actionMainWishlist(Request $Request) {
         if (view()->exists('main.main_wishlist')) {
 
             $Wishlist = new Wishlist();
-            $WishlistData = $Wishlist;
+            $WishlistData = $Wishlist->where('deleted_at_int', '!=', 0);
 
-            if(Auth::check() == true) {
-                $WishlistData  = $Wishlist->where('user_id', Auth::user()->id);
+            if(!empty($Request->session()->get('wishlist_id'))) {
+                $WishlistSession = $Request->session()->get('wishlist_id');
             } else {
-                $WishlistData  = $Wishlist->where('session_id', Cookie::get()['laravel_session']);
+                $WishlistSession = '';
             }
 
-            $WishlistData = $Wishlist->where('deleted_at_int', '!=', 0)->get();
-			
+            if(Auth::check() == true) {
+                $WishlistData  = $WishlistData->where('user_id', Auth::user()->id)->orWhere('session_id', $WishlistSession)->where('deleted_at_int', '!=', 0);
+            } else {
+                $WishlistData  = $WishlistData->where('session_id', $WishlistSession);
+            }
+
+            $WishlistData = $WishlistData->get();
+            
             $data = [
                 'wishlist_list' => $WishlistData,
             ];
@@ -207,11 +214,25 @@ class MainController extends Controller
     public function actionMainCompare(Request $Request) {
         if (view()->exists('main.main_compare')) {
 
-            $Compare = new Compare();
-            $CompareList = $Compare::where('deleted_at_int', '!=', 0)->where('session_id', Cookie::get()['laravel_session'])->orderBy('id', 'DESC')->limit(2)->get();
+            if(!empty($Request->session()->get('compare_id'))) {
+                $CompareSession = $Request->session()->get('compare_id');
+            } else {
+                $CompareSession = '';
+            }
 
+            $Compare = new Compare();
+            $CompareData = $Compare->where('deleted_at_int', '!=', 0);
+
+            if(Auth::check() == true) {
+                $CompareData  = $CompareData->where('user_id', Auth::user()->id)->orWhere('session_id', $CompareSession);
+            } else {
+                $CompareData  = $CompareData->where('session_id', $CompareSession);
+            }
+
+            $CompareData = $CompareData->get();
+            
             $data = [
-                'compare_list' => $CompareList,
+                'compare_list' => $CompareData,
             ];
             
             return view('main.main_compare', $data);
