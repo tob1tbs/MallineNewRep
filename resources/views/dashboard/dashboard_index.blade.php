@@ -1,8 +1,8 @@
 @extends('layout.layout')
 
 @section('content')
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" id="theme-styles">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css"/>
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" id="theme-styles">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css"/>	
 
 <main class="main pages">
     <div class="page-content pt-50 pb-50">
@@ -506,7 +506,7 @@
                                             <span class="font-small text-muted">პროდუქციის დეტალები</span>
                                         </div>
                                         <div class="card-body">
-                                            <form id="product_form" class="pb-50">
+                                            <form id="product_form" class="pb-50 dropzone">
                                                 <div class="row">
                                                     <div class="form-group col-md-12">
                                                         <label for="category">აირჩიეთ კატეგორია *</label>
@@ -533,10 +533,23 @@
 													</div>
 													<div class="col-12 mb-3 mb-2">
 														<label class="form-label">დამატებითი სურათები (მაქსიმუმ 5 სურათი)</label>
-														<div class="form-group">
-															<input id="gallery_photo" name="gallery_photo" class="form-control check-input" type="text" style="width: 65%; float: left;">
-															<a id="lfm_2" data-input="gallery_photo" data-preview="holder" class="btn btn-light font-helvetica-regular" style="max-width: 35%; float: right;">სურათის არჩევა</a>
-														</div>
+                                                        <div id="file-upload-form" class="uploader">
+                                                            <input id="file-upload" type="file" name="gallery_photo[]" multiple accept="image/*" />
+                                                            <label for="file-upload" id="file-drag">
+                                                              <img id="file-image" src="#" alt="Preview" class="hidden">
+                                                              <div id="start">
+                                                                <img src="assets\imgs\theme\icons\upload.png" alt="">
+                                                                <div>სურათის ატვირთვა</div>
+                                                                <div id="notimage" class="hidden">მაქსიმუმ 10 ფოტო</div>
+                                                              </div>
+                                                              <div id="response" class="hidden">
+                                                                <div id="messages"></div>
+                                                                <progress class="progress" id="file-progress" value="0">
+                                                                  <span>0</span>%
+                                                                </progress>
+                                                              </div>
+                                                            </label>
+                                                        </div>
 													</div>
                                                     <div class="form-group col-md-12">
                                                         <label for="">აღწერა * (ქართულად)</label>
