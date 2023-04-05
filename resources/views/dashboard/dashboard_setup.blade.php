@@ -10,30 +10,30 @@
     <meta name="keywords" content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
     <title>Account - Vuexy - Bootstrap HTML admin template</title>
-    <link rel="apple-touch-icon" href="{{ asset('dashboard-assets/images/ico/apple-icon-120.png') }}">
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('dashboard-assets/images/ico/favicon.ico') }}">
+    <link rel="apple-touch-icon" href="{{ asset('assets-dashboard/images/ico/apple-icon-120.png') }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets-dashboard/images/ico/favicon.ico') }}">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600" rel="stylesheet') }}">
 
     <!-- BEGIN: Vendor CSS-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('dashboard-assets/vendors/css/vendors.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('dashboard-assets/vendors/css/forms/select/select2.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('dashboard-assets/vendors/css/animate/animate.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('dashboard-assets/vendors/css/extensions/sweetalert2.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets-dashboard/vendors/css/vendors.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets-dashboard/vendors/css/forms/select/select2.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets-dashboard/vendors/css/animate/animate.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets-dashboard/vendors/css/extensions/sweetalert2.min.css') }}">
     <!-- END: Vendor CSS-->
 
     <!-- BEGIN: Theme CSS-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('dashboard-assets/css/bootstrap.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('dashboard-assets/css/bootstrap-extended.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('dashboard-assets/css/colors.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('dashboard-assets/css/components.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('dashboard-assets/css/themes/dark-layout.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('dashboard-assets/css/themes/bordered-layout.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('dashboard-assets/css/themes/semi-dark-layout.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets-dashboard/css/bootstrap.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets-dashboard/css/bootstrap-extended.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets-dashboard/css/colors.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets-dashboard/css/components.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets-dashboard/css/themes/dark-layout.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets-dashboard/css/themes/bordered-layout.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets-dashboard/css/themes/semi-dark-layout.css') }}">
 
     <!-- BEGIN: Page CSS-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('dashboard-assets/css/core/menu/menu-types/horizontal-menu.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('dashboard-assets/css/plugins/extensions/ext-component-sweet-alerts.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('dashboard-assets/css/plugins/forms/form-validation.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets-dashboard/css/core/menu/menu-types/horizontal-menu.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets-dashboard/css/plugins/extensions/ext-component-sweet-alerts.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets-dashboard/css/plugins/forms/form-validation.css') }}">
     <!-- END: Page CSS-->
 
     <!-- BEGIN: Custom CSS-->
@@ -1085,25 +1085,25 @@
 
 
     <!-- BEGIN: Vendor JS-->
-    <script src="{{ asset('dashboard-assets/vendors/js/vendors.min.js') }}"></script>
+    <script src="{{ asset('assets-dashboard/vendors/js/vendors.min.js') }}"></script>
     <!-- BEGIN Vendor JS-->
 
     <!-- BEGIN: Page Vendor JS-->
-    <script src="{{ asset('dashboard-assets/vendors/js/ui/jquery.sticky.js') }}"></script>
-    <script src="{{ asset('dashboard-assets/vendors/js/forms/select/select2.full.min.js') }}"></script>
-    <script src="{{ asset('dashboard-assets/vendors/js/extensions/sweetalert2.all.min.js') }}"></script>
-    <script src="{{ asset('dashboard-assets/vendors/js/forms/validation/jquery.validate.min.js') }}"></script>
-    <script src="{{ asset('dashboard-assets/vendors/js/forms/cleave/cleave.min.js') }}"></script>
-    <script src="{{ asset('dashboard-assets/vendors/js/forms/cleave/addons/cleave-phone.us.js') }}"></script>
+    <script src="{{ asset('assets-dashboard/vendors/js/ui/jquery.sticky.js') }}"></script>
+    <script src="{{ asset('assets-dashboard/vendors/js/forms/select/select2.full.min.js') }}"></script>
+    <script src="{{ asset('assets-dashboard/vendors/js/extensions/sweetalert2.all.min.js') }}"></script>
+    <script src="{{ asset('assets-dashboard/vendors/js/forms/validation/jquery.validate.min.js') }}"></script>
+    <script src="{{ asset('assets-dashboard/vendors/js/forms/cleave/cleave.min.js') }}"></script>
+    <script src="{{ asset('assets-dashboard/vendors/js/forms/cleave/addons/cleave-phone.us.js') }}"></script>
     <!-- END: Page Vendor JS-->
 
     <!-- BEGIN: Theme JS-->
-    <script src="{{ asset('dashboard-assets/js/core/app-menu.js') }}"></script>
-    <script src="{{ asset('dashboard-assets/js/core/app.js') }}"></script>
+    <script src="{{ asset('assets-dashboard/js/core/app-menu.js') }}"></script>
+    <script src="{{ asset('assets-dashboard/js/core/app.js') }}"></script>
     <!-- END: Theme JS-->
 
     <!-- BEGIN: Page JS-->
-    <script src="{{ asset('dashboard-assets/js/scripts/pages/page-account-settings-account.js') }}"></script>
+    <script src="{{ asset('assets-dashboard/js/scripts/pages/page-account-settings-account.js') }}"></script>
     <!-- END: Page JS-->
 
     <script>
