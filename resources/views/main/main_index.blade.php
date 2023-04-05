@@ -660,14 +660,6 @@
                         <div class="product-content-wrap">
                             <h2><a href="{{ route('actionProductsView', $product_data['id']) }}">{{ $product_data['name_'.app()->getLocale()] }}</a></h2>
                             <div>
-                                @if(!empty($product_data->getVendorData))
-                                <span class="font-neue" style="font-size: 11px;">{{ trans('site.seller') }}:</span>
-                                <span class="font-small text-muted">
-                                    <a target="_blank" href="https://{{ $product_data->getVendorData->host }}">{{ json_decode($product_data->getVendorData->data)->{"name_" . app()->getLocale()} }}</a>
-                                </span>
-                                @endif
-                            </div>
-                            <div>
                                 <a class="action-btn hover-up">
                                     <p class="products-installment-note font-neue">თვეში <span>9₾</span> -დან</p>
                                 </a>
