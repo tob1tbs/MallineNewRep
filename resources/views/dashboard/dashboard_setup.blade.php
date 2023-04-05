@@ -105,8 +105,7 @@
                                                     <i data-feather="home" class="font-medium-3"></i>
                                                 </span>
                                                 <span class="bs-stepper-label">
-                                                    <span class="bs-stepper-title">Account</span>
-                                                    <span class="bs-stepper-subtitle">Enter username</span>
+                                                    <span class="bs-stepper-title">თქვენი პირველი მომხმარებელი</span>
                                                 </span>
                                             </button>
                                         </div>
@@ -119,8 +118,7 @@
                                                     <i data-feather="user" class="font-medium-3"></i>
                                                 </span>
                                                 <span class="bs-stepper-label">
-                                                    <span class="bs-stepper-title">Personal</span>
-                                                    <span class="bs-stepper-subtitle">Enter Information</span>
+                                                    <span class="bs-stepper-title">ძირითადი პარამეტრები</span>
                                                 </span>
                                             </button>
                                         </div>
@@ -133,8 +131,7 @@
                                                     <i data-feather="credit-card" class="font-medium-3"></i>
                                                 </span>
                                                 <span class="bs-stepper-label">
-                                                    <span class="bs-stepper-title">Billing</span>
-                                                    <span class="bs-stepper-subtitle">Payment details</span>
+                                                    <span class="bs-stepper-title">საკონტაქტო ინფორმაცია</span>
                                                 </span>
                                             </button>
                                         </div>
@@ -142,8 +139,7 @@
                                     <div class="bs-stepper-content px-0 mt-4">
                                         <div id="account-details" class="content" role="tabpanel" aria-labelledby="account-details-trigger">
                                             <div class="content-header mb-2">
-                                                <h2 class="fw-bolder mb-75">Account Information</h2>
-                                                <span>Enter your username password details</span>
+                                                <h2 class="fw-bolder mb-75">ლოგო</h2>
                                             </div>
                                             <form>
                                                 <div class="row">
