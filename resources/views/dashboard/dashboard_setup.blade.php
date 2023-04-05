@@ -46,7 +46,7 @@
 
 <!-- BEGIN: Body-->
 
-<body class="horizontal-layout horizontal-menu blank-page navbar-floating footer-static  " data-open="hover" data-menu="horizontal-menu" data-col="blank-page">
+<body class="horizontal-layout horizontal-menu blank-page navbar-floating footer-static  " data-open="hover" data-menu="horizontal-menuv" data-col="blank-page">
     <!-- BEGIN: Content-->
     <div class="app-content content ">
         <div class="content-overlay"></div>
@@ -82,14 +82,14 @@
                                     </g>
                                 </g>
                             </svg>
-                            <h2 class="brand-text text-primary ms-1">Vuexy</h2>
+                            <h2 class="brand-text text-primary ms-1">Mallline</h2>
                         </a>
                         <!-- /Brand logo-->
 
                         <!-- Left Text-->
                         <div class="col-lg-3 d-none d-lg-flex align-items-center p-0">
                             <div class="w-100 d-lg-flex align-items-center justify-content-center">
-                                <img class="img-fluid w-100" src="../../../app-assets/images/illustration/create-account.svg" alt="multi-steps" />
+                                <img class="img-fluid w-100" src="{{ asset('assets-dashboard/images/illustration/create-account.svg') }}" alt="multi-steps" />
                             </div>
                         </div>
                         <!-- /Left Text-->
@@ -445,6 +445,4 @@
         })
     </script>
 </body>
-<!-- END: Body-->
-
 </html>
