@@ -22,20 +22,7 @@
                 <div class="col-xl-6 col-lg-6">
                     <div class="header-info">
                         <ul>
-                            <li class="createshop">
-                                @if(Auth::check())
-                                <a class="categories-button-active" href="{{ route('actionBuilderIndex') }}">
-                                    <span class="fi-rs-shopping-cart"></span> 
-                                    <span class="et">შექმენი მაღაზია</span>
-                                </a>
-                                @else
-                                <a class="categories-button-active" href="javascript:;" onclick="LoginModal()">
-                                    <span class="fi-rs-shopping-cart"></span> 
-                                    <span class="et">შექმენი მაღაზია</span>
-                                </a>
-                                @endif
-                            </li>
-                            <li style="font-size: 12px;"><a href="{{ route('actionMainFaq') }}">{{ trans('site.heading_text_2') }}</a></li>
+                            <li style="font-size: 12px; margin: 0;"><a href="{{ route('actionMainFaq') }}">{{ trans('site.heading_text_2') }}</a></li>
                         </ul>
                     </div>
                 </div>
@@ -47,9 +34,6 @@
                             </li>
                             <li>
                                 <a href="{{ route('actionBlogIndex') }}" style="font-size: 12px;">{{ trans('site.blog') }}</a>  
-                            </li>
-                            <li>
-                                <a href="{{ route('actionVendorsIndex') }}" style="font-size: 12px;">{{ trans('site.vendors') }}</a>  
                             </li>
                             <li>
                                 @if(app()->getLocale() == 'ge')

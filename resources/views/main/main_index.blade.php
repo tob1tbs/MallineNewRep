@@ -568,54 +568,6 @@
 		</div>
 	</div>
 </section>
-<section class="popular-categories section-padding">
-    <div class="container">
-        <div class="section-title" style="margin-bottom: 20px;">
-            <div class="title">
-                <div>
-                    <h3 class="font-neue" style="font-size: 24px;">{{ trans('site.vendors') }}</h3>
-                </div>
-            </div>
-            <div>
-              <a href="{{ route('actionVendorsIndex') }}" class="allprod" style="font-size: 14px;">{{ trans('site.all_list') }}</a>
-            </div>
-        </div>
-        <div class="carousel-wrap">
-            <div class="owl-carousel">
-                <div class="item">
-                    <div class="product-cart-wrap mb-30">
-                        <div class="product-img partners" style="background-image: url('assets/imgs/partner/0124554_apple.png');"></div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="item product-cart-wrap mb-30">
-                        <div class="product-img partners" style="background-image: url('assets/imgs/partner/0130872_national-geographic.png');"></div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="item product-cart-wrap mb-30">
-                        <div class="product-img partners" style="background-image: url('assets/imgs/partner/0131069_msi.png');"></div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="item product-cart-wrap mb-30">
-                        <div class="product-img partners" style="background-image: url('assets/imgs/partner/0142478_skinx.png');"></div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="item product-cart-wrap mb-30">
-                        <div class="product-img partners" style="background-image: url('assets/imgs/partner/0144108_xiaomi.png');"></div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="item product-cart-wrap mb-30">
-                        <div class="product-img partners" style="background-image: url('assets/imgs/partner/0162196_house-of-marley.png');"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 @foreach($product_list as $key => $product_item)
     @if(count($product_item['products']) > 0)
     <section class="popular-categories section-padding" style="padding: 15px 0;">

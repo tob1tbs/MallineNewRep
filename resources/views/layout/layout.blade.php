@@ -204,13 +204,6 @@
                         </ul>
                     </div>
                     <div class="footer-link-widget col hide">
-                        <h4 class="widget-title font-neue">წესები & პირობები</h4>
-                        <ul class="footer-list mb-sm-4 mb-md-0">
-                            <li><a href="{{ route('actionVendorsIndex') }}">{{ trans('site.vendors') }}</a></li>
-                            <li><a href="{{ route('actionVendorsGuide') }}">{{ trans('site.vendors_guide') }}</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-link-widget col hide">
                         <h4 class="widget-title font-neue">გამოგვყევი</h4>
                         <ul class="footer-list footer-icon-list mb-sm-4 mb-md-0">
                             @if(!empty($parametersArray['facebook']))
