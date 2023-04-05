@@ -140,26 +140,26 @@
                                         <div id="account-details" class="content" role="tabpanel" aria-labelledby="account-details-trigger">
                                             <div class="row">
                                                 <div class="col-md-6 mb-1">
-                                                    <label class="form-label" for="admin_name">თქვენი სახელი</label>
+                                                    <label class="form-label font-helvetica" for="admin_name">თქვენი სახელი</label>
                                                     <input type="text" name="admin_name" id="admin_name" class="form-control">
                                                 </div>
                                                 <div class="col-md-6 mb-1">
-                                                    <label class="form-label" for="admin_lastname">თქვენი გვარი</label>
+                                                    <label class="form-label font-helvetica" for="admin_lastname">თქვენი გვარი</label>
                                                     <input type="email" name="admin_lastname" id="admin_lastname" class="form-control">
                                                 </div>
                                                 <div class="col-md-12">
-                                                    <label class="form-label" for="admin_email">ელ-ფოსტა</label>
+                                                    <label class="form-label font-helvetica" for="admin_email">ელ-ფოსტა</label>
                                                     <input type="email" name="admin_email" id="admin_email" class="form-control">
                                                 </div>
                                                 <div class="col-md-6 mb-1">
-                                                    <label class="form-label" for="password">პაროლი</label>
+                                                    <label class="form-label font-helvetica" for="password">პაროლი</label>
                                                     <div class="input-group input-group-merge form-password-toggle">
                                                         <input type="password" name="password" id="password" class="form-control" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" />
                                                         <span class="input-group-text cursor-pointer"><i data-feather="eye"></i></span>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6 mb-1">
-                                                    <label class="form-label" for="confirm-password">პაროლის განმეორება</label>
+                                                    <label class="form-label font-helvetica" for="confirm-password">პაროლის განმეორება</label>
                                                     <div class="input-group input-group-merge form-password-toggle">
                                                         <input type="password" name="confirm-password" id="confirm-password" class="form-control" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" />
                                                         <span class="input-group-text cursor-pointer"><i data-feather="eye"></i></span>
@@ -169,10 +169,10 @@
                                             <div class="d-flex justify-content-between mt-2">
                                                 <button class="btn btn-outline-secondary btn-prev" disabled>
                                                     <i data-feather="chevron-left" class="align-middle me-sm-25 me-0"></i>
-                                                    <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                                                    <span class="align-middle d-sm-inline-block d-none">უკან დაბრუნება</span>
                                                 </button>
                                                 <button class="btn btn-primary btn-next">
-                                                    <span class="align-middle d-sm-inline-block d-none">Next</span>
+                                                    <span class="align-middle d-sm-inline-block d-none">გაგრძელება</span>
                                                     <i data-feather="chevron-right" class="align-middle ms-sm-25 ms-0"></i>
                                                 </button>
                                             </div>
