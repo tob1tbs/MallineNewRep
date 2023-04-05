@@ -151,51 +151,34 @@
                                     </div>
                                     <div class="bs-stepper-content px-0 mt-4">
                                         <div id="account-details" class="content" role="tabpanel" aria-labelledby="account-details-trigger">
-                                            <div class="content-header mb-2">
-                                                <h2 class="fw-bolder mb-75">Account Information</h2>
-                                                <span>Enter your username password details</span>
+                                            <div class="row">
+                                                <div class="col-md-6 mb-1">
+                                                    <label class="form-label" for="admin_name">თქვენი სახელი</label>
+                                                    <input type="text" name="admin_name" id="admin_name" class="form-control">
+                                                </div>
+                                                <div class="col-md-6 mb-1">
+                                                    <label class="form-label" for="admin_lastname">თქვენი გვარი</label>
+                                                    <input type="email" name="admin_lastname" id="admin_lastname" class="form-control">
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <label class="form-label" for="admin_email">ელ-ფოსტა</label>
+                                                    <input type="email" name="admin_email" id="admin_email" class="form-control">
+                                                </div>
+                                                <div class="col-md-6 mb-1">
+                                                    <label class="form-label" for="password">პაროლი</label>
+                                                    <div class="input-group input-group-merge form-password-toggle">
+                                                        <input type="password" name="password" id="password" class="form-control" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" />
+                                                        <span class="input-group-text cursor-pointer"><i data-feather="eye"></i></span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 mb-1">
+                                                    <label class="form-label" for="confirm-password">პაროლის განმეორება</label>
+                                                    <div class="input-group input-group-merge form-password-toggle">
+                                                        <input type="password" name="confirm-password" id="confirm-password" class="form-control" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" />
+                                                        <span class="input-group-text cursor-pointer"><i data-feather="eye"></i></span>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <form>
-                                                <div class="row">
-                                                    <div class="col-md-6 mb-1">
-                                                        <label class="form-label" for="username">Username</label>
-                                                        <input type="text" name="username" id="username" class="form-control" placeholder="johndoe" />
-                                                    </div>
-                                                    <div class="col-md-6 mb-1">
-                                                        <label class="form-label" for="email">Email</label>
-                                                        <input type="email" name="email" id="email" class="form-control" placeholder="john.doe@email.com" aria-label="john.doe" />
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-6 mb-1">
-                                                        <label class="form-label" for="password">Password</label>
-                                                        <div class="input-group input-group-merge form-password-toggle">
-                                                            <input type="password" name="password" id="password" class="form-control" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" />
-                                                            <span class="input-group-text cursor-pointer"><i data-feather="eye"></i></span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6 mb-1">
-                                                        <label class="form-label" for="confirm-password">Confirm Password</label>
-                                                        <div class="input-group input-group-merge form-password-toggle">
-                                                            <input type="password" name="confirm-password" id="confirm-password" class="form-control" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" />
-                                                            <span class="input-group-text cursor-pointer"><i data-feather="eye"></i></span>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-12 mb-1">
-                                                        <label class="form-label" for="multiStepsURL">Profile Link</label>
-                                                        <input type="text" name="multiStepsURL" id="multiStepsURL" class="form-control" placeholder="johndoe/profile" aria-label="johndoe" />
-                                                    </div>
-
-                                                    <div class="col-12 mb-1">
-                                                        <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox" value="" id="multiStepsRememberMe" />
-                                                            <label class="form-check-label" for="multiStepsRememberMe">Remember me</label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </form>
-
                                             <div class="d-flex justify-content-between mt-2">
                                                 <button class="btn btn-outline-secondary btn-prev" disabled>
                                                     <i data-feather="chevron-left" class="align-middle me-sm-25 me-0"></i>
