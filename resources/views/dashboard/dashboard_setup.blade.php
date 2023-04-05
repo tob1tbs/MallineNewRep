@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
 <!-- BEGIN: Head-->
@@ -9,16 +10,15 @@
     <meta name="description" content="Vuexy admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
     <meta name="keywords" content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
-    <title>Account - Vuexy - Bootstrap HTML admin template</title>
+    <title>Register Multi Steps Page - Vuexy - Bootstrap HTML admin template</title>
     <link rel="apple-touch-icon" href="{{ asset('assets-dashboard/images/ico/apple-icon-120.png') }}">
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets-dashboard/images/ico/favicon.ico') }}">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600" rel="stylesheet') }}">
 
     <!-- BEGIN: Vendor CSS-->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets-dashboard/vendors/css/vendors.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets-dashboard/vendors/css/forms/wizard/bs-stepper.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets-dashboard/vendors/css/forms/select/select2.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets-dashboard/vendors/css/animate/animate.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets-dashboard/vendors/css/extensions/sweetalert2.min.css') }}">
     <!-- END: Vendor CSS-->
 
     <!-- BEGIN: Theme CSS-->
@@ -32,8 +32,9 @@
 
     <!-- BEGIN: Page CSS-->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets-dashboard/css/core/menu/menu-types/horizontal-menu.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets-dashboard/css/plugins/extensions/ext-component-sweet-alerts.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets-dashboard/css/plugins/forms/form-wizard.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets-dashboard/css/plugins/forms/form-validation.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets-dashboard/css/pages/authentication.css') }}">
     <!-- END: Page CSS-->
 
     <!-- BEGIN: Custom CSS-->
@@ -41,6 +42,10 @@
     <!-- END: Custom CSS-->
 
 </head>
+<!-- END: Head-->
+
+<!-- BEGIN: Body-->
+
 <body class="horizontal-layout horizontal-menu blank-page navbar-floating footer-static  " data-open="hover" data-menu="horizontal-menu" data-col="blank-page">
     <!-- BEGIN: Content-->
     <div class="app-content content ">
@@ -406,25 +411,15 @@
     </div>
     <!-- END: Content-->
 
-    <div class="sidenav-overlay"></div>
-    <div class="drag-target"></div>
-
-    <!-- BEGIN: Footer-->
-    <footer class="footer footer-static footer-light">
-        <p class="clearfix mb-0"><span class="float-md-start d-block d-md-inline-block mt-25">COPYRIGHT &copy; 2021<a class="ms-25" href="https://1.envato.market/pixinvent_portfolio" target="_blank">Pixinvent</a><span class="d-none d-sm-inline-block">, All rights Reserved</span></span><span class="float-md-end d-none d-md-block">Hand-crafted & Made with<i data-feather="heart"></i></span></p>
-    </footer>
-    <button class="btn btn-primary btn-icon scroll-top" type="button"><i data-feather="arrow-up"></i></button>
-    <!-- END: Footer-->
-
 
     <!-- BEGIN: Vendor JS-->
-    <script src="{{ asset('assets-dashboard/vendors/js/vendors.min.js') }}"></script>
+    <script src="../../../app-assets/vendors/js/vendors.min.js"></script>
     <!-- BEGIN Vendor JS-->
 
     <!-- BEGIN: Page Vendor JS-->
     <script src="{{ asset('assets-dashboard/vendors/js/ui/jquery.sticky.js') }}"></script>
+    <script src="{{ asset('assets-dashboard/vendors/js/forms/wizard/bs-stepper.min.js') }}"></script>
     <script src="{{ asset('assets-dashboard/vendors/js/forms/select/select2.full.min.js') }}"></script>
-    <script src="{{ asset('assets-dashboard/vendors/js/extensions/sweetalert2.all.min.js') }}"></script>
     <script src="{{ asset('assets-dashboard/vendors/js/forms/validation/jquery.validate.min.js') }}"></script>
     <script src="{{ asset('assets-dashboard/vendors/js/forms/cleave/cleave.min.js') }}"></script>
     <script src="{{ asset('assets-dashboard/vendors/js/forms/cleave/addons/cleave-phone.us.js') }}"></script>
@@ -436,7 +431,7 @@
     <!-- END: Theme JS-->
 
     <!-- BEGIN: Page JS-->
-    <script src="{{ asset('assets-dashboard/js/scripts/pages/page-account-settings-account.js') }}"></script>
+    <script src="{{ asset('assets-dashboard/js/scripts/pages/auth-register.js') }}"></script>
     <!-- END: Page JS-->
 
     <script>
@@ -451,4 +446,5 @@
     </script>
 </body>
 <!-- END: Body-->
+
 </html>
