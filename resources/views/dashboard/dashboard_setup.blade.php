@@ -96,7 +96,7 @@
 
                         <!-- Register-->
                         <div class="col-lg-9 d-flex align-items-center auth-bg px-2 px-sm-3 px-lg-5 pt-3">
-                            <div class="width-700 mx-auto">
+                            <div class="mx-auto">
                                 <div class="bs-stepper register-multi-steps-wizard shadow-none">
                                     <div class="bs-stepper-header px-0" role="tablist">
                                         <div class="step" data-target="#account-details" role="tab" id="account-details-trigger">
@@ -135,11 +135,25 @@
                                                 </span>
                                             </button>
                                         </div>
+                                        <div class="line">
+                                            <i data-feather="chevron-right" class="font-medium-2"></i>
+                                        </div>
+                                        <div class="step" data-target="#logo" role="tab" id="logo-trigger">
+                                            <button type="button" class="step-trigger">
+                                                <span class="bs-stepper-box">
+                                                    <i data-feather="credit-card" class="font-medium-3"></i>
+                                                </span>
+                                                <span class="bs-stepper-label">
+                                                    <span class="bs-stepper-title">ლოგო</span>
+                                                </span>
+                                            </button>
+                                        </div>
                                     </div>
                                     <div class="bs-stepper-content px-0 mt-4">
                                         <div id="account-details" class="content" role="tabpanel" aria-labelledby="account-details-trigger">
                                             <div class="content-header mb-2">
-                                                <h2 class="fw-bolder mb-75">ლოგო</h2>
+                                                <h2 class="fw-bolder mb-75">Account Information</h2>
+                                                <span>Enter your username password details</span>
                                             </div>
                                             <form>
                                                 <div class="row">
