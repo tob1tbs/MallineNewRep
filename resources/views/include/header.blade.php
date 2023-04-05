@@ -5,7 +5,10 @@
                 <div class="col-lg-6">
                     <div class="header-info">
                         <ul>
-                            <li><a href="{{ route('actionMainWishlist') }}">{{ trans('site.heading_text_1') }}</a></li>
+                            <li>
+                                <a href="{{ route('actionMainWishlist') }}">{{ trans('site.heading_text_1') }}</a>
+                                <span class="wishlistcount wishlist_counter2">{{ $wishlist_count }}</span>
+                            </li>
                             <li><a href="{{ route('actionMainHowToBuy') }}">{{ trans('site.heading_text_2') }}</a></li>
                         </ul>
                     </div>
@@ -13,43 +16,53 @@
             </div>
         </div>
     </div>
-    <div class="header-top header-top-ptb-1 d-none d-lg-block">
+    <div class="header-top header-top-ptb-1 d-none d-lg-block" style="padding: 7px 0;">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-xl-3 col-lg-4">
+                <div class="col-xl-6 col-lg-6">
                     <div class="header-info">
                         <ul>
-                            <li><a href="{{ route('actionMainWishlist') }}">{{ trans('site.heading_text_1') }}</a></li>
-                            <li><a href="{{ route('actionMainHowToBuy') }}">{{ trans('site.heading_text_2') }}</a></li>
+                            <li class="createshop">
+                                @if(Auth::check())
+                                <a class="categories-button-active" href="{{ route('actionBuilderIndex') }}">
+                                    <span class="fi-rs-shopping-cart"></span> 
+                                    <span class="et">შექმენი მაღაზია</span>
+                                </a>
+                                @else
+                                <a class="categories-button-active" href="javascript:;" onclick="LoginModal()">
+                                    <span class="fi-rs-shopping-cart"></span> 
+                                    <span class="et">შექმენი მაღაზია</span>
+                                </a>
+                                @endif
+                            </li>
+                            <li style="font-size: 12px;"><a href="{{ route('actionMainFaq') }}">{{ trans('site.heading_text_2') }}</a></li>
                         </ul>
                     </div>
                 </div>
-                <div class="col-xl-6 col-lg-4">
-                    <div class="text-center">
-                        <div id="news-flash" class="d-inline-block" style="overflow: hidden; position: relative; height: 14px;">
-                            <ul style="position: absolute; margin: 0px; padding: 0px; top: 0px;">
-                                <li style="margin: 0px; padding: 0px;"></li>
-                                <!-- <li style="margin: 0px; padding: 0px;">დარეგისტრირდი და მიიღე უფასო მიწოდება</li> -->
-                                <!-- <li style="margin: 0px; padding: 0px;">აქცია გაგრძელდება 1 სექტემბრამდე</li> -->
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-4">
+                <div class="col-xl-6 col-lg-6">
                     <div class="header-info header-info-right">
                         <ul>
                             <li>
+                                <a href="{{ route('actionProductsIndex', ['discounted' => 1]) }}" class="text-brand3" style="font-size: 12px;">{{ trans('site.discounted') }}</a>  
+                            </li>
+                            <li>
+                                <a href="{{ route('actionBlogIndex') }}" style="font-size: 12px;">{{ trans('site.blog') }}</a>  
+                            </li>
+                            <li>
+                                <a href="{{ route('actionVendorsIndex') }}" style="font-size: 12px;">{{ trans('site.vendors') }}</a>  
+                            </li>
+                            <li>
                                 @if(app()->getLocale() == 'ge')
-                                <a class="language-dropdown-active" href="javascript:;"><img src="{{ asset('assets/imgs/theme/geo.png') }}" alt=""> {{ trans('site.lang_ge') }} <i class="fi-rs-angle-small-down"></i></a>
+                                <a class="language-dropdown-active" href="javascript:;"><img src="{{ asset('assets/imgs/theme/geo.png') }}" alt="">  <i class="fi-rs-angle-small-down"></i></a>
                                 @else
-                                <a class="language-dropdown-active" href="javascript:;"><img src="{{ asset('assets/imgs/theme/en.png') }}" alt=""> {{ trans('site.lang_en') }} <i class="fi-rs-angle-small-down"></i></a>
+                                <a class="language-dropdown-active" href="javascript:;"><img src="{{ asset('assets/imgs/theme/en.png') }}" alt="">  <i class="fi-rs-angle-small-down"></i></a>
                                 @endif
                                 <ul class="language-dropdown">
                                     <li>
                                         @if(app()->getLocale() == 'ge')
-                                        <a href="{{ LaravelLocalization::getLocalizedURL('en') }}"><img src="{{ asset('assets/imgs/theme/en.png') }}" alt="">{{ trans('site.lang_en') }}</a>
+                                        <a href="{{ LaravelLocalization::getLocalizedURL('en') }}"><img src="{{ asset('assets/imgs/theme/en.png') }}" alt=""></a>
                                         @else
-                                        <a href="{{ LaravelLocalization::getLocalizedURL('ge') }}"><img src="{{ asset('assets/imgs/theme/geo.png') }}" alt="">{{ trans('site.lang_ge') }}</a>
+                                        <a href="{{ LaravelLocalization::getLocalizedURL('ge') }}"><img src="{{ asset('assets/imgs/theme/geo.png') }}" alt=""></a>
                                         @endif
                                     </li>
                                 </ul>
@@ -60,128 +73,48 @@
             </div>
         </div>
     </div>
-    <div class="header-middle header-middle-ptb-1 d-lg-block">
+    <div class="header-middle header-middle-ptb-1 d-lg-block d-none sticky-bar">
         <div class="container">
             <div class="header-wrap">
                 <div class="logo logo-width-1">
-                    @if(!empty($web_data->logotype))
-                    <a href="{{ route('actionMainIndex') }}"><img src="{{ asset('uploads/logotype/'.$web_data->logotype) }}" alt="logo" /></a>
-                    @else
-                    <a href="{{ route('actionMainIndex') }}"><img src="{{ url('assets/imgs/theme/mallline.png') }}" alt="logo" /></a>
-                    @endif
+                    <a href="{{ route('actionMainIndex') }}">
+                        <img src="{{ url('assets/imgs/theme/mallline.png') }}" alt="logo" />
+                    </a>
                 </div>
                 <div class="header-right">
                     <div class="search-style-2">
                         <form action="{{ route('actionProductsIndex') }}" method="GET">
-                            <select class="select-active" name="category_id"  style="font-size: 12px;">
-                                <option value="" style="font-size: 12px;">{{ trans('site.categories') }}</option>
-                                @foreach($category_list as $category_item)
-                                <option value="{{ $category_item->id }}" @if($category_item->id == request()->category_id) selected @endif style="font-size: 12px;"> {{ json_decode($category_item->name)->{app()->getLocale()} }}</option>
-                                @endforeach
-                            </select>
-                            <input type="text" name="search_query" placeholder="{{ trans('site.search_query') }}"  value="{{ request()->search_query }}">
-                            <button id="search"><span class="fi-rs-search"></span></button>
+                            <input type="text" name="search_query" class="search_query" placeholder="{{ trans('site.search_query') }}"  value="{{ request()->search_query }}" autocomplete="off">
+                            <button type="submit" class="search-button"><i class="fi-rs-search"></i></button>
+                            <div class="navbar-search__results shown" id="ajaxsearchcontent" style="display: none;">
+                                
+                            </div> 
                         </form>
                     </div>
                     <div class="header-action-right">
                         <div class="header-action-2">
                             <div class="header-action-icon-2">
-                                <a class="mini-cart-icon" href="{{ route('actionMainCompare') }}">
-                                    <img class="svgInject"  src="{{ asset('assets/imgs/theme/icons/compare.png') }}" />
+                                <a class="mini-cart-icon" data-toggle="tooltip" data-placement="top" title="{{ trans('site.compare') }}" href="{{ route('actionMainCompare') }}">
+                                    <img class="svgInject" src="{{ asset('assets/imgs/theme/icons/compare.png') }}"/>
                                 </a>
                             </div>
                             <div class="header-action-icon-2">
-                                <a class="mini-cart-icon" href="javascript:;"  id="cartdp">
-                                    <img alt="Molline" src="{{ asset('assets/imgs/theme/icons/Component21.png') }}" />
-                                    <span class="pro-count blue cart-item-count">{{ Cart::getTotalQuantity() }}</span>
+                                <a class="mini-cart-icon" data-toggle="tooltip" data-placement="top" title="{{ trans('site.wishlist') }}" href="{{ route('actionMainWishlist') }}">
+                                    <img alt="Molline" src="{{ asset('/assets/imgs/theme/icons/icon-heart.svg') }}" width="24" height="24"/>
+                                    <span class="pro-count blue wishlist_counter1">{{ $wishlist_count }}</span>
                                 </a>
-                                <div class="cart-dropdown-wrap cart-dropdown-hm2 cart-body" id="cart-dropdown">
-                                    @if(count(Cart::getContent()) > 0)
-                                    <ul class="header-cart-body">
-                                        @foreach(Cart::getContent() as $cart_item)
-                                        <li class="cart-item-{{$cart_item->id}}">
-                                            <div class="shopping-cart-img">
-                                                <a href="{{ route('actionProductsView', $cart_item->id) }}"><img alt="Molline" src="@if(!empty($cart_item['attributes']['photo'])) {{ $cart_item['attributes']['photo'] }} @endif" /></a>
-                                            </div>
-                                            <div class="shopping-cart-title">
-                                                <h4><a href="{{ route('actionProductsView', $cart_item->id) }}">{{ $cart_item->name }}</a></h4>
-                                                <h4><span>{{ $cart_item->quantity }} × </span>₾ {{ $cart_item->price}}</h4>
-                                            </div>
-                                            <div class="shopping-cart-delete">
-                                                <a href="javascript:;" onclick="RemoveFromCart({{ $cart_item->id }})"><i class="fi-rs-cross-small"></i></a>
-                                            </div>
-                                        </li>
-                                        @endforeach
-                                    </ul>
-                                    <div class="shopping-cart-footer">
-                                        <div class="shopping-cart-total">
-                                            <h4>{{ trans('site.sum') }}: <span class="cart-price-total">₾ {{ number_format(Cart::getTotal(), 2) }}</span></h4>
-                                        </div>
-                                        <div class="shopping-cart-button">
-                                            <a href="{{ route('actionMainCart') }}" class="outline">{{ trans('site.cart') }}</a>
-                                            <a href="{{ route('actionMainCheckout') }}">{{ trans('site.checkout') }}</a>
-                                        </div>
-                                    </div>
-                                    @else
-                                    <div class="alert alert-primary text-center" role="alert" style="margin-bottom: 0;">{{ trans('site.your_cart_is_empty') }}</div>
-                                    @endif
-                                </div>
                             </div>
                             <div class="header-action-icon-2">
                                 @if(Auth::check() == false)
-                                <a href="javascript:;" id="account">
+                                <a class="account" href="javascript:;" onclick="LoginModal()">
                                     <img class="svgInject" alt="Molline" src="{{ asset('assets/imgs/theme/icons/Component20.png') }}" />
+                                    <p style="font-size: 14px;" style="font-neue">{{ trans('site.login') }}</p>
                                 </a>
-                                <div class="cart-dropdown-wrap cart-dropdown-hm2 account-dropdown" id="account-dropdown">
-                                    <form method="post" class="fmhover" id="user_signIn">
-                                        <div class="form-group">
-                                            <input type="text" id="user_email" name="user_email" placeholder="{{ trans('site.user_email') }} *" />
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="password" name="user_password" name="user_password" placeholder="{{ trans('site.password') }} *" />
-                                        </div>
-                                        <div class="login_footer form-group mb-20">
-                                            <div class="chek-form">
-                                            </div>
-                                            <a class="text-muted" href="{{ route('actionUsersRestore') }}">{{ trans('site.user_password_restore') }}</a>
-                                        </div>
-                                        <div class="form-group">
-                                            <button type="button" id="fmhoverbtn1" type="button" onclick="UserSignInSubmit()">{{ trans('site.sign-in') }}</button>
-                                            <button type="button" id="fmhoverbtn2" onclick="javascript:location.href = '{{ route('actionUsersSignUp') }}'">{{ trans('site.sign-up') }}</button>
-                                        </div>
-                                        <p class="fmhoveran mb-2">{{ trans('site.or') }}</p>
-                                        <div class="form-group Center">
-                                            <button type="button" id="fmhoverbtn3" onclick="javascript:location.href = '{{ route('actionFacebookRedirect') }}'">
-                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                                                    <g>
-                                                        <path fill="#4267b2" stroke="null"  d="m297.061454,170.770307l0,-50.7383c0,-22.905479 5.060513,-34.49139 40.617274,-34.49139l44.612416,0l0,-85.22969l-74.442807,0c-91.222402,0 -121.319136,41.815816 -121.319136,113.595196l0,56.864184l-59.927126,0l0,85.22969l59.927126,0l0,255.689069l110.532254,0l0,-255.689069l75.108664,0l10.121026,-85.22969l-85.22969,0z"></path>
-                                                    </g>
-                                                </svg>    
-                                            </button>
-                                            <button type="button" id="fmhoverbtn4" onclick="javascript:location.href = '{{ route('actionGoogleRedirect') }}'">
-                                                <svg viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
-                                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                        <path d="M17.64,9.20454545 C17.64,8.56636364 17.5827273,7.95272727 17.4763636,7.36363636 L9,7.36363636 L9,10.845 L13.8436364,10.845 C13.635,11.97 13.0009091,12.9231818 12.0477273,13.5613636 L12.0477273,15.8195455 L14.9563636,15.8195455 C16.6581818,14.2527273 17.64,11.9454545 17.64,9.20454545 L17.64,9.20454545 Z" fill="#4285F4"></path>
-                                                        <path d="M9,18 C11.43,18 13.4672727,17.1940909 14.9563636,15.8195455 L12.0477273,13.5613636 C11.2418182,14.1013636 10.2109091,14.4204545 9,14.4204545 C6.65590909,14.4204545 4.67181818,12.8372727 3.96409091,10.71 L0.957272727,10.71 L0.957272727,13.0418182 C2.43818182,15.9831818 5.48181818,18 9,18 L9,18 Z" fill="#34A853"></path>
-                                                        <path d="M3.96409091,10.71 C3.78409091,10.17 3.68181818,9.59318182 3.68181818,9 C3.68181818,8.40681818 3.78409091,7.83 3.96409091,7.29 L3.96409091,4.95818182 L0.957272727,4.95818182 C0.347727273,6.17318182 0,7.54772727 0,9 C0,10.4522727 0.347727273,11.8268182 0.957272727,13.0418182 L3.96409091,10.71 L3.96409091,10.71 Z" fill="#FBBC05"></path>
-                                                        <path d="M9,3.57954545 C10.3213636,3.57954545 11.5077273,4.03363636 12.4404545,4.92545455 L15.0218182,2.34409091 C13.4631818,0.891818182 11.4259091,0 9,0 C5.48181818,0 2.43818182,2.01681818 0.957272727,4.95818182 L3.96409091,7.29 C4.67181818,5.16272727 6.65590909,3.57954545 9,3.57954545 L9,3.57954545 Z" fill="#EA4335"></path>
-                                                        <path d="M0,0 L18,0 L18,18 L0,18 L0,0 Z"></path>
-                                                    </g>
-                                                </svg>
-                                            </button>
-                                        </div>
-                                    </form>
-                                </div>
                                 @else
-                                <a href="#0"  id="account">
-                                        <img class="svgInject" alt="Molline" src="{{ asset('assets/imgs/theme/icons/Component20.png') }}" />
-                                    </a>
-                                    <div class="cart-dropdown-wrap cart-dropdown-hm2 loginmenu" id="account-dropdown">
-                                        <ul class="sub-menu">
-                                            <li><a href="{{ route('actionUsersIndex') }}">პირადი კაბინეტი</a></li>
-                                            <li><a href="{{ route('actionUsersLogout') }}">სისტემიდან გამოსვლა</a></li>
-                                        </ul>
-                                    </div>
+                                <a href="{{ route('actionUsersIndex') }}" class="account">
+                                    <img class="svgInject" alt="Molline" src="{{ asset('assets/imgs/theme/icons/Component20.png') }}" />
+                                    <p style="font-size: 14px; padding-left: 5px;">{{ trans('site.my_account') }}</p>
+                                </a>
                                 @endif
                             </div>
                         </div>
@@ -194,29 +127,7 @@
         <div class="container">
             <div class="header-wrap position-relative">
                 <div class="logo logo-width-1 d-block d-lg-none">
-                    <a href="{{ route('actionMainIndex') }}"><img src="{{ asset('assets/imgs/theme/mallline.png') }}" alt="logo" /></a>
-                </div>
-                <div class="header-nav d-none d-lg-flex">
-                    <div class="main-menu main-menu-padding-1 main-menu-lh-2 d-none d-lg-block font-heading">
-                        <nav>
-                            <ul>
-                                @foreach($navigation_list as $navigation_item)
-                                <li><a href="{{ route($navigation_item->url) }}">{{ json_decode($navigation_item->title)->{app()->getLocale()} }}</a></li>
-                                @endforeach
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-                <div class="hotline d-none d-lg-flex">
-                    @if(!empty($parametersArray['facebook']))
-                    <a href="{{ $parametersArray['facebook'] }}" target="_blank"><img src="{{ url('assets/imgs/theme/icons/icon-facebook-white.svg') }}" alt="" /></a>
-                    @endif
-                    @if(!empty($parametersArray['instagram']))
-                    <a href="{{ $parametersArray['instagram'] }}" target="_blank"><img src="{{ url('assets/imgs/theme/icons/icon-instagram-white.svg') }}" alt="" /></a>
-                    @endif
-                    @if(!empty($parametersArray['youtube']))
-                    <a href="{{ $parametersArray['youtube'] }}" target="_blank"><img src="{{ url('assets/imgs/theme/icons/icon-youtube-white.svg') }}" alt="" /></a>
-                    @endif
+                    <a href="{{ route('actionMainIndex') }}"><img src="{{ url('assets/imgs/theme/mallline.png') }}" alt="logo"/></a>
                 </div>
                 <div class="header-action-icon-2 d-block d-lg-none">
                     <div class="burger-icon burger-icon-white">
@@ -228,14 +139,14 @@
                 <div class="header-action-right d-block d-lg-none">
                     <div class="header-action-2">
                         <div class="header-action-icon-2">
-                            <a href="{{ route('actionMainWishlist') }}">
+                            <a href="{{ route('actionMainCompare') }}">
                                 <img class="svgInject"  src="{{ asset('assets/imgs/theme/icons/compare.png') }}" />
                             </a>
                         </div>
                         <div class="header-action-icon-2">
-                            <a class="mini-cart-icon" href="{{ route('actionMainCart') }}">
-                                <img alt="Molline" src="{{ url('assets/imgs/theme/icons/icon-cart.svg') }}" />
-                                <span class="pro-count cart-item-count white">{{ Cart::getTotalQuantity() }}</span>
+                            <a class="mini-cart-icon" href="/wishlist.html">
+                                <img alt="Molline" src="{{ asset('assets/imgs/theme/icons/icon-heart-2.svg') }}"/>
+                                <span class="pro-count cart-item-count white">0</span>
                             </a>
                         </div>
                     </div>
@@ -244,74 +155,37 @@
         </div>
     </div>
 </header>
-<div class="mobile-header-active mobile-header-wrapper-style">
-    <div class="mobile-header-wrapper-inner">
-        <div class="mobile-header-top">
-            <div class="mobile-header-logo">
-                <a href="{{ route('actionMainIndex') }}"><img src="{{ asset('assets/imgs/theme/mallline.png') }}" alt="logo" /></a>
-            </div>
-            <div class="mobile-menu-close close-style-wrap close-style-position-inherit">
-                <button class="close-style search-close">
-                    <i class="icon-top"></i>
-                    <i class="icon-bottom"></i>
-                </button>
-            </div>
-        </div>
-        <div class="mobile-header-content-area">
-            <div class="mobile-menu-wrap mobile-header-border">
-                <div class="header-info">
-                    <ul id="lang">
-                        <li class="d-flex mb-20">
-                            <a class="mr-25" href="{{ LaravelLocalization::getLocalizedURL('ge') }}"><img src="{{ asset('assets/imgs/theme/geo.png') }}" alt="">{{ trans('site.lang_en') }}</a> <br>
-                            <a class="mr-25" href="{{ LaravelLocalization::getLocalizedURL('en') }}"><img src="{{ asset('assets/imgs/theme/en.png') }}" alt="">{{ trans('site.lang_en') }}</a>
-                        </li>
-                    </ul>
-                </div>
-                <!-- mobile menu start -->
-                <nav>
-                    <ul class="mobile-menu font-heading">
-                        @foreach($navigation_list as $navigation_item)
-                        <li><a class="menu-item-has-children" href="{{ route($navigation_item->url) }}">{{ json_decode($navigation_item->title)->{app()->getLocale()} }}</a></li>
-                        @endforeach
-                    </ul>
-                </nav>
-                <!-- mobile menu end -->
-            </div>
-            <div class="mobile-header-info-wrap">
-                <div class="single-mobile-header-info">
-                    <a href="{{ route('actionUsersSignIn') }}"><i class="fi-rs-user"></i>{{ trans('site.sign-in') }}</a> 
+<div class="modal fade mdll" id="exampleModal" style="padding: 0">
+    <div class="catoverlay" id="catclose1"></div>
+    <div class="modal-dialog cat">
+        <div class="modal-content" style="border: none">
+            <div class="modal-body catbox">
+                <div class="col-md-4 catlist">
+                <!--Menu Categories-->
+                <div class="styles__ContainerBlock-sc-1fbw3zu-4 fgxCpI">
+                    <div class="styled__CategoryMenuWrapper-sc-1gjbxx7-25 llUdzF">
+                            <div class="header">
+                                <span class="heading">{{ trans('site.categories') }}</span>
+                                <button class="close" id="catclose"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 1L1 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M1 1L9 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+                            </div>
+                            <div class="ipoLtC">
+                                @foreach($category_list->where('parent_id', 0) as $category_item)
+                                <div class="categoriess" data-id="{{ $category_item->id }}">
+                                    <button class="parent" >
+                                        <span class="title">{{ json_decode($category_item->name)->{app()->getLocale()} }}</span>
+                                        <div class="hero">
+                                            <span class="hnjFCX">
+                                                <img src="https://adjarastoremedia.s3.amazonaws.com/media/product_category/100x100%E1%83%9C%E1%83%AC%E1%83%94%E1%83%98%E1%83%9D%E1%83%A4%E1%83%9C%E1%83%98%E1%83%AC%E1%83%94%E1%83%91%E1%83%A4%E1%83%98%E1%83%94%E1%83%A0%E1%83%B0%E1%83%A49348%E1%83%B073849%E1%83%B0%E1%83%A3348%E1%83%A4734%E1%83%B0%E1%83%A4%E1%83%A33%E1%83%A4.png" loading="eager">
+                                            </span>
+                                        </div>
+                                    </button>
+                                </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="mobile-social-icon mb-50">
-                <h6 class="mb-15">გამოგვყევი</h6>
-                @if(!empty($parametersArray['facebook']))
-                <a href="{{ $parametersArray['facebook'] }}"><img src="{{ url('assets/imgs/theme/icons/icon-facebook-white.svg') }}" alt="" /></a>
-                @endif
-                @if(!empty($parametersArray['instagram']))
-                <a href="{{ $parametersArray['instagram'] }}"><img src="{{ url('assets/imgs/theme/icons/icon-instagram-white.svg') }}" alt="" /></a>
-                @endif
-                @if(!empty($parametersArray['youtube']))
-                <a href="{{ $parametersArray['youtube'] }}"><img src="{{ url('assets/imgs/theme/icons/icon-youtube-white.svg') }}" alt="" /></a>
-                @endif
-            </div>
-            <div class="site-copyright"> 2022 © მოლაინი, ყველა უფლება დაცულია.</div>
         </div>
     </div>
 </div>
-<style type="text/css">
-    .select2-dropdown .select2-search--dropdown .select2-search__field {
-        font-size: 12px;
-    }
-
-    #fmhoverbtn4{
-        background: #2491e00d;
-		border-radius: 10px;
-		border: none;
-		width: 20%;
-		margin-right: .5rem;
-    }
-	
-    #fmhoverbtn4:hover{
-      background-color: #d9f2f9 !important;
-    }
-</style>

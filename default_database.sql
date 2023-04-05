@@ -2,10 +2,10 @@
 -- version 4.9.7
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Oct 10, 2022 at 02:52 PM
--- Server version: 8.0.30-cll-lve
--- PHP Version: 7.4.30
+-- Хост: localhost:3306
+-- Время создания: Окт 22 2022 г., 08:52
+-- Версия сервера: 8.0.30-cll-lve
+-- Версия PHP: 7.4.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,13 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `mallline_customer_3eac91f3_newsatesto`
+-- База данных: `mallline_customer_d53885f5_fix`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `new_basic_parameters`
+-- Структура таблицы `new_basic_parameters`
 --
 
 CREATE TABLE `new_basic_parameters` (
@@ -45,7 +45,7 @@ CREATE TABLE `new_basic_parameters` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
--- Dumping data for table `new_basic_parameters`
+-- Дамп данных таблицы `new_basic_parameters`
 --
 
 INSERT INTO `new_basic_parameters` (`id`, `label`, `snippet`, `value`, `key`, `type`, `disabled`, `active`, `sortable`, `updated_at`, `deleted_at`, `deleted_at_int`) VALUES
@@ -58,7 +58,7 @@ INSERT INTO `new_basic_parameters` (`id`, `label`, `snippet`, `value`, `key`, `t
 -- --------------------------------------------------------
 
 --
--- Table structure for table `new_companies`
+-- Структура таблицы `new_companies`
 --
 
 CREATE TABLE `new_companies` (
@@ -75,7 +75,7 @@ CREATE TABLE `new_companies` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
--- Dumping data for table `new_companies`
+-- Дамп данных таблицы `new_companies`
 --
 
 INSERT INTO `new_companies` (`id`, `name`, `code`, `address`, `customer_id`, `active`, `created_at`, `updated_at`, `deleted_at`, `deleted_at_int`) VALUES
@@ -84,7 +84,7 @@ INSERT INTO `new_companies` (`id`, `name`, `code`, `address`, `customer_id`, `ac
 -- --------------------------------------------------------
 
 --
--- Table structure for table `new_compare`
+-- Структура таблицы `new_compare`
 --
 
 CREATE TABLE `new_compare` (
@@ -95,10 +95,10 @@ CREATE TABLE `new_compare` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
   `deleted_at_int` int NOT NULL DEFAULT '1'
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 
 --
--- Dumping data for table `new_compare`
+-- Дамп данных таблицы `new_compare`
 --
 
 INSERT INTO `new_compare` (`id`, `session_id`, `product_id`, `created_at`, `updated_at`, `deleted_at`, `deleted_at_int`) VALUES
@@ -122,7 +122,7 @@ INSERT INTO `new_compare` (`id`, `session_id`, `product_id`, `created_at`, `upda
 -- --------------------------------------------------------
 
 --
--- Table structure for table `new_customers`
+-- Структура таблицы `new_customers`
 --
 
 CREATE TABLE `new_customers` (
@@ -147,16 +147,16 @@ CREATE TABLE `new_customers` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
--- Dumping data for table `new_customers`
+-- Дамп данных таблицы `new_customers`
 --
 
 INSERT INTO `new_customers` (`id`, `name`, `lastname`, `personal_number`, `bdate`, `phone`, `email`, `type`, `password`, `remember_token`, `last_login`, `active`, `google_id`, `is_admin`, `created_at`, `updated_at`, `deleted_at`, `deleted_at_int`) VALUES
-(19, 'Admin', 'Admin', '123123123', '2022-10-04', '555111222', 'admin@example.com', 1, '$2y$10$kx.4R5SJV3UmYnfNAOyZ3e17e6dpmj48H63TGBC6s5IxtXyvDJ4mK', NULL, NULL, 1, NULL, 1, '2022-10-04 17:34:03', '2022-10-04 13:37:23', NULL, 1);
+(34, 'მიტო', 'ჩიხლაძე', '62001044774', '2022-01-31', '599002452', 'chikhladze.mt@gmail.com', NULL, '$2y$10$xHMlQQO.HU7SH6z3ygveBOZ7iqFUmAwMLTV24cp/rjgsv.Yadqu2y', NULL, NULL, 1, NULL, 1, '2022-10-21 07:14:45', '2022-10-21 07:14:45', NULL, 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `new_delivery_parameters`
+-- Структура таблицы `new_delivery_parameters`
 --
 
 CREATE TABLE `new_delivery_parameters` (
@@ -176,7 +176,7 @@ CREATE TABLE `new_delivery_parameters` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
--- Dumping data for table `new_delivery_parameters`
+-- Дамп данных таблицы `new_delivery_parameters`
 --
 
 INSERT INTO `new_delivery_parameters` (`id`, `label`, `snippet`, `value`, `key`, `type`, `disabled`, `active`, `sortable`, `updated_at`, `deleted_at`, `deleted_at_int`) VALUES
@@ -186,7 +186,7 @@ INSERT INTO `new_delivery_parameters` (`id`, `label`, `snippet`, `value`, `key`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `new_delivery_streets`
+-- Структура таблицы `new_delivery_streets`
 --
 
 CREATE TABLE `new_delivery_streets` (
@@ -202,7 +202,7 @@ CREATE TABLE `new_delivery_streets` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
--- Dumping data for table `new_delivery_streets`
+-- Дамп данных таблицы `new_delivery_streets`
 --
 
 INSERT INTO `new_delivery_streets` (`id`, `name_ge`, `name_en`, `district_id`, `active`, `updated_at`, `deleted_at`, `deleted_at_int`) VALUES
@@ -212,7 +212,7 @@ INSERT INTO `new_delivery_streets` (`id`, `name_ge`, `name_en`, `district_id`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `new_info_parameters`
+-- Структура таблицы `new_info_parameters`
 --
 
 CREATE TABLE `new_info_parameters` (
@@ -232,18 +232,18 @@ CREATE TABLE `new_info_parameters` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
--- Dumping data for table `new_info_parameters`
+-- Дамп данных таблицы `new_info_parameters`
 --
 
 INSERT INTO `new_info_parameters` (`id`, `label`, `snippet`, `value`, `key`, `type`, `disabled`, `active`, `sortable`, `updated_at`, `deleted_at`, `deleted_at_int`) VALUES
-(6, 'ელ-ფოსტა', 'ელ-ფოსტა რომელიც გსურთ გამოჩნდეს ვებ-გვერდზე', 'nikaragua@gmail.com', 'email', 'input', 0, 1, 1, '2022-10-04 14:16:08', NULL, 1),
-(15, 'ტელეფონის ნომერი', 'ტელეფონის ნომერი რომელიც გსურთ გამოჩნდეს ვებ-გვერდზე', '585511444', 'phone', 'input', 0, 1, 1, '2022-10-04 14:16:08', NULL, 1),
-(16, 'მისამართი', 'მისამართი რომელიც გსურთ გამოჩნდეს ვებ-გვერდზე', 'ჯავახეთის ქუჩა N120 / Javakheti Street N1204444', 'address', 'input', 0, 1, 1, '2022-10-04 14:16:08', NULL, 1);
+(6, 'ელ-ფოსტა', 'ელ-ფოსტა რომელიც გსურთ გამოჩნდეს ვებ-გვერდზე', 'chikhladze.mt@gmail.com', 'email', 'input', 0, 1, 1, '2022-10-21 07:14:45', NULL, 1),
+(15, 'ტელეფონის ნომერი', 'ტელეფონის ნომერი რომელიც გსურთ გამოჩნდეს ვებ-გვერდზე', '599002452', 'phone', 'input', 0, 1, 1, '2022-10-21 07:14:45', NULL, 1),
+(16, 'მისამართი', 'მისამართი რომელიც გსურთ გამოჩნდეს ვებ-გვერდზე', 'Test', 'address', 'input', 0, 1, 1, '2022-10-21 07:14:45', NULL, 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `new_navigation`
+-- Структура таблицы `new_navigation`
 --
 
 CREATE TABLE `new_navigation` (
@@ -259,7 +259,7 @@ CREATE TABLE `new_navigation` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
--- Dumping data for table `new_navigation`
+-- Дамп данных таблицы `new_navigation`
 --
 
 INSERT INTO `new_navigation` (`id`, `url`, `title`, `sortable`, `active`, `cretead_at`, `updated_at`, `deleted_at`, `deleted_at_int`) VALUES
@@ -270,7 +270,7 @@ INSERT INTO `new_navigation` (`id`, `url`, `title`, `sortable`, `active`, `crete
 -- --------------------------------------------------------
 
 --
--- Table structure for table `new_orders`
+-- Структура таблицы `new_orders`
 --
 
 CREATE TABLE `new_orders` (
@@ -284,7 +284,7 @@ CREATE TABLE `new_orders` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `new_order_actions`
+-- Структура таблицы `new_order_actions`
 --
 
 CREATE TABLE `new_order_actions` (
@@ -300,7 +300,7 @@ CREATE TABLE `new_order_actions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
--- Dumping data for table `new_order_actions`
+-- Дамп данных таблицы `new_order_actions`
 --
 
 INSERT INTO `new_order_actions` (`id`, `name`, `key`, `active`, `parameters`, `updated_at`, `deleted_at`, `deleted_at_int`) VALUES
@@ -311,7 +311,7 @@ INSERT INTO `new_order_actions` (`id`, `name`, `key`, `active`, `parameters`, `u
 -- --------------------------------------------------------
 
 --
--- Table structure for table `new_payments`
+-- Структура таблицы `new_payments`
 --
 
 CREATE TABLE `new_payments` (
@@ -331,7 +331,7 @@ CREATE TABLE `new_payments` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
--- Dumping data for table `new_payments`
+-- Дамп данных таблицы `new_payments`
 --
 
 INSERT INTO `new_payments` (`id`, `name_ge`, `name_en`, `category_id`, `key`, `options`, `photo`, `description`, `active`, `created_at`, `updated_at`, `deleted_at`, `deleted_at_int`) VALUES
@@ -343,7 +343,7 @@ INSERT INTO `new_payments` (`id`, `name_ge`, `name_en`, `category_id`, `key`, `o
 -- --------------------------------------------------------
 
 --
--- Table structure for table `new_payment_category`
+-- Структура таблицы `new_payment_category`
 --
 
 CREATE TABLE `new_payment_category` (
@@ -358,7 +358,7 @@ CREATE TABLE `new_payment_category` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
--- Dumping data for table `new_payment_category`
+-- Дамп данных таблицы `new_payment_category`
 --
 
 INSERT INTO `new_payment_category` (`id`, `name_ge`, `name_en`, `active`, `updated_at`, `deleted_at`, `deleted_at_int`) VALUES
@@ -368,7 +368,7 @@ INSERT INTO `new_payment_category` (`id`, `name_ge`, `name_en`, `active`, `updat
 -- --------------------------------------------------------
 
 --
--- Table structure for table `new_permissions`
+-- Структура таблицы `new_permissions`
 --
 
 CREATE TABLE `new_permissions` (
@@ -385,7 +385,7 @@ CREATE TABLE `new_permissions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `new_permissions`
+-- Дамп данных таблицы `new_permissions`
 --
 
 INSERT INTO `new_permissions` (`id`, `name`, `title`, `group_id`, `guard_name`, `active`, `created_at`, `updated_at`, `deleted_at`, `deleted_at_int`) VALUES
@@ -398,7 +398,7 @@ INSERT INTO `new_permissions` (`id`, `name`, `title`, `group_id`, `guard_name`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `new_plugin_parameters`
+-- Структура таблицы `new_plugin_parameters`
 --
 
 CREATE TABLE `new_plugin_parameters` (
@@ -418,7 +418,7 @@ CREATE TABLE `new_plugin_parameters` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
--- Dumping data for table `new_plugin_parameters`
+-- Дамп данных таблицы `new_plugin_parameters`
 --
 
 INSERT INTO `new_plugin_parameters` (`id`, `label`, `snippet`, `value`, `key`, `type`, `disabled`, `active`, `sortable`, `updated_at`, `deleted_at`, `deleted_at_int`) VALUES
@@ -428,7 +428,7 @@ INSERT INTO `new_plugin_parameters` (`id`, `label`, `snippet`, `value`, `key`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `new_products`
+-- Структура таблицы `new_products`
 --
 
 CREATE TABLE `new_products` (
@@ -451,7 +451,7 @@ CREATE TABLE `new_products` (
   `facebook` int NOT NULL DEFAULT '0',
   `status` int NOT NULL DEFAULT '1',
   `active` int NOT NULL DEFAULT '1',
-  `root_id` int NULL DEFAULT NULL,
+  `root_id` int DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
@@ -461,7 +461,7 @@ CREATE TABLE `new_products` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `new_product_category`
+-- Структура таблицы `new_product_category`
 --
 
 CREATE TABLE `new_product_category` (
@@ -478,7 +478,7 @@ CREATE TABLE `new_product_category` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
--- Dumping data for table `new_product_category`
+-- Дамп данных таблицы `new_product_category`
 --
 
 INSERT INTO `new_product_category` (`id`, `name`, `parent_id`, `meta`, `sortable`, `active`, `created_at`, `updated_at`, `deleted_at`, `deleted_at_int`) VALUES
@@ -495,7 +495,7 @@ INSERT INTO `new_product_category` (`id`, `name`, `parent_id`, `meta`, `sortable
 -- --------------------------------------------------------
 
 --
--- Table structure for table `new_product_count_log`
+-- Структура таблицы `new_product_count_log`
 --
 
 CREATE TABLE `new_product_count_log` (
@@ -509,7 +509,7 @@ CREATE TABLE `new_product_count_log` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
--- Dumping data for table `new_product_count_log`
+-- Дамп данных таблицы `new_product_count_log`
 --
 
 INSERT INTO `new_product_count_log` (`id`, `user_id`, `method`, `updated_at`, `deleted_at`, `deleted_at_int`) VALUES
@@ -533,7 +533,7 @@ INSERT INTO `new_product_count_log` (`id`, `user_id`, `method`, `updated_at`, `d
 -- --------------------------------------------------------
 
 --
--- Table structure for table `new_product_count_log_item`
+-- Структура таблицы `new_product_count_log_item`
 --
 
 CREATE TABLE `new_product_count_log_item` (
@@ -550,7 +550,7 @@ CREATE TABLE `new_product_count_log_item` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
--- Dumping data for table `new_product_count_log_item`
+-- Дамп данных таблицы `new_product_count_log_item`
 --
 
 INSERT INTO `new_product_count_log_item` (`id`, `log_id`, `product_id`, `value_old`, `value_new`, `restored`, `created_at`, `updated_at`, `deleted_at`, `deleted_at_int`) VALUES
@@ -567,7 +567,7 @@ INSERT INTO `new_product_count_log_item` (`id`, `log_id`, `product_id`, `value_o
 -- --------------------------------------------------------
 
 --
--- Table structure for table `new_product_gallery`
+-- Структура таблицы `new_product_gallery`
 --
 
 CREATE TABLE `new_product_gallery` (
@@ -582,7 +582,7 @@ CREATE TABLE `new_product_gallery` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
--- Dumping data for table `new_product_gallery`
+-- Дамп данных таблицы `new_product_gallery`
 --
 
 INSERT INTO `new_product_gallery` (`id`, `product_id`, `path`, `active`, `created_at`, `updated_at`, `deleted_at`, `deleted_at_int`) VALUES
@@ -651,24 +651,6 @@ INSERT INTO `new_product_gallery` (`id`, `product_id`, `path`, `active`, `create
 (97, 107, 'https://dashboard.turbopc.ge/storage/files/3/626a5e5d7e93d.png', 1, '2022-04-28 05:34:54', '2022-04-28 05:34:54', NULL, 1),
 (98, 107, ' https://dashboard.turbopc.ge/storage/files/3/626a5e5c6dd1d.png', 1, '2022-04-28 05:34:54', '2022-04-28 05:34:54', NULL, 1),
 (99, 135, 'https://images.unsplash.com/photo-1566275529824-cca6d008f3da?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cGhvdG98ZW58MHx8MHx8&w=1000&q=80', 1, '2022-06-03 15:17:43', '2022-06-03 15:17:43', NULL, 1),
-(107, 5, 'https://dashboard.mallline.ge/storage/files/1/62bae6c26505f.png', 1, '2022-06-28 13:28:09', '2022-06-28 13:28:09', NULL, 1),
-(108, 5, 'https://dashboard.mallline.ge/storage/files/1/62bae8c7b7ee0.png', 1, '2022-06-28 13:28:09', '2022-06-28 13:28:09', NULL, 1),
-(109, 7, 'https://dashboard.mallline.ge/storage/files/1/62bae8c7b7ee0.png', 1, '2022-06-29 12:19:25', '2022-06-29 12:19:25', NULL, 1),
-(110, 8, 'https://dashboard.mallline.ge/storage/files/1/62d183c1912e9.jpg', 1, '2022-07-15 11:12:40', '2022-07-15 11:12:40', NULL, 1),
-(111, 8, 'https://dashboard.mallline.ge/storage/files/1/62d183c1be5ca.jpg', 1, '2022-07-15 11:12:40', '2022-07-15 11:12:40', NULL, 1),
-(112, 8, 'https://dashboard.mallline.ge/storage/files/1/62d183c1c2e03.jpg', 1, '2022-07-15 11:12:40', '2022-07-15 11:12:40', NULL, 1),
-(113, 9, 'https://dashboard.mallline.ge/storage/files/1/62d183bb075c8.jpg', 1, '2022-07-15 11:14:56', '2022-07-15 11:14:56', NULL, 1),
-(114, 9, 'https://dashboard.mallline.ge/storage/files/1/62d183c1912e9.jpg', 1, '2022-07-15 11:14:56', '2022-07-15 11:14:56', NULL, 1),
-(115, 9, 'https://dashboard.mallline.ge/storage/files/1/62d183c1a7936.png', 1, '2022-07-15 11:14:56', '2022-07-15 11:14:56', NULL, 1),
-(116, 10, 'https://dashboard.mallline.ge/storage/files/1/62d183c1912e9.jpg', 1, '2022-07-15 11:18:22', '2022-07-15 11:18:22', NULL, 1),
-(117, 10, 'https://dashboard.mallline.ge/storage/files/1/62d183c28a63c.jpg', 1, '2022-07-15 11:18:22', '2022-07-15 11:18:22', NULL, 1),
-(118, 10, 'https://dashboard.mallline.ge/storage/files/1/62d183c1be5ca.jpg', 1, '2022-07-15 11:18:22', '2022-07-15 11:18:22', NULL, 1),
-(119, 11, 'https://dashboard.mallline.ge/storage/files/1/62d183c1912e9.jpg', 1, '2022-07-15 11:27:02', '2022-07-15 11:27:02', NULL, 1),
-(120, 11, 'https://dashboard.mallline.ge/storage/files/1/62d183c1be5ca.jpg', 1, '2022-07-15 11:27:02', '2022-07-15 11:27:02', NULL, 1),
-(121, 11, 'https://dashboard.mallline.ge/storage/files/1/62d183c1c2e03.jpg', 1, '2022-07-15 11:27:02', '2022-07-15 11:27:02', NULL, 1),
-(122, 12, 'https://dashboard.mallline.ge/storage/files/1/62d183c1912e9.jpg', 1, '2022-07-15 11:28:58', '2022-07-15 11:28:58', NULL, 1),
-(123, 12, 'https://dashboard.mallline.ge/storage/files/1/62d183bb075c8.jpg', 1, '2022-07-15 11:28:58', '2022-07-15 11:28:58', NULL, 1),
-(124, 12, 'https://dashboard.mallline.ge/storage/files/1/62d183c1a7936.png', 1, '2022-07-15 11:28:58', '2022-07-15 11:28:58', NULL, 1),
 (125, 55, 'https://dashboard.mallline.ge/storage/files/1/62eb8ea65214f.jpg', 1, '2022-09-26 12:20:32', '2022-09-26 12:20:32', NULL, 1),
 (126, 55, ' https://dashboard.mallline.ge/storage/files/1/62eb8ea65214f.jpg', 1, '2022-09-26 12:20:32', '2022-09-26 12:20:32', NULL, 1),
 (127, 56, 'https://dashboard.mallline.ge/storage/files/1/62eb8ea65214f.jpg', 1, '2022-09-26 12:21:37', '2022-09-26 12:21:37', NULL, 1),
@@ -712,12 +694,20 @@ INSERT INTO `new_product_gallery` (`id`, `product_id`, `path`, `active`, `create
 (165, 2, 'http://acer.mallline.ge/storage/files/7/633352fa62ad5.png', 1, '2022-09-27 15:56:02', '2022-09-27 15:56:02', NULL, 1),
 (166, 2, 'http://acer.mallline.ge/storage/files/7/633352fa7ce58.png', 1, '2022-09-27 15:56:02', '2022-09-27 15:56:02', NULL, 1),
 (167, 3, 'http://acer.mallline.ge/storage/files/7/633352fdd4cd9.jpg', 1, '2022-09-27 15:59:25', '2022-09-27 15:59:25', NULL, 1),
-(168, 4, 'https://nikaragua.mallline.ge/storage/files/19/633c6ff566b9e.png', 1, '2022-10-04 13:49:29', '2022-10-04 13:49:29', NULL, 1);
+(168, 4, 'https://nikaragua.mallline.ge/storage/files/19/633c6ff566b9e.png', 1, '2022-10-04 13:49:29', '2022-10-04 13:49:29', NULL, 1),
+(169, 5, 'https://fix.mallline.ge/storage/files/34/63528bd523227.png', 1, '2022-10-21 08:10:42', '2022-10-21 08:10:42', NULL, 1),
+(170, 6, 'https://fix.mallline.ge/storage/files/34/63528bd523227.png', 1, '2022-10-21 08:31:10', '2022-10-21 08:31:10', NULL, 1),
+(171, 7, 'https://fix.mallline.ge/storage/files/34/63528bd523227.png', 1, '2022-10-21 08:32:50', '2022-10-21 08:32:50', NULL, 1),
+(172, 8, 'https://fix.mallline.ge/storage/files/34/63528bd523227.png', 1, '2022-10-21 08:33:04', '2022-10-21 08:33:04', NULL, 1),
+(173, 9, 'https://fix.mallline.ge/storage/files/34/63528bd523227.png', 1, '2022-10-21 08:33:38', '2022-10-21 08:33:38', NULL, 1),
+(174, 10, 'https://fix.mallline.ge/storage/files/34/63528bd523227.png', 1, '2022-10-21 08:34:47', '2022-10-21 08:34:47', NULL, 1),
+(175, 11, 'https://fix.mallline.ge/storage/files/34/63528bd523227.png', 1, '2022-10-21 08:35:11', '2022-10-21 08:35:11', NULL, 1),
+(176, 12, 'https://fix.mallline.ge/storage/files/34/63528bd523227.png', 1, '2022-10-21 08:38:00', '2022-10-21 08:38:00', NULL, 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `new_product_meta`
+-- Структура таблицы `new_product_meta`
 --
 
 CREATE TABLE `new_product_meta` (
@@ -732,7 +722,7 @@ CREATE TABLE `new_product_meta` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
--- Dumping data for table `new_product_meta`
+-- Дамп данных таблицы `new_product_meta`
 --
 
 INSERT INTO `new_product_meta` (`id`, `product_id`, `keywords`, `description`, `updated_at`, `deleted_at`, `deleted_at_int`) VALUES
@@ -983,12 +973,20 @@ INSERT INTO `new_product_meta` (`id`, `product_id`, `keywords`, `description`, `
 (245, 1, '{\"ge\":\"asdasdasd\",\"en\":\"sdsadasd\"}', '{\"ge\":\"asdsdas\",\"en\":\"asdsadas\"}', '2022-09-27 15:47:23', NULL, 1),
 (246, 2, '{\"ge\":\"123\",\"en\":\"123\"}', '{\"ge\":\"123\",\"en\":\"123\"}', '2022-09-27 15:56:02', NULL, 1),
 (247, 3, '{\"ge\":\"adasd\",\"en\":\"adsasd\"}', '{\"ge\":\"adsasdas\",\"en\":\"adsasd\"}', '2022-09-27 15:59:25', NULL, 1),
-(248, 4, '{\"ge\":\"123\",\"en\":\"123\"}', '{\"ge\":\"123\",\"en\":\"123\"}', '2022-10-04 13:49:29', NULL, 1);
+(248, 4, '{\"ge\":\"123\",\"en\":\"123\"}', '{\"ge\":\"123\",\"en\":\"123\"}', '2022-10-04 13:49:29', NULL, 1),
+(249, 5, '{\"ge\":\"123\",\"en\":\"123\"}', '{\"ge\":\"123\",\"en\":\"123\"}', '2022-10-21 08:10:42', NULL, 1),
+(250, 6, '{\"ge\":\"123\",\"en\":\"123\"}', '{\"ge\":\"123\",\"en\":\"123\"}', '2022-10-21 08:31:10', NULL, 1),
+(251, 7, '{\"ge\":\"123\",\"en\":\"123\"}', '{\"ge\":\"123\",\"en\":\"123\"}', '2022-10-21 08:32:50', NULL, 1),
+(252, 8, '{\"ge\":\"123\",\"en\":\"123\"}', '{\"ge\":\"123\",\"en\":\"123\"}', '2022-10-21 08:33:04', NULL, 1),
+(253, 9, '{\"ge\":\"123\",\"en\":\"123\"}', '{\"ge\":\"123\",\"en\":\"123\"}', '2022-10-21 08:33:38', NULL, 1),
+(254, 10, '{\"ge\":\"123\",\"en\":\"123\"}', '{\"ge\":\"123\",\"en\":\"123\"}', '2022-10-21 08:34:47', NULL, 1),
+(255, 11, '{\"ge\":\"123\",\"en\":\"123\"}', '{\"ge\":\"123\",\"en\":\"123\"}', '2022-10-21 08:35:11', NULL, 1),
+(256, 12, '{\"ge\":\"123\",\"en\":\"123\"}', '{\"ge\":\"123\",\"en\":\"123\"}', '2022-10-21 08:38:00', NULL, 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `new_product_price`
+-- Структура таблицы `new_product_price`
 --
 
 CREATE TABLE `new_product_price` (
@@ -1002,7 +1000,7 @@ CREATE TABLE `new_product_price` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
--- Dumping data for table `new_product_price`
+-- Дамп данных таблицы `new_product_price`
 --
 
 INSERT INTO `new_product_price` (`id`, `product_id`, `price`, `created_at`, `updated_at`, `deleted_at`, `deleted_at_int`) VALUES
@@ -1088,12 +1086,20 @@ INSERT INTO `new_product_price` (`id`, `product_id`, `price`, `created_at`, `upd
 (82, 1, '4500', '2022-09-27 15:47:23', '2022-09-27 15:47:23', NULL, 1),
 (83, 2, '12300', '2022-09-27 15:56:02', '2022-09-27 15:56:02', NULL, 1),
 (84, 3, '10000', '2022-09-27 15:59:25', '2022-09-27 15:59:25', NULL, 1),
-(85, 4, '12300', '2022-10-04 13:49:29', '2022-10-04 13:49:29', NULL, 1);
+(85, 4, '12300', '2022-10-04 13:49:29', '2022-10-04 13:49:29', NULL, 1),
+(86, 5, '600', '2022-10-21 08:10:42', '2022-10-21 08:10:42', NULL, 1),
+(87, 6, '800', '2022-10-21 08:31:10', '2022-10-21 08:31:10', NULL, 1),
+(88, 7, '800', '2022-10-21 08:32:50', '2022-10-21 08:32:50', NULL, 1),
+(89, 8, '800', '2022-10-21 08:33:04', '2022-10-21 08:33:04', NULL, 1),
+(90, 9, '800', '2022-10-21 08:33:38', '2022-10-21 08:33:38', NULL, 1),
+(91, 10, '800', '2022-10-21 08:34:47', '2022-10-21 08:34:47', NULL, 1),
+(92, 11, '800', '2022-10-21 08:35:11', '2022-10-21 08:35:11', NULL, 1),
+(93, 12, '800', '2022-10-21 08:38:00', '2022-10-21 08:38:00', NULL, 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `new_product_statuses`
+-- Структура таблицы `new_product_statuses`
 --
 
 CREATE TABLE `new_product_statuses` (
@@ -1107,7 +1113,7 @@ CREATE TABLE `new_product_statuses` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
--- Dumping data for table `new_product_statuses`
+-- Дамп данных таблицы `new_product_statuses`
 --
 
 INSERT INTO `new_product_statuses` (`id`, `name`, `active`, `updated_at`, `deleted_at`, `deleted_at_int`) VALUES
@@ -1117,7 +1123,7 @@ INSERT INTO `new_product_statuses` (`id`, `name`, `active`, `updated_at`, `delet
 -- --------------------------------------------------------
 
 --
--- Table structure for table `new_product_vendors`
+-- Структура таблицы `new_product_vendors`
 --
 
 CREATE TABLE `new_product_vendors` (
@@ -1134,7 +1140,7 @@ CREATE TABLE `new_product_vendors` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
--- Dumping data for table `new_product_vendors`
+-- Дамп данных таблицы `new_product_vendors`
 --
 
 INSERT INTO `new_product_vendors` (`id`, `name`, `code`, `address`, `phone`, `active`, `updated_at`, `deleted_at`, `deleted_at_int`) VALUES
@@ -1145,7 +1151,7 @@ INSERT INTO `new_product_vendors` (`id`, `name`, `code`, `address`, `phone`, `ac
 -- --------------------------------------------------------
 
 --
--- Table structure for table `new_seo_parameters`
+-- Структура таблицы `new_seo_parameters`
 --
 
 CREATE TABLE `new_seo_parameters` (
@@ -1159,7 +1165,7 @@ CREATE TABLE `new_seo_parameters` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
--- Dumping data for table `new_seo_parameters`
+-- Дамп данных таблицы `new_seo_parameters`
 --
 
 INSERT INTO `new_seo_parameters` (`id`, `name`, `value`, `created_at`, `updated_at`, `deleted_at`, `deleted_at_int`) VALUES
@@ -1172,7 +1178,7 @@ INSERT INTO `new_seo_parameters` (`id`, `name`, `value`, `created_at`, `updated_
 -- --------------------------------------------------------
 
 --
--- Table structure for table `new_slider`
+-- Структура таблицы `new_slider`
 --
 
 CREATE TABLE `new_slider` (
@@ -1189,7 +1195,7 @@ CREATE TABLE `new_slider` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
--- Dumping data for table `new_slider`
+-- Дамп данных таблицы `new_slider`
 --
 
 INSERT INTO `new_slider` (`id`, `path`, `is_banner`, `text`, `url`, `active`, `updated_at`, `deleted_at`, `deleted_at_int`) VALUES
@@ -1216,7 +1222,7 @@ INSERT INTO `new_slider` (`id`, `path`, `is_banner`, `text`, `url`, `active`, `u
 -- --------------------------------------------------------
 
 --
--- Table structure for table `new_social_facebook_accounts`
+-- Структура таблицы `new_social_facebook_accounts`
 --
 
 CREATE TABLE `new_social_facebook_accounts` (
@@ -1228,10 +1234,10 @@ CREATE TABLE `new_social_facebook_accounts` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
   `deleted_at_int` int NOT NULL DEFAULT '1'
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 
 --
--- Dumping data for table `new_social_facebook_accounts`
+-- Дамп данных таблицы `new_social_facebook_accounts`
 --
 
 INSERT INTO `new_social_facebook_accounts` (`id`, `user_id`, `provider_user_id`, `provider`, `created_at`, `updated_at`, `deleted_at`, `deleted_at_int`) VALUES
@@ -1240,7 +1246,7 @@ INSERT INTO `new_social_facebook_accounts` (`id`, `user_id`, `provider_user_id`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `new_social_google_accounts`
+-- Структура таблицы `new_social_google_accounts`
 --
 
 CREATE TABLE `new_social_google_accounts` (
@@ -1252,12 +1258,12 @@ CREATE TABLE `new_social_google_accounts` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
   `deleted_at_int` int NOT NULL DEFAULT '0'
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `new_social_parameters`
+-- Структура таблицы `new_social_parameters`
 --
 
 CREATE TABLE `new_social_parameters` (
@@ -1277,18 +1283,18 @@ CREATE TABLE `new_social_parameters` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
--- Dumping data for table `new_social_parameters`
+-- Дамп данных таблицы `new_social_parameters`
 --
 
 INSERT INTO `new_social_parameters` (`id`, `label`, `snippet`, `value`, `key`, `type`, `disabled`, `active`, `sortable`, `updated_at`, `deleted_at`, `deleted_at_int`) VALUES
-(6, 'Facebook', 'Facebook გვერდის ბმული რომელიც გსურთ რომ გამოჩნდეს ვებ-გვერდზე', 'Facebook.com/altage', 'facebook', 'input', 0, 1, 1, '2022-10-04 14:16:08', NULL, 1),
-(7, 'Instagram', 'Instagram გვერდის ბმული რომელიც გსურთ რომ გამოჩნდეს ვებ-გვერდზე', '123', 'instagram', 'input', 0, 1, 1, '2022-10-04 14:16:08', NULL, 1),
-(8, 'Youtube', 'Youtube გვერდის ბმული რომელიც გსურთ რომ გამოჩნდეს ვებ-გვერდზე', NULL, 'youtube', 'input', 0, 1, 1, '2022-10-04 14:16:08', NULL, 1);
+(6, 'Facebook', 'Facebook გვერდის ბმული რომელიც გსურთ რომ გამოჩნდეს ვებ-გვერდზე', NULL, 'facebook', 'input', 0, 1, 1, '2022-10-21 00:28:47', NULL, 1),
+(7, 'Instagram', 'Instagram გვერდის ბმული რომელიც გსურთ რომ გამოჩნდეს ვებ-გვერდზე', '123', 'instagram', 'input', 0, 1, 1, '2022-10-21 00:28:47', NULL, 1),
+(8, 'Youtube', 'Youtube გვერდის ბმული რომელიც გსურთ რომ გამოჩნდეს ვებ-გვერდზე', NULL, 'youtube', 'input', 0, 1, 1, '2022-10-21 00:28:47', NULL, 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `new_text_pages`
+-- Структура таблицы `new_text_pages`
 --
 
 CREATE TABLE `new_text_pages` (
@@ -1304,7 +1310,7 @@ CREATE TABLE `new_text_pages` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 
 --
--- Dumping data for table `new_text_pages`
+-- Дамп данных таблицы `new_text_pages`
 --
 
 INSERT INTO `new_text_pages` (`id`, `name_ge`, `name_en`, `text_ge`, `text_en`, `created_at`, `updated_at`, `deleted_at`, `deleted_at_int`) VALUES
@@ -1313,7 +1319,7 @@ INSERT INTO `new_text_pages` (`id`, `name_ge`, `name_en`, `text_ge`, `text_en`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `new_translate_parameters`
+-- Структура таблицы `new_translate_parameters`
 --
 
 CREATE TABLE `new_translate_parameters` (
@@ -1328,7 +1334,7 @@ CREATE TABLE `new_translate_parameters` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
--- Dumping data for table `new_translate_parameters`
+-- Дамп данных таблицы `new_translate_parameters`
 --
 
 INSERT INTO `new_translate_parameters` (`id`, `key`, `value`, `active`, `updated_at`, `deleted_at`, `deleted_at_int`) VALUES
@@ -1378,6 +1384,7 @@ INSERT INTO `new_translate_parameters` (`id`, `key`, `value`, `active`, `updated
 (132, 'current_email_is_busy', '{\"ge\":\"\\u10d0\\u10e6\\u10dc\\u10d8\\u10e8\\u10dc\\u10e3\\u10da\\u10d8 \\u10d4\\u10da-\\u10e4\\u10dd\\u10e1\\u10e2\\u10d0 \\u10d3\\u10d0\\u10d9\\u10d0\\u10d5\\u10d4\\u10d1\\u10e3\\u10da\\u10d8\\u10d0\",\"en\":\"Current email is busy\"}', 1, '2022-07-08 05:30:41', NULL, 1),
 (133, 'current_phone_is_busy', '{\"ge\":\"\\u10d0\\u10e6\\u10dc\\u10d8\\u10e8\\u10dc\\u10e3\\u10da\\u10d8 \\u10e2\\u10d4\\u10da\\u10d4\\u10e4\\u10dd\\u10dc\\u10d8 \\u10d3\\u10d0\\u10d9\\u10d0\\u10d5\\u10d4\\u10d1\\u10e3\\u10da\\u10d8\\u10d0\",\"en\":\"Current phone is busy\"}', 1, '2022-07-08 05:33:23', NULL, 1),
 (135, 'customer_reviews', '{\"ge\":\"\\u10db\\u10dd\\u10db\\u10ee\\u10db\\u10d0\\u10e0\\u10d4\\u10d1\\u10d4\\u10da\\u10d7\\u10d0 \\u10e8\\u10d4\\u10e4\\u10d0\\u10e1\\u10d4\\u10d1\\u10d0\",\"en\":\"Customer reviews\"}', 1, '2022-07-08 06:42:43', NULL, 1),
+(151, 'dashboard', '{\"ge\":\"სამართავი პანელი\",\"en\":\"Dashboard\"}', 1, '2022-05-18 06:12:40', NULL, 1),
 (113, 'date', '{\"ge\":\"\\u10d7\\u10d0\\u10e0\\u10d8\\u10e6\\u10d8\",\"en\":\"Date\"}', 1, '2022-07-07 04:58:57', NULL, 1),
 (86, 'delete', '{\"ge\":\"\\u10ec\\u10d0\\u10e8\\u10da\\u10d0\",\"en\":\"Delete\"}', 1, '2022-07-07 03:30:17', NULL, 1),
 (116, 'details', '{\"ge\":\"\\u10d3\\u10d4\\u10e2\\u10d0\\u10da\\u10d4\\u10d1\\u10d8\",\"en\":\"Details\"}', 1, '2022-07-07 04:59:44', NULL, 1),
@@ -1429,6 +1436,7 @@ INSERT INTO `new_translate_parameters` (`id`, `key`, `value`, `active`, `updated
 (117, 'purchase', '{\"ge\":\"\\u10e8\\u10d4\\u10eb\\u10d4\\u10dc\\u10d0\",\"en\":\"Purchase\"}', 1, '2022-07-07 05:23:12', NULL, 1),
 (121, 'quantity', '{\"ge\":\"\\u10e0\\u10d0\\u10dd\\u10d3\\u10d4\\u10dc\\u10dd\\u10d1\\u10d0\",\"en\":\"Quantity\"}', 1, '2022-07-07 05:27:30', NULL, 1),
 (69, 'quick_links', '{\"ge\":\"\\u10e1\\u10ec\\u10e0\\u10d0\\u10e4\\u10d8 \\u10d1\\u10db\\u10e3\\u10da\\u10d4\\u10d1\\u10d8\",\"en\":\"Quick Links\"}', 1, '2022-06-30 02:51:09', NULL, 1),
+(150, 'quiq_links', '{\"ge\":\"სწრაფი ბმულები\",\"en\":\"Quick links\"}', 1, '2022-05-18 06:12:40', NULL, 1),
 (90, 'quiq_view', '{\"ge\":\"\\u10e1\\u10ec\\u10e0\\u10d0\\u10e4\\u10d8 \\u10dc\\u10d0\\u10ee\\u10d5\\u10d0\",\"en\":\"Quick View\"}', 1, '2022-07-07 04:07:27', NULL, 1),
 (29, 'register', '{\"ge\":\"\\u10e0\\u10d4\\u10d2\\u10d8\\u10e1\\u10e2\\u10e0\\u10d0\\u10ea\\u10d8\\u10d0\",\"en\":\"Registration\"}', 1, '2022-04-19 10:22:58', NULL, 1),
 (102, 'registraction_google', '{\"ge\":\"Google \\u10e0\\u10d4\\u10d2\\u10d8\\u10e1\\u10e2\\u10e0\\u10d0\\u10ea\\u10d8\\u10d0\",\"en\":\"Continue with Google\"}', 1, '2022-07-07 04:18:40', NULL, 1),
@@ -1484,7 +1492,7 @@ INSERT INTO `new_translate_parameters` (`id`, `key`, `value`, `active`, `updated
 -- --------------------------------------------------------
 
 --
--- Table structure for table `new_users`
+-- Структура таблицы `new_users`
 --
 
 CREATE TABLE `new_users` (
@@ -1503,7 +1511,7 @@ CREATE TABLE `new_users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
--- Dumping data for table `new_users`
+-- Дамп данных таблицы `new_users`
 --
 
 INSERT INTO `new_users` (`id`, `name`, `lastname`, `phone`, `email`, `password`, `active`, `remember_token`, `updated_at`, `deleted_at`, `deleted_at_int`) VALUES
@@ -1512,12 +1520,12 @@ INSERT INTO `new_users` (`id`, `name`, `lastname`, `phone`, `email`, `password`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `new_webparameters`
+-- Структура таблицы `new_webparameters`
 --
 
 CREATE TABLE `new_webparameters` (
   `id` int NOT NULL,
-  `host` varchar(50) NOT NULL,
+  `host` varchar(50) DEFAULT NULL,
   `name_ge` varchar(100) DEFAULT NULL,
   `name_en` varchar(100) DEFAULT NULL,
   `logotype` varchar(255) DEFAULT NULL,
@@ -1527,24 +1535,25 @@ CREATE TABLE `new_webparameters` (
   `fb_auth_key` varchar(255) DEFAULT NULL,
   `smsoffice` varchar(100) DEFAULT NULL,
   `vendor_id` int DEFAULT NULL,
+  `prestage` int NOT NULL DEFAULT '0',
   `active` int NOT NULL DEFAULT '0',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
   `deleted_at_int` int NOT NULL DEFAULT '1'
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 
 --
--- Dumping data for table `new_webparameters`
+-- Дамп данных таблицы `new_webparameters`
 --
 
-INSERT INTO `new_webparameters` (`id`, `host`, `name_ge`, `name_en`, `logotype`, `google_auth`, `google_auth_key`, `fb_auth`, `fb_auth_key`, `smsoffice`, `vendor_id`, `active`, `created_at`, `updated_at`, `deleted_at`, `deleted_at_int`) VALUES
-(1, 'maverick.mallline.ge', 'Nikaragua123', 'Nikaragua', '4a28aeecc213c997f33c23ca388acbdd.png', 2, '55555', 2, 'asdasdasd', 'b7a41cb33e014860ae0363cd091206fc', NULL, 1, '2022-09-12 12:05:48', '2022-10-04 14:06:44', NULL, 1);
+INSERT INTO `new_webparameters` (`id`, `host`, `name_ge`, `name_en`, `logotype`, `google_auth`, `google_auth_key`, `fb_auth`, `fb_auth_key`, `smsoffice`, `vendor_id`, `prestage`, `active`, `created_at`, `updated_at`, `deleted_at`, `deleted_at_int`) VALUES
+(1, NULL, 'Test', 'Test', NULL, 2, NULL, 2, NULL, 'b7a41cb33e014860ae0363cd091206fc', NULL, 0, 0, '2022-09-12 12:05:48', '2022-10-21 07:14:46', NULL, 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `new_wishlist`
+-- Структура таблицы `new_wishlist`
 --
 
 CREATE TABLE `new_wishlist` (
@@ -1559,409 +1568,409 @@ CREATE TABLE `new_wishlist` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
--- Indexes for dumped tables
+-- Индексы сохранённых таблиц
 --
 
 --
--- Indexes for table `new_basic_parameters`
+-- Индексы таблицы `new_basic_parameters`
 --
 ALTER TABLE `new_basic_parameters`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `new_companies`
+-- Индексы таблицы `new_companies`
 --
 ALTER TABLE `new_companies`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `id` (`id`);
 
 --
--- Indexes for table `new_compare`
+-- Индексы таблицы `new_compare`
 --
 ALTER TABLE `new_compare`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `new_customers`
+-- Индексы таблицы `new_customers`
 --
 ALTER TABLE `new_customers`
   ADD UNIQUE KEY `id` (`id`),
   ADD UNIQUE KEY `personal_number` (`personal_number`,`phone`,`email`);
 
 --
--- Indexes for table `new_delivery_parameters`
+-- Индексы таблицы `new_delivery_parameters`
 --
 ALTER TABLE `new_delivery_parameters`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `new_delivery_streets`
+-- Индексы таблицы `new_delivery_streets`
 --
 ALTER TABLE `new_delivery_streets`
   ADD UNIQUE KEY `id` (`id`);
 
 --
--- Indexes for table `new_info_parameters`
+-- Индексы таблицы `new_info_parameters`
 --
 ALTER TABLE `new_info_parameters`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `new_navigation`
+-- Индексы таблицы `new_navigation`
 --
 ALTER TABLE `new_navigation`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `new_orders`
+-- Индексы таблицы `new_orders`
 --
 ALTER TABLE `new_orders`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `new_order_actions`
+-- Индексы таблицы `new_order_actions`
 --
 ALTER TABLE `new_order_actions`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `new_payments`
+-- Индексы таблицы `new_payments`
 --
 ALTER TABLE `new_payments`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `new_payment_category`
+-- Индексы таблицы `new_payment_category`
 --
 ALTER TABLE `new_payment_category`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `new_permissions`
+-- Индексы таблицы `new_permissions`
 --
 ALTER TABLE `new_permissions`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `permissions_name_guard_name_unique` (`name`,`guard_name`);
 
 --
--- Indexes for table `new_plugin_parameters`
+-- Индексы таблицы `new_plugin_parameters`
 --
 ALTER TABLE `new_plugin_parameters`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `new_products`
+-- Индексы таблицы `new_products`
 --
 ALTER TABLE `new_products`
   ADD UNIQUE KEY `id` (`id`);
 
 --
--- Indexes for table `new_product_category`
+-- Индексы таблицы `new_product_category`
 --
 ALTER TABLE `new_product_category`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `new_product_count_log`
+-- Индексы таблицы `new_product_count_log`
 --
 ALTER TABLE `new_product_count_log`
   ADD UNIQUE KEY `id` (`id`);
 
 --
--- Indexes for table `new_product_count_log_item`
+-- Индексы таблицы `new_product_count_log_item`
 --
 ALTER TABLE `new_product_count_log_item`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `new_product_gallery`
+-- Индексы таблицы `new_product_gallery`
 --
 ALTER TABLE `new_product_gallery`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `new_product_meta`
+-- Индексы таблицы `new_product_meta`
 --
 ALTER TABLE `new_product_meta`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `new_product_price`
+-- Индексы таблицы `new_product_price`
 --
 ALTER TABLE `new_product_price`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `new_product_statuses`
+-- Индексы таблицы `new_product_statuses`
 --
 ALTER TABLE `new_product_statuses`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `new_product_vendors`
+-- Индексы таблицы `new_product_vendors`
 --
 ALTER TABLE `new_product_vendors`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `new_seo_parameters`
+-- Индексы таблицы `new_seo_parameters`
 --
 ALTER TABLE `new_seo_parameters`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `new_slider`
+-- Индексы таблицы `new_slider`
 --
 ALTER TABLE `new_slider`
   ADD UNIQUE KEY `id` (`id`);
 
 --
--- Indexes for table `new_social_facebook_accounts`
+-- Индексы таблицы `new_social_facebook_accounts`
 --
 ALTER TABLE `new_social_facebook_accounts`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `new_social_google_accounts`
+-- Индексы таблицы `new_social_google_accounts`
 --
 ALTER TABLE `new_social_google_accounts`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `new_social_parameters`
+-- Индексы таблицы `new_social_parameters`
 --
 ALTER TABLE `new_social_parameters`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `new_text_pages`
+-- Индексы таблицы `new_text_pages`
 --
 ALTER TABLE `new_text_pages`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `new_translate_parameters`
+-- Индексы таблицы `new_translate_parameters`
 --
 ALTER TABLE `new_translate_parameters`
   ADD UNIQUE KEY `key` (`key`),
   ADD UNIQUE KEY `id` (`id`);
 
 --
--- Indexes for table `new_users`
+-- Индексы таблицы `new_users`
 --
 ALTER TABLE `new_users`
   ADD UNIQUE KEY `id` (`id`);
 
 --
--- Indexes for table `new_webparameters`
+-- Индексы таблицы `new_webparameters`
 --
 ALTER TABLE `new_webparameters`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `new_wishlist`
+-- Индексы таблицы `new_wishlist`
 --
 ALTER TABLE `new_wishlist`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT для сохранённых таблиц
 --
 
 --
--- AUTO_INCREMENT for table `new_basic_parameters`
+-- AUTO_INCREMENT для таблицы `new_basic_parameters`
 --
 ALTER TABLE `new_basic_parameters`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `new_companies`
+-- AUTO_INCREMENT для таблицы `new_companies`
 --
 ALTER TABLE `new_companies`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `new_compare`
+-- AUTO_INCREMENT для таблицы `new_compare`
 --
 ALTER TABLE `new_compare`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
--- AUTO_INCREMENT for table `new_customers`
+-- AUTO_INCREMENT для таблицы `new_customers`
 --
 ALTER TABLE `new_customers`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
--- AUTO_INCREMENT for table `new_delivery_parameters`
+-- AUTO_INCREMENT для таблицы `new_delivery_parameters`
 --
 ALTER TABLE `new_delivery_parameters`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `new_delivery_streets`
+-- AUTO_INCREMENT для таблицы `new_delivery_streets`
 --
 ALTER TABLE `new_delivery_streets`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `new_info_parameters`
+-- AUTO_INCREMENT для таблицы `new_info_parameters`
 --
 ALTER TABLE `new_info_parameters`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
--- AUTO_INCREMENT for table `new_navigation`
+-- AUTO_INCREMENT для таблицы `new_navigation`
 --
 ALTER TABLE `new_navigation`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `new_orders`
+-- AUTO_INCREMENT для таблицы `new_orders`
 --
 ALTER TABLE `new_orders`
   MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `new_order_actions`
+-- AUTO_INCREMENT для таблицы `new_order_actions`
 --
 ALTER TABLE `new_order_actions`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `new_payments`
+-- AUTO_INCREMENT для таблицы `new_payments`
 --
 ALTER TABLE `new_payments`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `new_payment_category`
+-- AUTO_INCREMENT для таблицы `new_payment_category`
 --
 ALTER TABLE `new_payment_category`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `new_permissions`
+-- AUTO_INCREMENT для таблицы `new_permissions`
 --
 ALTER TABLE `new_permissions`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
--- AUTO_INCREMENT for table `new_plugin_parameters`
+-- AUTO_INCREMENT для таблицы `new_plugin_parameters`
 --
 ALTER TABLE `new_plugin_parameters`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `new_products`
+-- AUTO_INCREMENT для таблицы `new_products`
 --
 ALTER TABLE `new_products`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT for table `new_product_category`
+-- AUTO_INCREMENT для таблицы `new_product_category`
 --
 ALTER TABLE `new_product_category`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT for table `new_product_count_log`
+-- AUTO_INCREMENT для таблицы `new_product_count_log`
 --
 ALTER TABLE `new_product_count_log`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
--- AUTO_INCREMENT for table `new_product_count_log_item`
+-- AUTO_INCREMENT для таблицы `new_product_count_log_item`
 --
 ALTER TABLE `new_product_count_log_item`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
--- AUTO_INCREMENT for table `new_product_gallery`
+-- AUTO_INCREMENT для таблицы `new_product_gallery`
 --
 ALTER TABLE `new_product_gallery`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=169;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=177;
 
 --
--- AUTO_INCREMENT for table `new_product_meta`
+-- AUTO_INCREMENT для таблицы `new_product_meta`
 --
 ALTER TABLE `new_product_meta`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=249;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=257;
 
 --
--- AUTO_INCREMENT for table `new_product_price`
+-- AUTO_INCREMENT для таблицы `new_product_price`
 --
 ALTER TABLE `new_product_price`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
 
 --
--- AUTO_INCREMENT for table `new_product_statuses`
+-- AUTO_INCREMENT для таблицы `new_product_statuses`
 --
 ALTER TABLE `new_product_statuses`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `new_product_vendors`
+-- AUTO_INCREMENT для таблицы `new_product_vendors`
 --
 ALTER TABLE `new_product_vendors`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `new_seo_parameters`
+-- AUTO_INCREMENT для таблицы `new_seo_parameters`
 --
 ALTER TABLE `new_seo_parameters`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `new_slider`
+-- AUTO_INCREMENT для таблицы `new_slider`
 --
 ALTER TABLE `new_slider`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
--- AUTO_INCREMENT for table `new_social_facebook_accounts`
+-- AUTO_INCREMENT для таблицы `new_social_facebook_accounts`
 --
 ALTER TABLE `new_social_facebook_accounts`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `new_social_google_accounts`
+-- AUTO_INCREMENT для таблицы `new_social_google_accounts`
 --
 ALTER TABLE `new_social_google_accounts`
   MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `new_social_parameters`
+-- AUTO_INCREMENT для таблицы `new_social_parameters`
 --
 ALTER TABLE `new_social_parameters`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT for table `new_text_pages`
+-- AUTO_INCREMENT для таблицы `new_text_pages`
 --
 ALTER TABLE `new_text_pages`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `new_translate_parameters`
+-- AUTO_INCREMENT для таблицы `new_translate_parameters`
 --
 ALTER TABLE `new_translate_parameters`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=150;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=152;
 
 --
--- AUTO_INCREMENT for table `new_users`
+-- AUTO_INCREMENT для таблицы `new_users`
 --
 ALTER TABLE `new_users`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `new_webparameters`
+-- AUTO_INCREMENT для таблицы `new_webparameters`
 --
 ALTER TABLE `new_webparameters`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `new_wishlist`
+-- AUTO_INCREMENT для таблицы `new_wishlist`
 --
 ALTER TABLE `new_wishlist`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;

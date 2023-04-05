@@ -9,7 +9,10 @@ use App\Http\Controllers\Controller;
 use App\Modules\Main\Models\Main;
 use App\Modules\Main\Models\Wishlist;
 use App\Modules\Main\Models\Compare;
+use App\Modules\Main\Models\SearchHistory;
 use App\Modules\Products\Models\Product;
+
+use App\Modules\Api\Controllers\PaymentController;
 
 use Cart;
 use Auth;
@@ -38,7 +41,7 @@ class MainAjaxController extends Controller
                 $Price = $ProductData->getProductPrice->price;
             }
 
-            if(is_numeric($Request->quantity)) {
+            if(is_int($Request->quantity)) {
                 if(isset($Request->quantity) AND empty($Request->quantity)) {
                     $Quantity = 1;
                 } else {
@@ -48,7 +51,7 @@ class MainAjaxController extends Controller
                 $Quantity = 1;
             }
 
-            if($ProductData->count <= $Quantity) {
+            if($ProductData->count < $Quantity) {
                 return Response::json(['status' => true, 'errors' => true, 'message' => [0 => 'ნაშთის რაოდენობა ნაკლებია მოთხოვნილზე!']]);
             } else{ 
                Cart::add([
@@ -66,7 +69,7 @@ class MainAjaxController extends Controller
                 return Response::json([
                     'status' => true, 
                     'errors' => false, 
-                    'CartData' => Cart::getContent(),
+                    'CartData' => Cart::getContent()->sort(),
                     'CartQuantity' => Cart::getTotalQuantity(),
                     'CartTotal' => Cart::getSubTotal(),
                     'message' => 'პროდუქტი დაემატა კალათაში',
@@ -108,8 +111,8 @@ class MainAjaxController extends Controller
             
             Cart::update($Request->item_id, [
                 'quantity' => [
-                      'relative' => false,
-                      'value' => $Request->quantity,
+                    'relative' => false,
+                    'value' => $Request->quantity,
                 ],
             ]);
 
@@ -120,7 +123,7 @@ class MainAjaxController extends Controller
             return Response::json([
                 'status' => true, 
                 'errors' => false, 
-                'CartData' => Cart::getContent(),
+                'CartData' => Cart::getContent()->sort(),
                 'CartQuantity' => Cart::getTotalQuantity(),
                 'CartTotal' => Cart::getSubTotal(),
                 'ItemCount' => $Request->quantity,
@@ -180,7 +183,7 @@ class MainAjaxController extends Controller
             } else {
                 $CompareSession = $Request->session()->get('compare_id');
             }
-            
+			
             $Compare = new Compare();
             $CompareData = $Compare::where('product_id', $Request->product_id);
             $CompareCount = $Compare;
@@ -201,7 +204,7 @@ class MainAjaxController extends Controller
 
             if(count($CompareData) > 0) {
                 return Response::json(['status' => true, 'errors' => true, 'message' => [0 => 'აღნიშნული პროდუქტი უკვე დამატაბულია შედარების სიაში!']]);
-            } else if(count($CompareCount) >= 2) {
+            } else if(count($CompareCount) >= 4) {
                 return Response::json(['status' => true, 'errors' => true, 'message' => 'შესადარებელი პროდუქციის რაოდენობა აღემატება 2 ს, გთხოვთ წაშალოთ ერთი და სცადოთ თავიდან.']);
             } else {
                 $Compare = new Compare();
@@ -222,7 +225,7 @@ class MainAjaxController extends Controller
         if($Request->isMethod('POST')) {
 
             $Compare = new Compare();
-            $Compare::find($Request->product_id)->delete();
+            $Compare::where('product_id', $Request->product_id)->delete();
 
             return Response::json(['status' => true, 'errors' => false, 'message' => 'ნივთი წარმატებით წაიშალა შედარების სიიდან !!!'], 200);
         } else {
@@ -232,38 +235,28 @@ class MainAjaxController extends Controller
 
     public function ajaxMainWishlistAdd(Request $Request) {
         if($Request->isMethod('POST')) {
-
-            if(Session::missing(['wishlist_id'])) {
-                $WishlistSession = md5(time().rand(1111, 9999));
-                Session::put(['wishlist_id' => $WishlistSession]);   
-            } else {
-                $WishlistSession = $Request->session()->get('wishlist_id');
-            }
-
-            $Wishlist = new Wishlist();
-            $WishlistData = $Wishlist::where('product_id', $Request->product_id);
-
             if(Auth::check() == true) {
-                $WishlistData = $WishlistData->where('user_id', Auth::user()->id)->where('session_id', $WishlistSession);
-                $Auth = Auth::user()->id;
-            } else {
-                $WishlistData = $WishlistData->where('session_id', $WishlistSession);
-                $Auth = 0;
-            }
 
-            $WishlistData = $WishlistData->where('deleted_at_int', '!=', 0)->get();
-
-            if(count($WishlistData) > 0) {
-                return Response::json(['status' => true, 'message' => [0 => 'აღნიშნული პროდუქტი უკვე დამატაბულია სურვილების სიაში!']]);
-            } else {
                 $Wishlist = new Wishlist();
-                $Wishlist->user_id = $Auth;
-                $Wishlist->product_id = $Request->product_id;
-                $Wishlist->session_id = $WishlistSession;
-                $Wishlist->save();
+                $WishlistData = $Wishlist::where('product_id', $Request->product_id)->where('user_id', Auth::user()->id)->where('deleted_at_int', '!=', 0)->get();
 
-                return Response::json(['status' => true, 'message' => [0 => 'პროდუქტი დაემატა სურვილების სია.']]);
-            };
+                if(count($WishlistData) > 0) {
+                    return Response::json(['status' => true, 'errors' => true, 'message' => [0 => 'აღნიშნული პროდუქტი უკვე დამატაბულია სურვილების სიაში!']]);
+                } else {
+                    $Wishlist = new Wishlist();
+                    $Item = $Wishlist::create([
+                        'user_id' => Auth::user()->id,
+                        'product_id' => $Request->product_id,
+                    ]);
+
+                    $WishlistCount = $Wishlist->where('user_id', Auth::user()->id)->where('deleted_at_int', '!=', 0)->get()->count();
+
+                    return Response::json(['status' => true, 'message' => [0 => 'პროდუქტი დაემატა სურვილების სია.'], 'count' => $WishlistCount, 'item_id' => $Item->id]);
+                }
+
+            } else {
+                return Response::json(['status' => true, 'errors' => true, 'message' => [0 => 'სურვილების სიაში დასამატებლად გთხოვთ გაიაროთ ავტორიზაცია!']]);
+            }
         } else {
             return Response::json(['status' => false, 'message' => 'დაფიქსირდა შეცდომა გთხოვთ სცადოთ თავიდან !!!'], 200);
         }
@@ -271,14 +264,33 @@ class MainAjaxController extends Controller
 
     public function ajaxMainWishlistRemove(Request $Request) {
         if($Request->isMethod('POST')) {
-            
             $Wishlist = new Wishlist();
-            $WishlistData = $Wishlist::find($Request->product_id)->update([
-                'deleted_at_int' => 0,
-                'deleted_at' => Carbon::now(),
-            ]);
+            if($Request->type == 1) {
+                $WishlistData = $Wishlist::where('user_id', Auth::user()->id)->where('product_id', $Request->wishlist_id)->update([
+                    'deleted_at_int' => 0,
+                    'deleted_at' => Carbon::now(),
+                ]);
+            } else {
+                $WishlistData = $Wishlist::find($Request->wishlist_id)->update([
+                    'deleted_at_int' => 0,
+                    'deleted_at' => Carbon::now(),
+                ]);
+            }
 
-            return Response::json(['status' => true]);
+            $Wishlist = new Wishlist();
+            $WishlistCount = $Wishlist->where('deleted_at_int', '!=', 0);
+
+            if(Auth::check() == true) {
+                $WishlistCount  = $WishlistCount->where('user_id', Auth::user()->id)->where('deleted_at_int', '!=', 0)->get()->count();
+            }
+
+            return Response::json([
+                'status' => true, 
+                'count' => $WishlistCount, 
+                'translate' => [
+                    'wishlist_is_empty' => trans('site.wishlist_is_empty'),
+                ],
+            ]);
         }
     }
 
@@ -290,23 +302,79 @@ class MainAjaxController extends Controller
         }
     }
 
-    public function ajaxCheckoutSubmit(Request $Request) {
+    public function ajaxCheckoutSubmit(
+        Request $Request,
+        PaymentController $PaymentController
+    ) {
         if($Request->isMethod('POST')) {
             $messages = array(
-                'delivery_city' => 'აღნიშნული ელ-ფოსტა დაკავებულია!',
-                'billing_address' => 'აღნიშნული ელ-ფოსტა დაკავებულია!',
-                'payment-method' => 'აღნიშნული ელ-ფოსტა დაკავებულია!',
+
             );
             $validator = Validator::make($Request->all(), [
-                'delivery_city' => 'required|max:255',
-                'billing_address' => 'required|max:255',
-                'payment-method' => 'required|max:255',
             ], $messages);
 
             if ($validator->fails()) {
                 return Response::json(['status' => false, 'message' => $validator->getMessageBag()->toArray()], 200);
             } else {
-                dd($Request->all());
+                if($Request->payment_method =='card') {
+                    if($Request->card_payment == 'card_bog') {
+                        $orderId=  rand(1111, 9999);
+                        $Array = [
+                           "intent" => "AUTHORIZE", 
+                           "redirect_url" => 'https://mallline.io', 
+                           "shop_order_id" => $orderId, 
+                           "capture_method" => "AUTOMATIC", 
+                           "locale" => "ka", 
+                           "purchase_units" => [
+                                [
+                                "amount" => [
+                                   "currency_code" => "GEL", 
+                                   "value" => 10, 
+                                ], 
+                                "industry_type" => "ECOMMERCE" 
+                                ] 
+                              ], 
+                            "items" => [], 
+                        ];
+                        
+                        return Response::json([
+                            'status' => true, 
+                            'redirect' => true,
+                            'key' => $Request->payment_method,
+                            'array' => $Array,
+                            'redirect_url' => $PaymentController->bogCreateOrder($Array, $orderId),
+                        ]);
+                    }
+
+                    if($Request->card_payment == 'card_tbc') {
+                        $Array = [
+                           "amount" => [
+                                 "currency" => "GEL", 
+                                 "total" => 10, 
+                                 "subTotal" => 0, 
+                                 "tax" => 0, 
+                                 "shipping" => 0 
+                            ], 
+                           "returnurl" => "http://shop.glimtrex.ge/checkout/returntbc", 
+                           "userIpAddress" => $_SERVER['REMOTE_ADDR'], 
+                           "expirationMinutes" => "5", 
+                           "methods" => [
+                                    5, 
+                                    7, 
+                                    8 
+                            ], 
+                           "callbackUrl" => "http://shop.glimtrex.ge/checkout/returntbc", 
+                           "preAuth" => true, 
+                           "language" => "GE" 
+                        ];
+                        return Response::json([
+                            'status' => true, 
+                            'redirect' => true,
+                            'key' => $Request->payment_method,
+                            'redirect_url' => $PaymentController->tbcGetPayment($Array)
+                        ]);
+                    }
+                }
             }
         } else {
             return Response::json(['status' => true]);
@@ -322,6 +390,43 @@ class MainAjaxController extends Controller
             return Response::json(['status' => true, 'errors' => true, 'message' => [0 =>  trans('site.subsctibe_required')]]);
         } else {
             return Response::json(['status' => true, 'errors' => false, 'message' => [0 =>  trans('site.subsctibe_success')]]);
+        }
+    }
+
+    public function ajaxSearch(Request $Request) {
+        if($Request->isMethod('GET')) {
+            $Product = new Product();
+            $ProductList = $Product::where('name_ge', 'LIKE', '%'.$Request->search_query.'%')
+                                    ->orWhere('name_en', 'LIKE', '%'.$Request->search_query.'%')
+                                    ->limit(5)
+                                    ->get()
+                                    ->load(['getCategoryData', 'getProductPrice']);
+            if(count($ProductList) > 0) {
+                return Response::json(['status' => true, 'errors' => false, 'product_list' => $ProductList]);
+            } else {
+                return Response::json(['status' => true, 'errors' => true, 'product_list' => []]);
+            }
+        }
+    }
+
+    public function ajaxSearchHistory() {
+        if(Auth::check()) {
+            $SearchHistory = new SearchHistory();
+            $SearchHistoryData = $SearchHistory::where('user_id', Auth::user()->id)->limit(10)->get()->load(['getProductData','getProductData.getCategoryData','getProductData.getProductPrice']);
+
+            return Response::json(['status' => true, 'search_list' => $SearchHistoryData]);
+        } else {
+
+        }
+    }
+
+    public function ajaxSearchSave(Request $Request) {
+        if(Auth::check()) {
+            $SearchHistory = new SearchHistory();
+            $SearchHistoryData = $SearchHistory::create([
+                'user_id' => Auth::user()->id, 'product_id' => $Request->product_id
+            ]);
+            return Response::json(['status' => true]);
         }
     }
 }

@@ -5,7 +5,7 @@ Route::group(['middleware' => [], 'prefix' => LaravelLocalization::setLocale()],
     Route::group(['prefix' => 'products', 'middleware' => []], function () {
         // PRODUCTS
         Route::get('/view/{product_id}', 'ProductsController@actionProductsView')->name('actionProductsView');
-        Route::get('/', 'ProductsController@actionProductsIndex')->name('actionProductsIndex');
+        Route::get('/{category_slug?}/{child_category_slug?}/{sub_category_slug?}', 'ProductsController@actionProductsIndex')->name('actionProductsIndex');
     });
 });
 

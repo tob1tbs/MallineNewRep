@@ -1,5 +1,14 @@
 <?php
 
+//phpinfo();
+
+// if($_SERVER['REMOTE_ADDR'] != '212.58.121.53') {
+//     exit('Redis setup in progress');
+// }
+
+
+// exit(['route' => 'checkout']);
+
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Http\Request;
 

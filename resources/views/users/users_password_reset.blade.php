@@ -47,7 +47,7 @@
                                     <input type="number" pattern="[0-9]*" value="" inputtype="numeric" autocomplete="one-time-code" id="otc-6" name="code_5">
                                     <input type="number" pattern="[0-9]*" value="" inputtype="numeric" autocomplete="one-time-code" id="otc-6" name="code_6">
                                 </div>
-                                <input type="hidden" name="restore_code_phone" id="restore_code_phone">
+								<input type="hidden" name="restore_code_phone" id="restore_code_phone">
                                 <div class="form-group mt-20 mb-20">
                                     <button type="button" class="btn btn-heading btn-block hover-up" onclick="SubmitRestoreCode()" class="resetbtn">დადასტურება</button>
                                 </div>

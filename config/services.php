@@ -32,12 +32,11 @@ return [
     'facebook' => [
         'client_id' => '435205588210356',
         'client_secret' => 'f847a3e3e7ebb4030471a287748f0856',
-        'redirect' => 'https://mallline.ge/facebook/callback',
+        'redirect' => 'https://mallline.io/facebook/callback',
     ],
     'google' => [
-        'client_id'     => '695999306161-rqu5o31mlfbcb9i855vask4f2f1vmk97.apps.googleusercontent.com',
+        'client_id' => '695999306161-rqu5o31mlfbcb9i855vask4f2f1vmk97.apps.googleusercontent.com',
         'client_secret' => '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',
-        'redirect'      => 'https://mallline.ge/google/callback',
+        'redirect' => 'https://mallline.io/google/callback',
     ],
-
 ];

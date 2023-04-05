@@ -2,13 +2,15 @@
 
 namespace App\Modules\Users\Controllers;
 
-
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\Modules\Users\Models\User;
 use App\Services\SocialFacebookAccountService;
 use App\Services\SocialGoogleAccountService;
+
+use App\Modules\Builder\Models\Builder;
+use App\Modules\Main\Models\Wishlist;
 
 use Auth;
 use Socialite;
@@ -25,8 +27,20 @@ class UsersController extends Controller
             return redirect()->route('actionUsersSignIn');
         } else {
             if (view()->exists('users.users_index')) {
+				
+				$Builder = new Builder();
+				$BuilderData = $Builder::where('user_id', Auth::user()->id)->get();
 
+                if(Auth::check() == true) {
+                    $Wishlist = new Wishlist();
+                    $WishlistData = $Wishlist->where('user_id', Auth::user()->id)->where('deleted_at_int', '!=', 0)->get();
+                } else {
+                    $WishlistData = [];
+                }
+								
                 $data = [
+					'host_list' => $BuilderData,
+                    'wishlist_list' => $WishlistData,
                 ];
                 
                 return view('users.users_index', $data);
@@ -38,7 +52,7 @@ class UsersController extends Controller
 
     public function actionUsersLogout() {
         Auth::logout();
-        return redirect()->route('actionUsersSignIn');
+        return redirect()->route('actionMainIndex');
     }
 
     public function actionUsersSignIn(Request $Request) {
@@ -99,13 +113,13 @@ class UsersController extends Controller
 
     public function actionFacebookCallback(SocialFacebookAccountService $service) {
         $user = $service->createOrGetUser(Socialite::driver('facebook')->user());
-        auth()->login($user);
+        auth()->login($user, true);
         return redirect()->route('actionMainIndex');
     }
 
     public function actionGoogleCallback(SocialGoogleAccountService $service) {
-        $user = $service->createOrGetUser(Socialite::driver('google')->user());
-        auth()->login($user);
+        $user = $service->createOrGetUser(Socialite::driver('google')->stateless()->user());
+        auth()->login($user, true);
         return redirect()->route('actionMainIndex');
     }
 }

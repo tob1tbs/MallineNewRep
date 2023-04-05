@@ -42,6 +42,9 @@ function CheckoutSubmit() {
         },
         success: function(data) {
             if(data['status'] == true) {
+                if(data['redirect'] == true) {
+                    window.location.href = data['redirect_url'];
+                }
             } else {
                 
             }

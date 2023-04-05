@@ -6,7 +6,6 @@
         $("body").delay(450).css({
             overflow: "visible"
         });
-        $("#onloadModal").modal("show");
     });
     /*-----------------
         Menu Stick
@@ -21,6 +20,21 @@
             $(".header-style-2 .categories-button-active").removeClass("open");
         } else {
             header.addClass("stick");
+        }
+    });
+
+    //Ajaxsearch
+    $("#ajaxsearch").click(function(){
+        $("#ajaxsearchcontent").show();
+      });
+    $(document).mouseup(function(e) 
+    {
+        var container = $("#ajaxsearchcontent");
+    
+        // if the target of the click isn't the container nor a descendant of the container
+        if (!container.is(e.target) && container.has(e.target).length === 0) 
+        {
+            container.hide();
         }
     });
 
@@ -40,304 +54,6 @@
         $(".sticky-sidebar").theiaStickySidebar();
     }
 
-    // Slider Range JS
-    /*------ Hero slider 1 ----*/
-    $(".hero-slider-1").slick({
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        fade: true,
-        loop: true,
-        dots: true,
-        arrows: true,
-        prevArrow: '<span class="slider-btn slider-prev"><i class="fi-rs-angle-left"></i></span>',
-        nextArrow: '<span class="slider-btn slider-next"><i class="fi-rs-angle-right"></i></span>',
-        appendArrows: ".hero-slider-1-arrow",
-        autoplay: true
-    });
-
-    /*Carausel 8 columns*/
-    $(".carausel-8-columns").each(function (key, item) {
-        var id = $(this).attr("id");
-        var sliderID = "#" + id;
-        var appendArrowsClassName = "#" + id + "-arrows";
-
-        $(sliderID).slick({
-            dots: false,
-            infinite: true,
-            speed: 1000,
-            arrows: true,
-            autoplay: true,
-            slidesToShow: 8,
-            slidesToScroll: 1,
-            loop: true,
-            adaptiveHeight: true,
-            responsive: [
-                {
-                    breakpoint: 1025,
-                    settings: {
-                        slidesToShow: 4,
-                        slidesToScroll: 1
-                    }
-                },
-                {
-                    breakpoint: 768,
-                    settings: {
-                        slidesToShow: 3,
-                        slidesToScroll: 1
-                    }
-                },
-                {
-                    breakpoint: 480,
-                    settings: {
-                        slidesToShow: 2,
-                        slidesToScroll: 1
-                    }
-                }
-            ],
-            prevArrow: '<span class="slider-btn slider-prev"><i class="fi-rs-arrow-small-left"></i></span>',
-            nextArrow: '<span class="slider-btn slider-next"><i class="fi-rs-arrow-small-right"></i></span>',
-            appendArrows: appendArrowsClassName
-        });
-    });
-        /*Carausel 9 columns*/
-        $(".carausel-9-columns").each(function (key, item) {
-            var slider1 = $(this).attr("class");
-            var sliderID = "." + slider1;
-            var appendArrowsClassName = "." + slider1 + "-arrows";
-    
-            $(sliderID).slick({
-                dots: false,
-                infinite: false,
-                speed: 1000,
-                arrows: true,
-                autoplay: false,
-                slidesToShow: 4,
-                slidesToScroll: 1,
-                loop: true,
-                adaptiveHeight: true,
-                responsive: [
-                    {
-                        breakpoint: 1400,
-                        settings: {
-                            slidesToShow: 2,
-                            slidesToScroll: 1
-                        }
-                    },
-                    {
-                        breakpoint: 768,
-                        settings: {
-                            slidesToShow: 1,
-                            slidesToScroll: 1
-                        }
-                    },
-                    {
-                        breakpoint: 480,
-                        settings: {
-                            slidesToShow: 1,
-                            slidesToScroll: 1
-                        }
-                    }
-                ],
-                prevArrow: '<span class="slider-btn slider-prev"><i class="fi-rs-arrow-small-left"></i></span>',
-                nextArrow: '<span class="slider-btn slider-next"><i class="fi-rs-arrow-small-right"></i></span>',
-                appendArrows: appendArrowsClassName
-            });
-        });
-
-    /*Carausel 10 columns*/
-    $(".carausel-10-columns").each(function (key, item) {
-        var id = $(this).attr("id");
-        var sliderID = "#" + id;
-        var appendArrowsClassName = "#" + id + "-arrows";
-
-        $(sliderID).slick({
-            dots: false,
-            infinite: true,
-            speed: 1000,
-            arrows: true,
-            autoplay: false,
-            slidesToShow: 10,
-            slidesToScroll: 1,
-            loop: true,
-            adaptiveHeight: true,
-            responsive: [
-                {
-                    breakpoint: 1025,
-                    settings: {
-                        slidesToShow: 4,
-                        slidesToScroll: 1
-                    }
-                },
-                {
-                    breakpoint: 768,
-                    settings: {
-                        slidesToShow: 3,
-                        slidesToScroll: 1
-                    }
-                },
-                {
-                    breakpoint: 480,
-                    settings: {
-                        slidesToShow: 2,
-                        slidesToScroll: 1
-                    }
-                }
-            ],
-            prevArrow: '<span class="slider-btn slider-prev"><i class="fi-rs-arrow-small-left"></i></span>',
-            nextArrow: '<span class="slider-btn slider-next"><i class="fi-rs-arrow-small-right"></i></span>',
-            appendArrows: appendArrowsClassName
-        });
-    });
-
-    /*Carausel 4 columns*/
-    $(".carausel-4-columns").each(function (key, item) {
-        var id = $(this).attr("id");
-        var sliderID = "#" + id;
-        var appendArrowsClassName = "#" + id + "-arrows";
-
-        $(sliderID).slick({
-            dots: false,
-            infinite: false,
-            speed: 3000,
-            arrows: true,
-            autoplay: false,
-            slidesToShow: 5,
-            slidesToScroll: 1,
-            loop: true,
-            adaptiveHeight: true,
-            responsive: [
-                {
-                    breakpoint: 1400,
-                    settings: {
-                        slidesToShow: 4,
-                        slidesToScroll: 1
-                    }
-                },
-                {
-                    breakpoint: 480,
-                    settings: {
-                        slidesToShow: 1,
-                        slidesToScroll: 1
-                    }
-                }
-            ],
-            prevArrow: '<span class="slider-btn slider-prev"><i class="fi-rs-arrow-small-left"></i></span>',
-            nextArrow: '<span class="slider-btn slider-next"><i class="fi-rs-arrow-small-right"></i></span>',
-            appendArrows: appendArrowsClassName
-        });
-    });
-     /*Deals*/
-    $(".carausel-5-columns").each(function (key, item) {
-        var id = $(this).attr("id");
-        var sliderID = "#" + id;
-        var appendArrowsClassName = "#" + id + "-arrows";
-
-        $(sliderID).slick({
-            dots: false,
-            infinite: true,
-            speed: 3000,
-            arrows: true,
-            autoplay: true,
-            slidesToShow: 5,
-            slidesToScroll: 1,
-            loop: true,
-            adaptiveHeight: true,
-            responsive: [
-                {
-                    breakpoint: 1025,
-                    settings: {
-                        slidesToShow: 1,
-                        slidesToScroll: 1
-                    }
-                },
-                {
-                    breakpoint: 480,
-                    settings: {
-                        slidesToShow: 1,
-                        slidesToScroll: 1
-                    }
-                }
-            ],
-            prevArrow: '<span class="slider-btn slider-prev"><i class="fi-rs-arrow-small-left"></i></span>',
-            nextArrow: '<span class="slider-btn slider-next"><i class="fi-rs-arrow-small-right"></i></span>',
-            appendArrows: appendArrowsClassName
-        });
-    });
-    /*Carausel 4 columns*/
-    $(".carausel-3-columns").each(function (key, item) {
-        var id = $(this).attr("id");
-        var sliderID = "#" + id;
-        var appendArrowsClassName = "#" + id + "-arrows";
-
-        $(sliderID).slick({
-            dots: false,
-            infinite: true,
-            speed: 1000,
-            arrows: true,
-            autoplay: true,
-            slidesToShow: 3,
-            slidesToScroll: 1,
-            loop: true,
-            adaptiveHeight: true,
-            responsive: [
-                {
-                    breakpoint: 1025,
-                    settings: {
-                        slidesToShow: 3,
-                        slidesToScroll: 3
-                    }
-                },
-                {
-                    breakpoint: 480,
-                    settings: {
-                        slidesToShow: 1,
-                        slidesToScroll: 1
-                    }
-                }
-            ],
-            prevArrow: '<span class="slider-btn slider-prev"><i class="fi-rs-arrow-small-left"></i></span>',
-            nextArrow: '<span class="slider-btn slider-next"><i class="fi-rs-arrow-small-right"></i></span>',
-            appendArrows: appendArrowsClassName
-        });
-    });
-    $(".carausel-6-columns").each(function (key, item) {
-        var id = $(this).attr("id");
-        var sliderID = "#" + id;
-        var appendArrowsClassName = "#" + id + "-arrows";
-
-        $(sliderID).slick({
-            arrows: true,
-            autoplay: false,
-            slidesToShow: 5,
-            slidesToScroll: 1,
-            adaptiveHeight: true,
-            responsive: [
-                {
-                    breakpoint: 1400,
-                    settings: {
-                        slidesToShow: 4,
-                        slidesToScroll: 1
-                    }
-                },
-                {
-                    breakpoint: 480,
-                    settings: {
-                        slidesToShow: 1,
-                        slidesToScroll: 1
-                    }
-                }
-            ],
-            prevArrow: '<span class="slider-btn slider-prev"><i class="fi-rs-arrow-small-left"></i></span>',
-            nextArrow: '<span class="slider-btn slider-next"><i class="fi-rs-arrow-small-right"></i></span>',
-            appendArrows: appendArrowsClassName
-        });
-    });
-    /*Fix Bootstrap 5 tab & slick slider*/
-
-    $('button[data-bs-toggle="tab"]').on("shown.bs.tab", function (e) {
-        $(".carausel-4-columns").slick("setPosition");
-    });
-
     /*------ Timer Countdown ----*/
 
     $("[data-countdown]").each(function () {
@@ -348,155 +64,32 @@
         });
     });
 
-    /*------ Product slider active 1 ----*/
-    $(".product-slider-active-1").slick({
-        slidesToShow: 5,
-        slidesToScroll: 1,
-        autoplay: true,
-        fade: false,
-        loop: true,
-        dots: false,
-        arrows: true,
-        prevArrow: '<span class="pro-icon-1-prev"><i class="fi-rs-angle-small-left"></i></span>',
-        nextArrow: '<span class="pro-icon-1-next"><i class="fi-rs-angle-small-right"></i></span>',
-        responsive: [
-            {
-                breakpoint: 1199,
-                settings: {
-                    slidesToShow: 3
-                }
-            },
-            {
-                breakpoint: 991,
-                settings: {
-                    slidesToShow: 2
-                }
-            },
-            {
-                breakpoint: 767,
-                settings: {
-                    slidesToShow: 2
-                }
-            },
-            {
-                breakpoint: 575,
-                settings: {
-                    slidesToShow: 1
-                }
-            }
-        ]
+
+    /*-------------------------------
+        Categories
+    -----------------------------------*/
+
+    $(".categoriess").click(function(){       
+        var id = $(this).data("id");
+        $('.sub-category').hide();
+        $('.category-item-'+id).show();
+        console.log(id)
     });
 
-    /*------ Testimonial active 1 ----*/
-    $(".testimonial-active-1").slick({
-        slidesToShow: 3,
-        slidesToScroll: 1,
-        fade: false,
-        loop: true,
-        dots: false,
-        arrows: true,
-        prevArrow: '<span class="pro-icon-1-prev"><i class="fi-rs-angle-small-left"></i></span>',
-        nextArrow: '<span class="pro-icon-1-next"><i class="fi-rs-angle-small-right"></i></span>',
-        responsive: [
-            {
-                breakpoint: 1199,
-                settings: {
-                    slidesToShow: 3
-                }
-            },
-            {
-                breakpoint: 991,
-                settings: {
-                    slidesToShow: 2
-                }
-            },
-            {
-                breakpoint: 767,
-                settings: {
-                    slidesToShow: 1
-                }
-            },
-            {
-                breakpoint: 575,
-                settings: {
-                    slidesToShow: 1
-                }
-            }
-        ]
-    });
 
-    /*------ Testimonial active 3 ----*/
-    $(".testimonial-active-3").slick({
-        slidesToShow: 3,
-        slidesToScroll: 1,
-        fade: false,
-        loop: true,
-        dots: true,
-        arrows: false,
-        responsive: [
-            {
-                breakpoint: 1199,
-                settings: {
-                    slidesToShow: 3
-                }
-            },
-            {
-                breakpoint: 991,
-                settings: {
-                    slidesToShow: 2
-                }
-            },
-            {
-                breakpoint: 767,
-                settings: {
-                    slidesToShow: 1
-                }
-            },
-            {
-                breakpoint: 575,
-                settings: {
-                    slidesToShow: 1
-                }
-            }
-        ]
+    //Burger icons
+    $("#catclose").click(function(){       
+        $('#exampleModal').hide();
+        $('body').removeClass("modal-open");
     });
-
-    /*------ Categories slider 1 ----*/
-    $(".categories-slider-1").slick({
-        slidesToShow: 6,
-        slidesToScroll: 1,
-        fade: false,
-        loop: true,
-        dots: false,
-        arrows: false,
-        responsive: [
-            {
-                breakpoint: 1199,
-                settings: {
-                    slidesToShow: 4
-                }
-            },
-            {
-                breakpoint: 991,
-                settings: {
-                    slidesToShow: 3
-                }
-            },
-            {
-                breakpoint: 767,
-                settings: {
-                    slidesToShow: 2
-                }
-            },
-            {
-                breakpoint: 575,
-                settings: {
-                    slidesToShow: 1
-                }
-            }
-        ]
+    $("#catclose1").click(function(){       
+        $('#exampleModal').hide();
+        $('body').removeClass("modal-open");
     });
-
+    $("#loginclose").click(function(){       
+        $('#exampleModalCenter').hide();
+        $('body').removeClass("modal-open");
+    });
     /*-------------------------------
         Sort by active
     -----------------------------------*/
@@ -513,16 +106,19 @@
                 $this.siblings(".sort-by-dropdown").removeClass("show").parent().removeClass("show");
             }
         });
-        /*Close When Click Outside*/
-        $body.on("click", function (e) {
-            var $target = e.target;
-            if (!$($target).is(".sort-by-product-area") && !$($target).parents().is(".sort-by-product-area") && $cartWrap.hasClass("show")) {
-                $cartWrap.removeClass("show");
-                $cartContent.removeClass("show");
-            }
-        });
     }
-
+    $(document).click(function (e) {
+        e.stopPropagation();
+        var container = $(".sort-by-product-area");
+    
+        //check if the clicked area is dropDown or not
+        if (container.has(e.target).length === 0) {
+            $('.sort-by-dropdown ').hide();
+        }
+        else {
+            $('.sort-by-dropdown ').show();
+        }
+    })
     /*-----------------------
         Shop filter active 
     ------------------------- */
@@ -533,51 +129,6 @@
     var shopFiltericon = $(".-toogle");
     shopFiltericon.on("click", function () {
         $(".-toogle").toggleClass("active");
-    });
-
-    /*-------------------------------------
-        Product details big image slider
-    ---------------------------------------*/
-    $(".pro-dec-big-img-slider").slick({
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        arrows: false,
-        draggable: false,
-        fade: false,
-        asNavFor: ".product-dec-slider-small , .product-dec-slider-small-2"
-    });
-
-    /*---------------------------------------
-        Product details small image slider
-    -----------------------------------------*/
-    $(".product-dec-slider-small").slick({
-        slidesToShow: 4,
-        slidesToScroll: 1,
-        asNavFor: ".pro-dec-big-img-slider",
-        dots: false,
-        focusOnSelect: true,
-        fade: false,
-        arrows: false,
-        responsive: [
-            {
-                breakpoint: 991,
-                settings: {
-                    slidesToShow: 3
-                }
-            },
-            {
-                breakpoint: 767,
-                settings: {
-                    slidesToShow: 4
-                }
-            },
-            {
-                breakpoint: 575,
-                settings: {
-                    slidesToShow: 2
-                }
-            }
-        ]
     });
 
     /*-----------------------
@@ -742,10 +293,7 @@
         e.preventDefault();
         $("#account-dropdown").slideToggle(0).css("visibility", "visible");
     });
-    $("#cartdp").on("click", function (e) {
-        e.preventDefault();
-        $("#cart-dropdown").slideToggle(0).css("visibility", "visible");
-    });
+
     $(document).mouseup(function(e){
         var container = $("#cart-dropdown");
     
@@ -783,33 +331,73 @@ $('input[type=radio][name=payment-method]').change(function() {
 
  });
 
- 
-// if installment  === volta installment > show form ----
+//show/hide filter
+$('.accordion').each(function () {
+    var $accordian = $(this);
+    $accordian.find('.accordion-head').on('click', function () {
+        $accordian.find('.accordion-body').slideUp();
+        if (!$(this).next().is(':visible')) {
+            $(this).removeClass('close').addClass('open');
+            $(this).next().slideDown();
+        }
+    });
+});
 
-$('input[type=radio][name=installment-bank]').change(function() {
-    console.log($(this).val());
 
-    // show form
-    if( $('#volta-installment').is(':checked') ) {
-        $('.volta-installment-form').removeClass('hidden');
-    }else {
-        $('.volta-installment-form').addClass('hidden');
+//Price Slider
+const rangeInput = document.querySelectorAll(".range-input input"),
+  priceInput = document.querySelectorAll(".price-input input"),
+  range = document.querySelector(".slider .progress");
+let priceGap = 1000;
+priceInput.forEach((input) => {
+  input.addEventListener("input", (e) => {
+    let minPrice = parseInt(priceInput[0].value),
+      maxPrice = parseInt(priceInput[1].value);
+
+    if (maxPrice - minPrice >= priceGap && maxPrice <= rangeInput[1].max) {
+      if (e.target.className === "input-min") {
+        rangeInput[0].value = minPrice;
+        range.style.left = (minPrice / rangeInput[0].max) * 100 + "%";
+      } else {
+        rangeInput[1].value = maxPrice;
+        range.style.right = 100 - (maxPrice / rangeInput[1].max) * 100 + "%";
+      }
     }
-  
- });
+  });
+});
+
+rangeInput.forEach((input) => {
+  input.addEventListener("input", (e) => {
+    let minVal = parseInt(rangeInput[0].value),
+      maxVal = parseInt(rangeInput[1].value);
+
+    if (maxVal - minVal < priceGap) {
+      if (e.target.className === "range-min") {
+        rangeInput[0].value = maxVal - priceGap;
+      } else {
+        rangeInput[1].value = minVal + priceGap;
+      }
+    } else {
+      priceInput[0].value = minVal;
+      priceInput[1].value = maxVal;
+      range.style.left = (minVal / rangeInput[0].max) * 100 + "%";
+      range.style.right = 100 - (maxVal / rangeInput[1].max) * 100 + "%";
+    }
+  });
+});
 
  //Cookie Js
- if(localStorage.getItem('cookieSeen') != 'shown'){
-    $(".cookie-banner").delay(2000).fadeIn();
-    localStorage.setItem('cookieSeen','shown')
-}
+    if(localStorage.getItem('cookieSeen') != 'shown'){
+        $(".cookie-banner").delay(2000).fadeIn();
+        localStorage.setItem('cookieSeen','shown')
+    }
 
-$('.close').click(function(e) {
-  $('.cookie-banner').fadeOut(); 
-});
-$('.close2').click(function(e) {
-    $('.alert').fadeOut(); 
-  });
+    $('.close').click(function(e) {
+    $('.cookie-banner').fadeOut(); 
+    });
+    $('.close2').click(function(e) {
+        $('.alert').fadeOut(); 
+    });
 
  // submit form  >  if volta instalment is full or not choosen
 $('#submit-payment').on('click', function() {
@@ -865,11 +453,16 @@ $('#submit-payment').on('click', function() {
         $('#step22').removeClass('activated_step2');
         $('#step44').removeClass('activated_step2');
         $('#step11').addClass('activated_step2');
+        $("#twentyfive").prop("checked", true);
+        $("#fifty").prop("checked", false);
+        $("#seventyfive").prop("checked", false);
+        $("#onehundred").prop("checked", false);
         $("#step1").show();
         $("#step2").hide();
         $("#step3").hide();
         $("#step4").hide();
     });
+
     $('#step22').click(function(){
         $('#step11').removeClass('activated_step2');
         $('#step11').removeClass('activated_step');
@@ -877,6 +470,8 @@ $('#submit-payment').on('click', function() {
         $('#step44').removeClass('activated_step2');
         $('#step22').addClass('activated_step2'); 
         $("#step2").show();
+        $("#fifty").prop("checked", true);
+        $("#step1").hide();
         $("#step1").hide();
         $("#step3").hide();
         $("#step4").hide();
@@ -887,6 +482,7 @@ $('#submit-payment').on('click', function() {
         $('#step22').removeClass('activated_step2');
         $('#step44').removeClass('activated_step2');
         $('#step33').addClass('activated_step2');
+        $("#seventyfive").prop("checked", true);
         $("#step3").show();
         $("#step2").hide();
         $("#step1").hide();
@@ -898,6 +494,7 @@ $('#submit-payment').on('click', function() {
         $('#step22').removeClass('activated_step2');
         $('#step33').removeClass('activated_step2');
         $('#step44').addClass('activated_step2');
+        $("#onehundred").prop("checked", true);
         $("#step3").hide();
         $("#step2").hide();
         $("#step1").hide();
@@ -993,70 +590,49 @@ $('#submit-payment').on('click', function() {
 
     let in1 = document.getElementById('otc-1'),
     ins = document.querySelectorAll('input[type="number"]'),
-	 splitNumber = function(e) {
-		let data = e.data || e.target.value; 
-		if ( ! data ) return; 
-		if ( data.length === 1 ) return; 
-		
-		popuNext(e.target, data);
-	},
-	popuNext = function(el, data) {
-		el.value = data[0];
-		data = data.substring(1); 
-		if ( el.nextElementSibling && data.length ) {
-			popuNext(el.nextElementSibling, data);
-		}
-	};
+     splitNumber = function(e) {
+        let data = e.data || e.target.value; 
+        if ( ! data ) return; 
+        if ( data.length === 1 ) return; 
+        
+        popuNext(e.target, data);
+    },
+    popuNext = function(el, data) {
+        el.value = data[0];
+        data = data.substring(1); 
+        if ( el.nextElementSibling && data.length ) {
+            popuNext(el.nextElementSibling, data);
+        }
+    };
 
     ins.forEach(function(input) {
-	input.addEventListener('keyup', function(e){
-		if (e.keyCode === 16 || e.keyCode == 9 || e.keyCode == 224 || e.keyCode == 18 || e.keyCode == 17) {
-			 return;
-		}
-		
-		if ( (e.keyCode === 8 || e.keyCode === 37) && this.previousElementSibling && this.previousElementSibling.tagName === "INPUT" ) {
-			this.previousElementSibling.select();
-		} else if (e.keyCode !== 8 && this.nextElementSibling) {
-			this.nextElementSibling.select();
-		}
-		
-		if ( e.target.value.length > 1 ) {
-			splitNumber(e);
-		}
-	});
-	
-	input.addEventListener('focus', function(e) {
-		if ( this === in1 ) return;
-		
-		if ( in1.value == '' ) {
-			in1.focus();
-		}
+    input.addEventListener('keyup', function(e){
+        if (e.keyCode === 16 || e.keyCode == 9 || e.keyCode == 224 || e.keyCode == 18 || e.keyCode == 17) {
+             return;
+        }
+        
+        if ( (e.keyCode === 8 || e.keyCode === 37) && this.previousElementSibling && this.previousElementSibling.tagName === "INPUT" ) {
+            this.previousElementSibling.select();
+        } else if (e.keyCode !== 8 && this.nextElementSibling) {
+            this.nextElementSibling.select();
+        }
+        
+        if ( e.target.value.length > 1 ) {
+            splitNumber(e);
+        }
+    });
+    
+    input.addEventListener('focus', function(e) {
+        if ( this === in1 ) return;
+        
+        if ( in1.value == '' ) {
+            in1.focus();
+        }
 
-		if ( this.previousElementSibling.value == '' ) {
-			this.previousElementSibling.focus();
-		}
-	});
+        if ( this.previousElementSibling.value == '' ) {
+            this.previousElementSibling.focus();
+        }
+    });
 });
 
-
-    /*-----Modal----*/
-
-    $(".modal").on("shown.bs.modal", function (e) {
-        $(".product-image-slider").slick("setPosition");
-        $(".slider-nav-thumbnails").slick("setPosition");
-
-        $(".product-image-slider .slick-active img").elevateZoom({
-            zoomType: "inner",
-            cursor: "crosshair",
-            zoomWindowFadeIn: 500,
-            zoomWindowFadeOut: 500
-        });
-    });
-    $(function () {
-        $("#exampleRadios6").click(function () {
-            if ($(this).is(":checked")) {
-                $("#img").hide();
-            }
-        });
-    });
 })(jQuery);

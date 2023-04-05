@@ -14,4 +14,16 @@ class ProductCategory extends Model
     public function getProductData() {
         return $this->hasMany('App\Modules\Products\Models\Product', 'category_id', 'id');
     }
+
+    public function getProductCount() {
+        return $this->hasMany('App\Modules\Products\Models\Product', 'category_id', 'id');
+    }
+
+    public function getProductCountChild() {
+        return $this->hasMany('App\Modules\Products\Models\Product', 'child_category_id', 'id');
+    }
+
+    public function getProductCountSub() {
+        return $this->hasMany('App\Modules\Products\Models\Product', 'sub_category_id', 'id');
+    }
 }

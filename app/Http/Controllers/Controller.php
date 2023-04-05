@@ -13,11 +13,9 @@ class Controller extends BaseController
 
     public function showList() {
         $show_list = [
-            '20' => '20',
-            '40' => '40',
+            '30' => '30',
             '60' => '60',
-            '80' => '80',
-            '100' => '100',
+            '90' => '90',
         ];
 
         return $show_list;
@@ -32,14 +30,6 @@ class Controller extends BaseController
             'DATE_OLD' => [
                 'ge' => 'ძველ დამატებული',
                 'en' => 'Old date',
-            ],
-            'ASC' => [
-                'ge' => 'ფასი ზრდადობით',
-                'en' => 'From low price',
-            ],
-            'DESC' => [
-                'ge' => 'ფასი კლებადობით',
-                'en' => 'From high price',
             ],
         ];
 

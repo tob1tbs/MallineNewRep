@@ -29,4 +29,8 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    public function getUserSites() {
+        return $this->hasMany('App\Modules\Builder\Models\Builder', 'user_id', 'id');
+    }
 }

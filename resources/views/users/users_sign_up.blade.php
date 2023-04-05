@@ -2,14 +2,6 @@
 
 @section('content')
 <main class="main pages">
-    <div class="page-header breadcrumb-wrap">
-        <div class="container">
-            <div class="breadcrumb">
-                <a href="{{ route('actionMainIndex') }}" rel="nofollow"><i class="fi-rs-home mr-5"></i>{{ trans('site.home') }}</a>
-                <span></span> {{ trans('site.sign-up') }}
-            </div>
-        </div>
-    </div>
     <div class="page-content pt-50 pb-50">
         <div class="container">
             <div class="row">
@@ -34,9 +26,17 @@
                                             <input type="tel" class="check-input" name="user_phone" id="user_phone" placeholder="{{ trans('site.user_phone') }}" />
                                             <input type="date" name="user_bday" class="check-input" id="user_bday" placeholder="{{ trans('site.user_bday') }}" />
                                         </div>
-                                        <div class="form-group">
-                                            <input type="password" class="check-input" name="user_password" id="user_password" placeholder="{{ trans('site.user_password') }}" />
-                                            <input type="password" class="check-input" name="user_conf_password" id="user_conf_password" placeholder="{{ trans('site.confirm_password') }}" />
+                                        <div class="form-group" style="position: relative;">
+                                            <div style="position: absolute; right: 25px; top: 15px; cursor: pointer;" onclick="ShowHidePassword('password', 'togglePassword')">
+                                                <i class="fi-rs-eye-crossed togglePassword"></i>
+                                            </div>
+                                            <input type="password" class="check-input password" name="user_password" id="user_password" placeholder="{{ trans('site.user_password') }}" />
+                                        </div>
+                                        <div class="form-group" style="position: relative;">
+                                            <div style="position: absolute; right: 25px; top: 15px; cursor: pointer;" onclick="ShowHidePassword('password-confirm', 'togglePassword2')">
+                                                <i class="fi-rs-eye-crossed togglePassword2"></i>
+                                            </div>
+                                            <input type="password" class="check-input password-confirm" name="user_conf_password" id="user_conf_password" placeholder="{{ trans('site.confirm_password') }}" />
                                         </div>
                                         <div class="login_footer form-group mb-30 mt-30">
                                             <div class="chek-form">

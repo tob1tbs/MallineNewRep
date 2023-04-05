@@ -9,6 +9,8 @@ use App\Http\Controllers\Controller;
 use App\Modules\Main\Models\Main;
 use App\Modules\Main\Models\Slider;
 use App\Modules\Products\Models\Product;
+use App\Modules\Main\Models\ParameterSeo;
+use App\Modules\Products\Models\ProductLastView;
 use App\Modules\Products\Models\ProductCategory;
 use App\Modules\Main\Models\Wishlist;
 use App\Modules\Main\Models\Compare;
@@ -16,6 +18,9 @@ use App\Modules\Main\Models\DeliveryCity;
 use App\Modules\Main\Models\PaymentCategory;
 use App\Modules\Main\Models\Contact;
 use App\Modules\Main\Models\Text;
+use App\Modules\Main\Models\SponsoredItem;
+
+use App\Modules\Api\Controllers\OptimoController;
 
 use Cookie;
 use Session;
@@ -33,10 +38,13 @@ class MainController extends Controller
         if (view()->exists('main.main_index')) {
 
             $Product = new Product();
-            $ProductData = $Product::where('deleted_at_int', '!=', 0)->where('active', 1)->get();
-
+            $ProductData = $Product::where('deleted_at_int', '!=', 0)->where('active', 1)->orderBy('id', 'DESC')->get();
+			
             $ProductCategory = new ProductCategory();
             $ProductCategoryList = $ProductCategory::where('deleted_at_int','!=', 0)->where('active', 1)->where('parent_id', 0)->where('id', '!=', 1)->get();
+
+            $ParameterSeo = new ParameterSeo();
+            $SeoData = $ParameterSeo::find(1);
 
             $ProductList = [];
 
@@ -53,12 +61,30 @@ class MainController extends Controller
                     }
                 }
             }
+			
+			$PopularProduct = $Product::where('deleted_at_int', '!=', 0)->orderBy('id', 'DESC')->where('active', 1)->max('view');
+
+            $SponsoredItem = new SponsoredItem();
+            $SponsoredItemsData = $SponsoredItem::where('deleted_at_int', '!=', 0)->where('active', 1)->get();
 
             $Slider = new Slider();
             $SliderList = $Slider::where('active', 1)->where('deleted_at_int', '!=', 0)->get();
+
+            if(Auth::check() == true) {
+                $ProductLastView = new ProductLastView();
+                $ProductLastViewList = $ProductLastView::where('user_id', Auth::user()->id)->orderBy('id', 'DESC')->limit(5)->get();
+            } else {
+                $ProductLastViewList = [];
+            }
+
             $data = [
                 'product_list' => $ProductList,
+                'seo_data' => $SeoData,
                 'slider_list' => $SliderList,
+				'unsorted_products' => $ProductData,
+				'view_const' => $PopularProduct / 100 * 80,
+                'last_view' => $ProductLastViewList,
+                'sponsored_items' => $SponsoredItemsData,
             ];
             
             return view('main.main_index', $data);
@@ -72,6 +98,7 @@ class MainController extends Controller
         if (view()->exists('main.main_cart')) {
 
             $data = [
+                
             ];
             
             return view('main.main_cart', $data);
@@ -157,26 +184,29 @@ class MainController extends Controller
         }
     }
 
+    public function actionMainFaq() {
+        //
+        if (view()->exists('main.main_faq')) {
+
+            $data = [
+            ];
+            
+            return view('main.main_faq', $data);
+        } else {
+            abort('404');
+        }
+    }
+
     public function actionMainWishlist(Request $Request) {
         if (view()->exists('main.main_wishlist')) {
 
-            $Wishlist = new Wishlist();
-            $WishlistData = $Wishlist->where('deleted_at_int', '!=', 0);
-
-            if(!empty($Request->session()->get('wishlist_id'))) {
-                $WishlistSession = $Request->session()->get('wishlist_id');
-            } else {
-                $WishlistSession = '';
-            }
-
             if(Auth::check() == true) {
-                $WishlistData  = $WishlistData->where('user_id', Auth::user()->id)->orWhere('session_id', $WishlistSession)->where('deleted_at_int', '!=', 0);
+                $Wishlist = new Wishlist();
+                $WishlistData = $Wishlist->where('user_id', Auth::user()->id)->where('deleted_at_int', '!=', 0)->with('getProductData')->get();
             } else {
-                $WishlistData  = $WishlistData->where('session_id', $WishlistSession);
+                $WishlistData = [];
             }
-
-            $WishlistData = $WishlistData->get();
-            
+			
             $data = [
                 'wishlist_list' => $WishlistData,
             ];

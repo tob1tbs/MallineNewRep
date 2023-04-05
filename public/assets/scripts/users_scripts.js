@@ -56,39 +56,11 @@ function UserSignInSubmit() {
                       "closeButton": true,
                       "positionClass": "toast-bottom-right",
                     }
-                    toastr.warning(data['message'][0]);
-                } else {
-                    location.reload();
-                }
-            }
-        }
-    });
-}
-
-function UserSignInSubmitPage() {
-    var form = $('#user_signInPage')[0];
-    var data = new FormData(form);
-
-    $.ajax({
-        dataType: 'json',
-        url: "/user/ajax/sign-in",
-        type: "POST",
-        data: data,
-        enctype: 'multipart/form-data',
-        processData: false,
-        contentType: false,
-        cache: false,
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
-        success: function(data) {
-            if(data['status'] == true) {
-                if(data['errors'] == true) {
-                    toastr.options = {
-                      "closeButton": true,
-                      "positionClass": "toast-bottom-right",
-                    }
-                    toastr.warning(data['message'][0]);
+                    $(".check-input").removeClass('input-error');
+                    $.each(data['message'], function(key, value) {
+                        $('#'+key).addClass('input-error');
+                    })
+                    toastr.warning(data['error_message'][0]);
                 } else {
                     location.reload();
                 }
@@ -183,8 +155,8 @@ function PasswordRestore() {
         },
         success: function(data) {
             if(data['status'] == true) {
-                $('#restore_code_form')[0].reset();
-                $("#restore_code_phone").val(data['phone']);
+				$('#restore_code_form')[0].reset();
+				$("#restore_code_phone").val(data['phone']);
                 $("#resetpasswordmodal").modal('show');
             } else {
                 toastr.options = {
@@ -220,9 +192,9 @@ function SubmitRestoreCode() {
         success: function(data) {
             if(data['status'] == true) {
                 toastr.success(data['message'][0]);
-                setTimeout(function() {
-                    window.location.href = data['redirect_url'];
-                }, 3000);
+				setTimeout(function() {
+					window.location.href = data['redirect_url'];
+				}, 3000);
             } else {
                 toastr.warning(data['message'][0]);
             }

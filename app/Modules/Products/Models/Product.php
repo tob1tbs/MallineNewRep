@@ -10,6 +10,8 @@ class Product extends Model
     use HasFactory;
 
     protected $table = "new_products";
+	
+	protected $fillable = ['view'];
 
     public function getProductGallery() {
         return $this->hasMany('App\Modules\Products\Models\ProductGallery', 'product_id', 'id');
@@ -21,5 +23,9 @@ class Product extends Model
 
     public function getProductPrice() {
         return $this->hasOne('App\Modules\Products\Models\ProductPrice', 'product_id', 'id');
+    }
+
+    public function getVendorData() {
+        return $this->hasOne('App\Modules\Builder\Models\Builder', 'id', 'vendor_id');
     }
 }

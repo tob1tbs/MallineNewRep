@@ -7,42 +7,39 @@
             <div class="row">
                 <div class="col-xl-10 col-lg-12 m-auto">
                     <div class="row">
-                        <div class="col-lg-12">
+                        <div class="col-lg-5 mx-auto text-center">
+                            <h1 class="title heading-1 style-3">როგორ შევიძინო?<span class="text-brand"></span> </h1>
+                        </div>
+                        <div class="col-xl-10 col-lg-12 m-auto">
                             <div class="single-page pr-30 mb-lg-0 mb-sm-5">
-                                <div class="single-content mb-50">
-                                    <h3>1. ანგარიშის რეგისტრაცია</h3>
-                                    <ul class="mb-30">
-                                        <li>სახელი (აუცილებელია)</li>
-                                        <li>ასაკი (აუცილებელია)</li>
-                                        <li>დაბადების თარიღი (აუცილებელია)</li>
-                                        <li>პასპორტი/ ID no. (აუცილებელია)</li>
-                                        <li>მიმდინარე კარიერა (აუცილებელია)</li>
-                                        <li>მობილური ტელეფონის ნომრები (აუცილებელია)</li>
-                                        <li>ელფოსტის მისამართი (აუცილებელია)</li>
-                                        <li>ჰობიები & amp; ინტერესები (სურვილისამებრ)</li>
-                                        <li>სოციალური პროფილები (არასავალდებულო)</li>
-                                    </ul>
-                                    <h3>2. აირჩიეთ პროდუქტი</h3>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit offficia necessitatibus repellat placeat aut enim recusandae assumenda adipisci quisquam, deserunt iure veritatis cupiditate modi aspernatur accusantium, mollitia doloribus. ველით, არის.</p>
-                                    <h3>3. დაადასტურეთ შეკვეთის შინაარსი</h3>
-                                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Libero ut autem sed! Assumenda, nostrum non doloribus tenetur, pariatur veritatis harum natus ipsam maiores dolorem repudiandae laboriosam, cupiditate odio earum eum?</p>
-                                    <h3>4.ტრანზაქცია დასრულებულია</h3>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam nesciunt nam aut magnam libero aspernatur eaque praesentium? Tempore labore quis neque? მაგნი.</p>
-                                    <h3>5. მიღებული საკრედიტო ბარათები</h3>
-                                    <ul>
-                                        <li>ვიზა</li>
-                                        <li>მასტერბარდები</li>
-                                        <li>American Express</li>
-                                        <li>აღმოაჩინე</li>
-                                    </ul>
-                                    <span>*გადასახადებს ითვლის თქვენი ადგილობრივი ბანკი და მდებარეობა.</span>
-                                    <h3 class="mt-30">6. ჩამოტვირთეთ და დააყენეთ</h3>
-                                    <ul>
-                                        <li>კონტენტი რეგულარულად განახლებულია</li>
-                                        <li>უსაფრთხო & amp; უპრობლემოდ გადახდა</li>
-                                        <li>1-დაწკაპუნებით შეკვეთა</li>
-                                        <li>მარტივი წვდომა და amp; ჭკვიანი მომხმარებლის დაფა</li>
-                                    </ul>
+<!--                                 <section class="row align-items-center">
+                                    <div class="col-lg-6">
+                                        <img src="{{ asset('assets/imgs/animation/how.gif') }}" alt=""/>                                        
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="single-content">
+                                            <h3 class="mb-20">შეძენისთვის საჭირო ძირითადი ნაბიჯები </h3>
+                                            <ul>
+                                                <li>სახელი (აუცილებელია)</li>
+                                                <li>ასაკი (აუცილებელია)</li>
+                                                <li>დაბადების თარიღი (აუცილებელია)</li>
+                                                <li>პასპორტი/ ID no. (აუცილებელია)</li>
+                                                <li>მიმდინარე კარიერა (აუცილებელია)</li>
+                                                <li>მობილური ტელეფონის ნომრები (აუცილებელია)</li>
+                                                <li>ელფოსტის მისამართი (აუცილებელია)</li>
+                                                <li>ჰობიები & amp; ინტერესები (სურვილისამებრ)</li>
+                                                <li>სოციალური პროფილები (არასავალდებულო)</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </section> -->
+                                <div class="mb-50 mt-20 auto-resizable-iframe">
+                                    <figure class="col-lg-5 mx-auto text-center">
+                                        <h1 class="title heading-1 style-3 mb-40">ვიდეო ინსტრუქიცა<span class="text-brand"></span> </h1>
+                                    </figure>
+                                    <div>
+                                        <iframe src="https://www.youtube.com/embed/mX0rOs6yoUE" frameborder="0" allowfullscreen=""></iframe>
+                                    </div>
                                 </div>
                             </div>
                         </div>

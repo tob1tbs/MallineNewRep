@@ -22,15 +22,21 @@
 	        if($CheckUser){
 	            return $CheckUser;
 	        } else {
+	        	if(empty($user->name)) {
+	        		$user_name = '';
+	        		$user_lastname = '';
+	        	} else {
+	        		$user_name = explode(' ', $user->name)[0];
+	        		$user_lastname = explode(' ', $user->name)[1];
+	        	}
 
 	        	$UserData = User::create([
                     'email' => $user->email,
-                    'name' => explode(' ', $user->name)[0],
-                    'lastname' => explode(' ', $user->name)[1],
+                    'name' => $user_name,
+                    'lastname' => $user_lastname,
                     'password' => md5(rand(1,10000)),
-                    'google_id' => $user->email,
+                    'google_id' => $user->id,
                 ]);
-
                 return $UserData;
 	        }
 	    }

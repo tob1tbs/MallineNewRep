@@ -79,7 +79,7 @@ abstract class AbstractProvider implements ProviderContract
      *
      * @var bool
      */
-    protected $stateless = false;
+    protected $stateless = true;
 
     /**
      * Indicates if PKCE should be used.
