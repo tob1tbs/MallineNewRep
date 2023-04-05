@@ -10,12 +10,8 @@ return [
     'modules' => [
         'Users',
         'Main',
-        'Builder',
         'Products',
         'Dashboard',
-        'Parameters',
-        'Customers',
-        'Vendors',
         'Blog',
     ]
 ];
