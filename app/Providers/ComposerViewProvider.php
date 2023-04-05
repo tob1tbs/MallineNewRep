@@ -1,4 +1,3 @@
-@@ -1,51 +1,61 @@
 <?php
 
 namespace App\Providers;
@@ -21,12 +20,12 @@ class ComposerViewProvider extends ServiceProvider
     public function register()
     {
         //
-        View::composer('*', function($view) {
+        $Request = Request();
+        View::composer('*', function($view) use ($Request) {
+
             $Navigation = new Navigation();
             $NavigationList = $Navigation::where('deleted_at_int', '!=', 0)->where('active', 1)->orderBy('sortable', 'ASC')->get();
-        $Request = Request();
-
-        View::composer('*', function($view) use ($Request) {
+            
             $ProductCategory = new ProductCategory();
             $ProductCategoryList = $ProductCategory::where('deleted_at_int', '!=', 0)->where('active', 1)->where('id', '!=', 1)->where('parent_id', 0)->orderBy('sortable', 'ASC')->get();
             $ProductCategoryList = $ProductCategory::where('deleted_at_int', '!=', 0)->where('active', 1)->where('id', '!=', 1)->orderBy('id', 'ASC')->get();
