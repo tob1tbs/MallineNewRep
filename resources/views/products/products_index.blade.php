@@ -90,30 +90,6 @@
                     @endif
                 </div>
 				<div class="accordion">
-					@if(count($product_vendor_list) > 0)
-					<div class="accordion-head">
-						<h4 style="font-size: 18px;" class="font-neue">{{ trans('site.vendors') }}</h4><div class="arrow down"></div>
-					</div>
-					<div class="accordion-body">
-						<div class="list-group-item mb-10 mt-10">
-							@foreach($product_vendor_list as $vendor_item)
-                                @php
-                                    if(isset(request()->vendor) && in_array($vendor_item->id, request()->vendor)) {
-                                        $checked = 'checked';
-                                    } else {
-                                        $checked = '';
-                                    }
-                                @endphp
-                                @if(!empty($vendor_item->data))
-                                <div class="custome-checkbox">
-                                    <input class="form-check-input" type="checkbox" name="vendor[]" id="vendor_item_{{ $vendor_item->id }}" value="{{ $vendor_item->id }}"  {{ $checked }}>
-                                    <label class="form-check-label" for="vendor_item_{{ $vendor_item->id }}"><span>{{ json_decode($vendor_item->data)->{'name_'.app()->getLocale()} }}</span></label>
-                                </div>
-                                @endif
-                            @endforeach
-						</div>                        
-					</div>
-					@endif
 					@if(count($product_brand_list) > 0)
 					<div class="accordion-head">
 						<h4 style="font-size: 18px;" class="font-neue">{{ trans('site.brands') }}</h4><div class="arrow down"></div>
@@ -239,14 +215,6 @@
                             </div>
                             <div class="product-content-wrap">
                                 <h2><a href="{{ route('actionProductsView', $product_item['id']) }}">{{ $product_item['name_'.app()->getLocale()] }}</a></h2>
-                                <div>
-                                    @if(!empty($product_item->getVendorData))
-                                    <span class="font-neue" style="font-size: 11px;">{{ trans('site.seller') }}:</span>
-                                    <span class="font-small text-muted">
-                                        <a target="_blank" href="https://{{ $product_item->getVendorData->host }}">{{ json_decode($product_item->getVendorData->data)->{"name_" . app()->getLocale()} }}</a>
-                                    </span>
-                                    @endif
-                                </div>
                                 <div>
                                     <a class="action-btn hover-up">
                                         <p class="products-installment-note font-neue">თვეში <span>9₾</span> -დან</p>

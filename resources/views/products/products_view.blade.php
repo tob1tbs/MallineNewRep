@@ -32,9 +32,6 @@
                                 <div class="product-detail-rating">
                                     <ul class="float-start">
                                         <li class="mb-5">კატეგორია: <a href="{{ route('actionProductsIndex', ['category_id' => $product_data->getCategoryData->id]) }}">{{ json_decode($product_data->getCategoryData->name)->{app()->getLocale()} }}</a></li>
-                                        @if(!empty($product_data->getVendorData))
-                                        <li class="mb-5">{{ trans('site.seller') }}: <a target="_blank" href="https://{{ $product_data->getVendorData->host }}">{{ json_decode($product_data->getVendorData->data)->{"name_" . app()->getLocale()} }}</a></li>
-                                        @endif
                                     </ul>
                                 </div>
                                 @if(!empty($product_data->discount_price))
