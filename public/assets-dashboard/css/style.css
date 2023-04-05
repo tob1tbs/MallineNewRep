@@ -1,0 +1,8 @@
+@font-face {
+    font-family: 'neue-geo-caps';
+    src: url('../fonts/helvetica-neue-lt-geo-55-roman-caps.ttf');
+}
+
+.font-neue, .swal2-title {
+  font-family: 'neue-geo-caps' !important;
+}

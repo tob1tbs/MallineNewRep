@@ -38,7 +38,7 @@
     <!-- END: Page CSS-->
 
     <!-- BEGIN: Custom CSS-->
-    <link rel="stylesheet" type="text/css" href="../../../assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets-dashboard/css/style.css') }}">
     <!-- END: Custom CSS-->
 
 </head>
@@ -105,7 +105,7 @@
                                                     <i data-feather="home" class="font-medium-3"></i>
                                                 </span>
                                                 <span class="bs-stepper-label">
-                                                    <span class="bs-stepper-title">თქვენი პირველი მომხმარებელი</span>
+                                                    <span class="bs-stepper-title font-neue">თქვენი პირველი მომხმარებელი</span>
                                                 </span>
                                             </button>
                                         </div>
@@ -118,7 +118,7 @@
                                                     <i data-feather="user" class="font-medium-3"></i>
                                                 </span>
                                                 <span class="bs-stepper-label">
-                                                    <span class="bs-stepper-title">ძირითადი პარამეტრები</span>
+                                                    <span class="bs-stepper-title font-neue">ძირითადი პარამეტრები</span>
                                                 </span>
                                             </button>
                                         </div>
@@ -131,20 +131,7 @@
                                                     <i data-feather="credit-card" class="font-medium-3"></i>
                                                 </span>
                                                 <span class="bs-stepper-label">
-                                                    <span class="bs-stepper-title">საკონტაქტო ინფორმაცია</span>
-                                                </span>
-                                            </button>
-                                        </div>
-                                        <div class="line">
-                                            <i data-feather="chevron-right" class="font-medium-2"></i>
-                                        </div>
-                                        <div class="step" data-target="#logo" role="tab" id="logo-trigger">
-                                            <button type="button" class="step-trigger">
-                                                <span class="bs-stepper-box">
-                                                    <i data-feather="credit-card" class="font-medium-3"></i>
-                                                </span>
-                                                <span class="bs-stepper-label">
-                                                    <span class="bs-stepper-title">ლოგო</span>
+                                                    <span class="bs-stepper-title font-neue">საკონტაქტო ინფორმაცია</span>
                                                 </span>
                                             </button>
                                         </div>
