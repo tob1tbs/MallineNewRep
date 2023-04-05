@@ -409,6 +409,100 @@
                                                 </button>
                                             </div>
                                         </div>
+                                        <div id="logo" class="content" role="tabpanel" aria-labelledby="logo-trigger">
+                                            <div class="content-header mb-2">
+                                                <h2 class="fw-bolder mb-75">Select Plan</h2>
+                                                <span>Select plan as per your retirement</span>
+                                            </div>
+
+                                            <form>
+                                                <!-- select plan options -->
+                                                <div class="row custom-options-checkable gx-3 gy-2">
+                                                    <div class="col-md-4">
+                                                        <input class="custom-option-item-check" type="radio" name="plans" id="basicPlan" value="" />
+                                                        <label class="custom-option-item text-center p-1" for="basicPlan">
+                                                            <span class="custom-option-item-title h3 fw-bolder">Basic</span>
+                                                            <span class="d-block m-75">A simple start for everyone</span>
+                                                            <span class="plan-price">
+                                                                <sup class="font-medium-1 fw-bold text-primary">$</sup>
+                                                                <span class="pricing-value fw-bolder text-primary">0</span>
+                                                                <sub class="pricing-duration text-body font-medium-1 fw-bold">/month</sub>
+                                                            </span>
+                                                        </label>
+                                                    </div>
+
+                                                    <div class="col-md-4">
+                                                        <input class="custom-option-item-check" type="radio" name="plans" id="standardPlan" value="" checked />
+                                                        <label class="custom-option-item text-center p-1" for="standardPlan">
+                                                            <span class="custom-option-item-title h3 fw-bolder">Standard</span>
+                                                            <span class="d-block m-75">For small to medium businesses</span>
+                                                            <span class="plan-price">
+                                                                <sup class="font-medium-1 fw-bold text-primary">$</sup>
+                                                                <span class="pricing-value fw-bolder text-primary">99</span>
+                                                                <sub class="pricing-duration text-body font-medium-1 fw-bold">/month</sub>
+                                                            </span>
+                                                        </label>
+                                                    </div>
+
+                                                    <div class="col-md-4">
+                                                        <input class="custom-option-item-check" type="radio" name="plans" id="enterprisePlan" value="" />
+                                                        <label class="custom-option-item text-center p-1" for="enterprisePlan">
+                                                            <span class="custom-option-item-title h3 fw-bolder">Enterprise</span>
+                                                            <span class="d-block m-75">Solution for big organizations</span>
+                                                            <span class="plan-price">
+                                                                <sup class="font-medium-1 fw-bold text-primary">$</sup>
+                                                                <span class="pricing-value fw-bolder text-primary">499</span>
+                                                                <sub class="pricing-duration text-body font-medium-1 fw-bold">/month</sub>
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <!-- / select plan options -->
+
+                                                <div class="content-header my-2 py-1">
+                                                    <h2 class="fw-bolder mb-75">Payment Information</h2>
+                                                    <span>Enter your card Information</span>
+                                                </div>
+
+                                                <div class="row gx-2">
+                                                    <div class="col-12 mb-1">
+                                                        <label class="form-label" for="addCardNumber">Card Number</label>
+                                                        <div class="input-group input-group-merge">
+                                                            <input id="addCardNumber" name="addCard" class="form-control credit-card-mask" type="text" placeholder="1356 3215 6548 7898" aria-describedby="addCard" data-msg="Please enter your credit card number" />
+                                                            <span class="input-group-text cursor-pointer p-25" id="addCard">
+                                                                <span class="card-type"></span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-6 mb-1">
+                                                        <label class="form-label" for="addCardName">Name On Card</label>
+                                                        <input type="text" id="addCardName" class="form-control" placeholder="John Doe" />
+                                                    </div>
+
+                                                    <div class="col-6 col-md-3 mb-1">
+                                                        <label class="form-label" for="addCardExpiryDate">Exp. Date</label>
+                                                        <input type="text" id="addCardExpiryDate" class="form-control expiry-date-mask" placeholder="MM/YY" />
+                                                    </div>
+
+                                                    <div class="col-6 col-md-3 mb-1">
+                                                        <label class="form-label" for="addCardCvv">CVV</label>
+                                                        <input type="text" id="addCardCvv" class="form-control cvv-code-mask" maxlength="3" placeholder="654" />
+                                                    </div>
+                                                </div>
+                                            </form>
+
+                                            <div class="d-flex justify-content-between mt-1">
+                                                <button class="btn btn-primary btn-prev">
+                                                    <i data-feather="chevron-left" class="align-middle me-sm-25 me-0"></i>
+                                                    <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                                                </button>
+                                                <button class="btn btn-success btn-submit">
+                                                    <i data-feather="check" class="align-middle me-sm-25 me-0"></i>
+                                                    <span class="align-middle d-sm-inline-block d-none">Submit</span>
+                                                </button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
