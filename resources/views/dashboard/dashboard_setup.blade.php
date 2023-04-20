@@ -167,11 +167,11 @@
                                                 </div>
                                             </div>
                                             <div class="d-flex justify-content-between mt-2">
-                                                <button class="btn btn-outline-secondary btn-prev" disabled>
+                                                <button class="btn btn-outline-secondary" disabled>
                                                     <i data-feather="chevron-left" class="align-middle me-sm-25 me-0"></i>
                                                     <span class="align-middle d-sm-inline-block d-none font-neue back">უკან დაბრუნება</span>
                                                 </button>
-                                                <button class="btn btn-primary btn-next">
+                                                <button class="btn btn-primary">
                                                     <span class="align-middle d-sm-inline-block d-none font-neue continue">გაგრძელება</span>
                                                     <i data-feather="chevron-right" class="align-middle ms-sm-25 ms-0"></i>
                                                 </button>
