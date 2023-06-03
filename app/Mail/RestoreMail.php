@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class SetupMail extends Mailable
+class RestoreMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -28,7 +28,9 @@ class SetupMail extends Mailable
      * @return $this
      */
     public function build()
-    {
-        return $this->subject('Registration on Mallline.io')->view('mail.setup_mail');
+    {   
+        $data['title'] = $this->testMailData['title'];
+        $data['mail_message'] = $this->testMailData['body'];
+        return $this->subject('restore on Mallline.io')->view('mail.restore_mail', $data);
     }
 }

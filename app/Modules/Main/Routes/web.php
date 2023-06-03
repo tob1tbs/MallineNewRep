@@ -1,7 +1,7 @@
 <?php
 
 // GENERAL ROUTES
-Route::group(['middleware' => ['setup'], 'prefix' => LaravelLocalization::setLocale()], function () {
+Route::group(['middleware' => [], 'prefix' => LaravelLocalization::setLocale()], function () {
     Route::get('/', 'MainController@actionMainIndex')->name('actionMainIndex');
     Route::get('/checkout', 'MainController@actionMainCheckout')->name('actionMainCheckout');
     Route::get('/cart', 'MainController@actionMainCart')->name('actionMainCart');
@@ -35,6 +35,8 @@ Route::group(['prefix' => 'main/ajax', 'middleware' => []], function () {
     Route::post('/contact', 'MainAjaxController@ajaxSendContact')->name('ajaxSendContact');
     // CHECKOUT SUBMIT
     Route::post('/checkout', 'MainAjaxController@ajaxCheckoutSubmit')->name('ajaxCheckoutSubmit');
+    // SUBSCRIBE
+    Route::post('/subscribe', 'MainAjaxController@ajaxSubscribe')->name('ajaxSubscribe');
     // SEARCH
     Route::get('/search', 'MainAjaxController@ajaxSearch')->name('ajaxSearch');
     Route::get('/search/history', 'MainAjaxController@ajaxSearchHistory')->name('ajaxSearchHistory');

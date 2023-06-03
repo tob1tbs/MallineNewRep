@@ -51,9 +51,18 @@ class MainAjaxController extends Controller
                 $Quantity = 1;
             }
 
-            if($ProductData->count < $Quantity) {
+            $checkItem = Cart::get($ProductData->id);
+
+            if(!empty($Quantity) & $ProductData->count < $Quantity) {
                 return Response::json(['status' => true, 'errors' => true, 'message' => [0 => 'ნაშთის რაოდენობა ნაკლებია მოთხოვნილზე!']]);
-            } else{ 
+            } 
+
+            else if(!empty($checkItem) && $checkItem->quantity >= $ProductData->count) {
+                return Response::json(['status' => true, 'errors' => true, 'message' => [0 => 'ნაშთის რაოდენობა ნაკლებია მოთხოვნილზე!']]);
+            }
+            
+            else{ 
+
                Cart::add([
                     'id' => $ProductData->id,
                     'name' => $ProductData->name_ge,
@@ -106,7 +115,16 @@ class MainAjaxController extends Controller
             $ProductData = $Product::find($Request->item_id);
 
             if($ProductData->count < $Request->quantity) {
-                return Response::json(['status' => false, 'errors' => true, 'message' => [0 => 'მარაგის რაოდენობა ნაკლებია მოთხოვნილზე!!!']]);
+                return Response::json([
+                    'status' => true, 
+                    'errors' => true, 
+                    'CartData' => Cart::getContent()->sort(),
+                    'CartQuantity' => Cart::getTotalQuantity(),
+                    'CartTotal' => Cart::getSubTotal(),
+                    'ItemCount' => $Request->quantity,
+                    'message' => [0 => 'მარაგის რაოდენობა ნაკლებია მოთხოვნილზე!!!']
+                ]);
+                return Response::json(['status' => true, 'errors' => true, 'message' => [0 => 'მარაგის რაოდენობა ნაკლებია მოთხოვნილზე!!!']]);
             }
             
             Cart::update($Request->item_id, [
@@ -150,25 +168,6 @@ class MainAjaxController extends Controller
                     'empty_cart' => trans('site.your_cart_is_empty'),
                 ],
             ]);
-        } else {
-            return Response::json(['status' => false, 'message' => 'დაფიქსირდა შეცდომა გთხოვთ სცადოთ თავიდან !!!'], 200);
-        }
-    }
-
-    public function ajaxGeneralProductQuickView(Request $Request) {
-        if($Request->isMethod('GET')) {
-
-            $Product = new Product();
-            $ProductData = $Product::find($Request->product_id)->load('getProductGallery')->load('getCategoryData')->load('getProductPrice');
-
-            return Response::json([
-                'status' => true, 
-                'ProductData' => $ProductData, 
-                'translate' => [
-                    'out_of_stock' => trans('site.no_stock'),
-                    'add_to_cart' => trans('site.add_to_cart'),
-                ]]);
-            
         } else {
             return Response::json(['status' => false, 'message' => 'დაფიქსირდა შეცდომა გთხოვთ სცადოთ თავიდან !!!'], 200);
         }

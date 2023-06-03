@@ -6,6 +6,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
         Route::get('/sign-up', 'UsersController@actionUsersSignUp')->name('actionUsersSignUp');
         Route::get('/sign-in', 'UsersController@actionUsersSignIn')->name('actionUsersSignIn');
         Route::get('/restore', 'UsersController@actionUsersRestore')->name('actionUsersRestore');
+        Route::get('/restore/success', 'UsersController@actionUsersRestoreSuccess')->name('actionUsersRestoreSuccess');
+        Route::get('/restore/hash/{hash_id?}', 'UsersController@actionUsersRestoreHash')->name('actionUsersRestoreHash');
         Route::get('/logout', 'UsersController@actionUsersLogout')->name('actionUsersLogout');
         Route::get('/facebook', 'UsersController@actionFacebookRedirect')->name('actionFacebookRedirect');
         Route::get('/facebook/callback', 'UsersController@actionFacebookCallback')->name('actionFacebookCallback');

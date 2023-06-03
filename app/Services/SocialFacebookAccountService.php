@@ -7,6 +7,8 @@
 	
 	use Laravel\Socialite\Contracts\User as ProviderUser;
 
+	use Hash;
+
 	class SocialFacebookAccountService
 	{
 	    public function createOrGetUser(ProviderUser $providerUser)
@@ -14,7 +16,7 @@
 	        $account = SocialFacebookAccount::whereProvider('facebook')
 	            ->whereProviderUserId($providerUser->getId())
 	            ->first();
-
+	            
 	        if ($account) {
 	            return $account->user;
 	        } else {
@@ -32,7 +34,7 @@
 	                    'email' => $providerUser->getEmail(),
 	                    'name' => explode(' ', $providerUser->getName())[0],
 	                    'lastname' => explode(' ', $providerUser->getName())[1],
-	                    'password' => md5(rand(1,10000)),
+	                    'password' => Hash::make(rand(1,10000)) ,
 	                ]);
 	            }
 

@@ -8,9 +8,11 @@ use App\Http\Controllers\Controller;
 
 use App\Modules\Users\Models\User;
 use App\Modules\Users\Models\UserRestore;
+use App\Modules\Users\Models\UserVerifyMail;
 
 use Mail;
 use App\Mail\SetupMail;
+use App\Mail\RestoreMail;
 
 use Response;
 use Validator;
@@ -31,25 +33,26 @@ class UsersAjaxController extends Controller
                 'modal_user_email.unique' => trans('site.current_email_is_busy'),
                 'modal_user_email.email' => trans('site.email_format_incorect'),
                 'modal_user_phone.unique' => trans('site.current_phone_is_busy'),
+                'modal_user_phone.digits' => trans('site.incorect_phone_format'),
                 'modal_user_personal_id.unique' => trans('site.current_personal_id_is_busy'),
-                'modal_user_password.min' => trans('site.password_lengh_min'),
+                'modal_user_password.min' => trans('site.password_lengh_min_6'),
                 'modal_user_conf_password.same' => trans('site.password_dont_mach'),
-                'modal_user_term_policy.same' => trans('site.place_check_rules'),
+                'modal_user_personal_id.numeric' => trans('site.incorect_personal_id'),
+                'modal_user_personal_id.digits' => trans('site.incorect_personal_id'),
             );
             $validator = Validator::make($Request->all(), [
                 'modal_user_email' => 'required|max:255|unique:new_customers,email|email',
                 'modal_user_name' => 'required|max:255',
                 'modal_user_lastname' => 'required|max:255',
-                'modal_user_personal_id' => 'required|max:255|unique:new_customers,personal_number',
-                'modal_user_bday' => 'required|max:255',
-                'modal_user_phone' => 'required|max:255|unique:new_customers,phone',
+                // 'modal_user_personal_id' => 'required|digits:11|unique:new_customers,personal_number|numeric',
+                // 'modal_user_bday' => 'required|max:255',
+                'modal_user_phone' => 'required|digits:9|unique:new_customers,phone',
                 'modal_user_password' => 'min:6|same:modal_user_conf_password|required_with:modal_user_password',
                 'modal_user_conf_password' => 'required',
-                'modal_user_term_policy' => 'required',
-            ], $messages)->stopOnFirstFailure(true);
+            ], $messages)->stopOnFirstFailure(false);
 
             if ($validator->fails()) {
-                return Response::json(['status' => false, 'message' => $validator->getMessageBag()->toArray()], 200);
+                return Response::json(['status' => true, 'errors' => true, 'message' => $validator->getMessageBag()->toArray(), 'required_message' => trans('site.place_enter_all_required_fields')], 200);
             } else {
 
                 $User = new User();
@@ -59,44 +62,52 @@ class UsersAjaxController extends Controller
                 $User->bdate = $Request->modal_user_bday;
                 $User->phone = $Request->modal_user_phone;
                 $User->email = $Request->modal_user_email;
-                $User->password = Hash::make($Request->user_password);
+                $User->password = Hash::make($Request->modal_user_password);
                 $User->save();
 
+                $hash = md5(time());
+
+                $UserVerifyMail = new UserVerifyMail();
+                $UserVerifyMail->user_id = ;
+                $UserVerifyMail->hash = $hash;
+                $UserVerifyMail->save();
+
                 $testMailData = [
-                    'title' => 'Test Email From Mallline.io',
+                    'title' => 'Registration success',
                     'body' => 'This is the body of test email.'
                 ];
 
-                // Mail::to($Request->modal_user_email)->send(new SetupMail($testMailData));
+                Mail::to($Request->modal_user_email)->send(new SetupMail($testMailData));
 
                 return Response::json([
                     'status' => true, 
+                    'errors' => false,
                     'message' => [0 => 'თქვენ წარმატებით გაიარეთ რეგისტრაცია !!!'],
                     'redirect_url' => route('actionMainIndex'),
                 ]);
             }
         } else {
-            return Response::json(['status' => false, 'message' => [0 => 'დაფიქსირდა შეცდომა, გთხოვთ სცადოთ თავიდან.']], 200);
+            return Response::json(['status' => false, 'errors' => true, 'message' => [0 => 'დაფიქსირდა შეცდომა, გთხოვთ სცადოთ თავიდან.']], 200);
         }
     }
 
     public function ajaxUserSignIn(Request $Request) {
         if($Request->isMethod('POST')) {
             $messages = array(
-                'required' => 'ელ-ფოსტა ან პაროლი არასწორია',
+                'required' => 'გთხოვთ შეავსოთ ყველა აუცილებელი ველი!',
             );
             $validator = Validator::make($Request->all(), [
                 'user_email' => 'required',
                 'user_password' => 'required',
-            ], $messages)->stopOnFirstFailure(true);
+            ], $messages)->stopOnFirstFailure(false);
 
             if ($validator->fails()) {
-                return Response::json(['status' => true, 'errors' => true, 'error_message' => [0 => trans('site.incorect_email_or_password')], 'message' => $validator->getMessageBag()->toArray()], 200);
+                return Response::json(['status' => true, 'errors' => true, 'message' => $validator->getMessageBag()->toArray()], 200);
             } else {
-                if(Auth::attempt(['email' => $Request->user_email, 'password' => $Request->user_password, 'deleted_at_int' => 1, 'active' => 1], $Request->user_remember_me)) {
+                if(Auth::attempt(['email' => $Request->user_email, 'password' => $Request->user_password, 'deleted_at_int' => 1, 'active' => 1, 'verify_email' => 1], $Request->user_remember_me)) {
                     return Response::json(['status' => true, 'errors' => false]);
                 } else {
-                    return Response::json(['status' => true, 'errors' => true, 'error_message' => [0 =>  trans('site.incorect_email_or_password')]]);
+                    return Response::json(['status' => true, 'errors' => true, 'message' => [0 =>  trans('site.incorect_email_or_password')]]);
                 }
             }
         } else {
@@ -181,28 +192,33 @@ class UsersAjaxController extends Controller
             } else {
                 $User = new User();
                 $UserData = $User::where('phone', $Request->user_phone)->orWhere('email', $Request->user_phone)->first();
+				$code = rand(111111, 999999);
+                $hash = md5(time());
 				
                 if($UserData) {
-					
-					$code = rand(111111, 999999);
-				
-					$sender = 'Mallline.io';
-					$customer_phone = trim($UserData->phone);
-					$text = 'ვერიფიკაციის კოდი '.$code;
 
-					$data = 'key=' . urlencode('b7a41cb33e014860ae0363cd091206fc') . '&destination=' . urlencode($customer_phone) . '&sender=' . urlencode($sender). '&content=' . urlencode($text); 
-					$url= "http://smsoffice.ge/api/v2/send?".$data;
-					$response = file_get_contents($url);
+                    if(filter_var($Request->user_phone, FILTER_VALIDATE_EMAIL)) {
+                        $testMailData = [
+                            'title' => 'პაროლის აღდგენა',
+                            'body' => 'პაროლის აღდგენის ბმული: '.route('actionUsersRestoreHash', ['hash_id' => $hash]),
+                        ];
+
+                        $RestoreMeth = $UserData->email;
+
+                        Mail::to($UserData->email)->send(new RestoreMail($testMailData));
+                    } else {
+                        return Response::json(['status' => false, 'message' => [0 =>'მომხმარებელი აღნიშნული ელ-ფოსტით ვერ მოიძებნა!']]);
+                    }
 
 					$UserRestore = new UserRestore();
-					$UserRestore->code = $code;
+					$UserRestore->code = $hash;
 					$UserRestore->user_id = $UserData->id;
-					$UserRestore->phone = $UserData->phone;
+					$UserRestore->phone = $Request->user_phone;
 					$UserRestore->save();
 				
-                    return Response::json(['status' => true, 'phone' => $UserData->phone]);
+                    return Response::json(['status' => true, 'phone' => $RestoreMeth, 'redirect_url' => route('actionUsersRestoreSuccess')]);
                 } else {
-                    return Response::json(['status' => false, 'message' => [0 =>'მომხმარებელი აღნიშნული ტელეფონის ნომერით ან ელ-ფოსტით ვერ მოიძებნა!']]);
+                    return Response::json(['status' => false, 'message' => [0 =>'მომხმარებელი აღნიშნული ელ-ფოსტით ვერ მოიძებნა!']]);
                 }
             }
         } else {
@@ -213,52 +229,32 @@ class UsersAjaxController extends Controller
     public function ajaxUserRestoreSubmit(Request $Request) {
         if($Request->isMethod('POST')) {
             $messages = array(
-                'required' => 'გთხოვთ შეავსოთ ყველა აუცილებელი ველი',
+                'required' => trans('site.place_enter_all_required_fields'),
+                'required_with' => trans('site.place_enter_all_required_fields'),
+                'reset_password.min' => trans('site.password_lengh_min_6'),
+                'reset_repeat_password.min' => trans('site.password_lengh_min_6'),
+                'reset_repeat_password.same' => trans('site.password_dont_mach'),
             );
             $validator = Validator::make($Request->all(), [
-                'code_1' => 'required|max:1',
-                'code_2' => 'required|max:1',
-                'code_3' => 'required|max:1',
-                'code_4' => 'required|max:1',
-                'code_5' => 'required|max:1',
-                'code_6' => 'required|max:1',
+                'reset_password' => 'min:6|same:reset_repeat_password',
+                'reset_repeat_password' => 'required_with:reset_password|min:6|',
             ], $messages);
 
             if ($validator->fails()) {
-                return Response::json(['status' => false, 'message' => [0 => 'უსაფრთხოების კოდის ფორმატი არასწორია']], 200);
+                return Response::json(['status' => false, 'message' => $validator->getMessageBag()->toArray()], 200);
             } else {
-				
-				$code = $Request->code_1.$Request->code_2.$Request->code_3.$Request->code_4.$Request->code_5.$Request->code_6;
-				
-				$UserRestore = new UserRestore();
-				$UserRestoreData = $UserRestore::where('code', $code)->where('phone', $Request->restore_code_phone)->first();
 
-				if($UserRestoreData->status == 1) {
-					return Response::json(['status' => false, 'message' => [0 => 'უსაფრთხოების კოდი არასწორია']], 200);
-				} else {
-					$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-					$randomString = '';
-				  
-					for ($i = 0; $i < 6; $i++) {
-						$index = rand(0, strlen($characters) - 1);
-						$randomString .= $characters[$index];
-					}
-					
-					$User = new User();
-					$User::where('phone', trim($Request->restore_code_phone))->update(['password' => Hash::make($randomString)]);
-					
-					$sender = 'Mallline.io';
-					$customer_phone = trim($Request->restore_code_phone);
-					$text = 'თქვენი დროებითი პაროლი: '.$randomString;
+                $UserRestore = new UserRestore();
+                $UserRestoreData = $UserRestore::where('code', $Request->hash_id)->where('status', 0)->first();
 
-					$data = 'key=' . urlencode('b7a41cb33e014860ae0363cd091206fc') . '&destination=' . urlencode($customer_phone) . '&sender=' . urlencode($sender). '&content=' . urlencode($text); 
-					$url= "http://smsoffice.ge/api/v2/send?".$data;
-					$response = file_get_contents($url);
-					
-					$UserRestoreData->update(['status' => 1]);
-					
-					return Response::json(['status' => true, 'message' => [0 => 'თქვენი დროებითი პაროლი გამოიგზავნა ტელეფონის ნომერზე'], 'redirect_url' => route('actionUsersSignIn')], 200);
-				}
+                if(!empty($UserRestoreData)) {
+                    $User = new User();
+                    $User::find($UserRestoreData->user_id)->update(['password' => Hash::make($Request->reset_password)]);
+                }
+
+                $UserRestoreData = $UserRestore::where('code', $Request->hash_id)->update(['status' => 1]);
+
+				return Response::json(['status' => true, 'redirect_url' => 'https://mallline.io']);
             }
         }
     }

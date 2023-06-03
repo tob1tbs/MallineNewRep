@@ -4,6 +4,8 @@
 	
 	use App\Modules\Users\Models\SocialFacebookAccount;
 	use App\Modules\Users\Models\User;
+
+	use Hash;
 	
 	use Laravel\Socialite\Contracts\User as ProviderUser;
 
@@ -14,7 +16,7 @@
 	        try {
 	            $user = $providerUser;
 	        } catch (\Exception $e) {
-	            return redirect()->route('actionUsersSignIn');
+	            return redirect()->route('actionMainIndex');
 	        }
 
 	        $CheckUser = User::whereEmail($user->email)->first();
@@ -34,7 +36,7 @@
                     'email' => $user->email,
                     'name' => $user_name,
                     'lastname' => $user_lastname,
-                    'password' => md5(rand(1,10000)),
+                    'password' => Hash::make(rand(1,10000)) ,
                     'google_id' => $user->id,
                 ]);
                 return $UserData;

@@ -77,6 +77,20 @@ class ProductsController extends Controller
                 $ProductOptionValueList = $ProductOptionValue::where('deleted_at_int', '!=', '0')->where('active', 1)->get();
             }
 
+            if($Request->has('vendor')) {
+                foreach($Request->vendor as $vendor_key => $vendor_id) {
+					if(count($Request->vendor) == 1) {
+						$ProductList = $ProductList->where('vendor_id', $vendor_id);
+					} else {
+						if($vendor_key == 0) {
+							$ProductList = $ProductList->where('vendor_id', $vendor_id);
+						} else {
+							$ProductList = $ProductList->orWhere('vendor_id', $vendor_id);	
+						}
+					}
+				}					
+            }
+
             if(!empty($Request->sort)) {
                 if($Request->sort == 'DATE_NEW') {
                     $ProductList = $ProductList->orderBy('new_products.id', 'DESC');
@@ -118,6 +132,9 @@ class ProductsController extends Controller
 			
             $ProductBrandList = $ProductBrandList->get();
 
+            $Vendor = new Vendor();
+            $VendorList = $Vendor::where('active', 1)->where('deleted_at_int', '!=', 0)->get();
+
             $data = [
                 'product_list' => $ProductList,
                 'product_all' => $ProductAll,
@@ -125,6 +142,7 @@ class ProductsController extends Controller
                 'product_brand_list' => $ProductBrandList,
                 'product_options_list' => $ProductOptionList,
                 'product_options_value_list' => $ProductOptionValueList,
+                'product_vendor_list' => $VendorList,
                 'seo_data' => $SeoData,
                 'show_list' => $this->showList(),
                 'sort_list' => $this->sortList(),

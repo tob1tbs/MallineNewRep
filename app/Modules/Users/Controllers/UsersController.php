@@ -8,11 +8,17 @@ use App\Http\Controllers\Controller;
 use App\Modules\Users\Models\User;
 use App\Services\SocialFacebookAccountService;
 use App\Services\SocialGoogleAccountService;
+use App\Services\MailSendService;
 
 use App\Modules\Builder\Models\Builder;
 use App\Modules\Main\Models\Wishlist;
 
+use App\Mail\SetupMail;
+
+use App\Modules\Users\Models\UserRestore;
+
 use Auth;
+use Mail;
 use Socialite;
 
 class UsersController extends Controller
@@ -22,7 +28,7 @@ class UsersController extends Controller
         //
     }
 
-    public function actionUsersIndex() {
+    public function actionUsersIndex(MailSendService $m) {
         if(!Auth::check()) {
             return redirect()->route('actionUsersSignIn');
         } else {
@@ -84,6 +90,40 @@ class UsersController extends Controller
             } else {
                 abort('404');
             }
+        }
+    }
+
+    public function actionUsersRestoreSuccess(Request $Request) {
+        if (view()->exists('users.users_password_reset_success')) {
+
+            $data = [
+            ];
+            
+            return view('users.users_password_reset_success', $data);
+        } else {
+            abort('404');
+        }
+    }
+
+    public function actionUsersRestoreHash(Request $Request) {
+        if (view()->exists('users.users_password_reset_form')) {
+
+            $UserRestore = new UserRestore();
+            $UserRestoreData = $UserRestore::where('code', $Request->hash_id)->where('status', 0)->first();
+
+            if(empty($Request->hash_id) OR $Request->hash_id == '') {
+                return redirect('https://mallline.io/');
+            } elseif(empty($UserRestoreData)) {
+                return redirect('https://mallline.io/');
+            } else {
+                $data = [
+
+                ];
+            }
+            
+            return view('users.users_password_reset_form', $data);
+        } else {
+            abort('404');
         }
     }
 

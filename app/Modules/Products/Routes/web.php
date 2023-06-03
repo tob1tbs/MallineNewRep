@@ -1,7 +1,7 @@
 <?php
 
 // GENERAL ROUTES
-Route::group(['middleware' => ['setup'], 'prefix' => LaravelLocalization::setLocale()], function () {
+Route::group(['middleware' => [], 'prefix' => LaravelLocalization::setLocale()], function () {
     Route::group(['prefix' => 'products', 'middleware' => []], function () {
         // PRODUCTS
         Route::get('/view/{product_id}', 'ProductsController@actionProductsView')->name('actionProductsView');
