@@ -43,7 +43,6 @@
                       </path>
                     </svg>
                 </div>  
-                <div class="preloader-text" style="display: none;">მიმდინარეობს მაღაზიის შექმნა გთხოვთ არ გათიშოთ აღნიშნული ფანჯარა, პროცესი ძალიან მალე დასრულდება.</div>
             </div>
         </div>
     </div>
@@ -70,6 +69,7 @@
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane fade show active" id="auth_content" role="tabpanel" aria-labelledby="auth_content_tab">
+                            <div class="auth-login-error"></div>
                             <form autocomplete="off" id="user_signIn">
                                 <div class="styled__CustomInputWrapper-jo9xo0-0 kMBKen undefined" style="margin: 0px 0px 12px;">
                                     <input type="email" name="user_email" id="user_email" class="check-input styled__Input-jo9xo0-1 jTEdgw" placeholder="{{ trans('site.user_email') }} *">
@@ -85,48 +85,56 @@
                             </form>
                         </div>
                         <div class="tab-pane fade" id="registration_content" role="tabpanel" aria-labelledby="registration_content_tab">
+                            <div class="register-login-error"></div>
                             <form autocomplete="off" id="user_signUp">
-                                <div class="styled__CustomInputWrapper-jo9xo0-0 kMBKen" style="margin: 0px 0px 12px;">
-                                    <input type="text" name="modal_user_email" id="modal_user_email" placeholder="{{ trans('site.user_email') }}" class="styled__Input-jo9xo0-1 jTEdgw check-input">
-                                </div>
-                                <div class="passwords">
-                                    <div class="styled__CustomInputWrapper-jo9xo0-0 kMBKen" style="margin: 0px 0px 12px; width: 48%;">
-                                        <input type="text" name="modal_user_name" id="modal_user_name" placeholder="{{ trans('site.name') }}" class="styled__Input-jo9xo0-1 jTEdgw check-input">
+                                <div class="modal-error-item">
+                                    <div class="styled__CustomInputWrapper-jo9xo0-0 kMBKen" style="margin: 0px 0px 12px;">
+                                        <input type="text" name="modal_user_email" id="modal_user_email" placeholder="{{ trans('site.user_email') }}" class="styled__Input-jo9xo0-1 jTEdgw check-input">
                                     </div>
-                                    <div class="styled__CustomInputWrapper-jo9xo0-0 kMBKen" style="margin: 0px 0px 12px; width: 48%;">
-                                        <input type="text" name="modal_user_lastname" id="modal_user_lastname" placeholder="{{ trans('site.lastname') }}" class="styled__Input-jo9xo0-1 jTEdgw check-input">
-                                    </div>
+                                    <span class="text-danger error-message-input error-modal_user_email" style="position: relative; top: -8px; font-size: 12px;"></span>
                                 </div>
-                                <div class="styled__CustomInputWrapper-jo9xo0-0 kMBKen" style="margin: 0px 0px 12px;">
-                                    <input type="text" name="modal_user_personal_id" id="modal_user_personal_id" placeholder="{{ trans('site.user_personal_id') }}" class="styled__Input-jo9xo0-1 jTEdgw check-input">
-                                </div>
-                                <div class="styled__CustomInputWrapper-jo9xo0-0 kMBKen" style="margin: 0px 0px 12px;">
-                                    <input type="date" name="modal_user_bday" id="modal_user_bday" placeholder="{{ trans('site.user_bday') }}" class="styled__Input-jo9xo0-1 jTEdgw check-input">
-                                </div>
-                                <div class="styled__CustomInputWrapper-jo9xo0-0 kMBKen" style="margin: 0px 0px 12px;">
-                                    <input type="text" name="modal_user_phone" id="modal_user_phone" placeholder="{{ trans('site.user_phone') }}" class="styled__Input-jo9xo0-1 jTEdgw check-input">
-                                </div>
-                                <div class="passwords">
-                                    <div class="styled__CustomInputWrapper-jo9xo0-0 kMBKen" style="margin: 0px 0px 12px; width: 48%;">
-                                        <div style="position: absolute; right: 15px; top: 12px; cursor: pointer;" onclick="ShowHidePassword('modal-password2', 'togglePassword2')">
-                                            <i class="fi-rs-eye-crossed togglePassword2"></i>
+                                <div class="passwords row">
+                                    <div class="col-lg-6">
+                                        <div class="styled__CustomInputWrapper-jo9xo0-0 kMBKen" style="margin: 0px 0px 12px; width: 100%;">
+                                            <input type="text" name="modal_user_name" id="modal_user_name" placeholder="{{ trans('site.name') }}" class="styled__Input-jo9xo0-1 jTEdgw check-input">
                                         </div>
-                                        <input type="password" name="modal_user_password" id="modal_user_password" placeholder="{{ trans('site.user_password') }}" class="modal-password2 styled__Input-jo9xo0-1 jwXZdt check-input">
+                                        <span class="text-danger error-message-input error-modal_user_name" style="position: relative; top: -8px; font-size: 12px;"></span>
                                     </div>
-                                    <div class="styled__CustomInputWrapper-jo9xo0-0 kMBKen" style="margin: 0px 0px 12px; width: 48%;">
-                                        <div style="position: absolute; right: 15px; top: 12px; cursor: pointer;" onclick="ShowHidePassword('modal-password3', 'togglePassword3')">
-                                            <i class="fi-rs-eye-crossed togglePassword3"></i>
+                                    <div class="col-lg-6">
+                                        <div class="styled__CustomInputWrapper-jo9xo0-0 kMBKen" style="margin: 0px 0px 12px; width: 100%;">
+                                            <input type="text" name="modal_user_lastname" id="modal_user_lastname" placeholder="{{ trans('site.lastname') }}" class="styled__Input-jo9xo0-1 jTEdgw check-input">
                                         </div>
-                                        <input type="password" name="modal_user_conf_password" id="modal_user_conf_password" placeholder="{{ trans('site.user_password') }}" class="modal-password3 styled__Input-jo9xo0-1 jwXZdt check-input">
+                                        <span class="text-danger error-message-input error-modal_user_lastname" style="position: relative; top: -6px; font-size: 12px;"></span>
+                                    </div>
+                                </div>
+                                <div class="modal-error-item">
+                                    <div class="styled__CustomInputWrapper-jo9xo0-0 kMBKen" style="margin: 0px 0px 12px;">
+                                        <input type="text" name="modal_user_phone" id="modal_user_phone" placeholder="{{ trans('site.user_phone') }}" class="styled__Input-jo9xo0-1 jTEdgw check-input">
+                                        <span class="text-danger error-message-input error-modal_user_phone" style="position: relative; top: -6px; font-size: 12px;"></span>
+                                    </div>
+                                </div>
+                                <div class="passwords row">
+                                    <div class="col-lg-6">
+                                        <div class="styled__CustomInputWrapper-jo9xo0-0 kMBKen" style="margin: 0px 0px 12px; width: 100%;">
+                                            <div style="position: absolute; right: 15px; top: 12px; cursor: pointer;" onclick="ShowHidePassword('modal-password2', 'togglePassword2')">
+                                                <i class="fi-rs-eye-crossed togglePassword2"></i>
+                                            </div>
+                                            <input type="password" name="modal_user_password" id="modal_user_password" placeholder="{{ trans('site.user_password') }}" class="modal-password2 styled__Input-jo9xo0-1 jwXZdt check-input">
+                                            <span class="text-danger error-message-input error-modal_user_password" style="position: relative; top: -6px; font-size: 12px;"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="styled__CustomInputWrapper-jo9xo0-0 kMBKen" style="margin: 0px 0px 12px; width: 100%;">
+                                            <div style="position: absolute; right: 15px; top: 12px; cursor: pointer;" onclick="ShowHidePassword('modal-password3', 'togglePassword3')">
+                                                <i class="fi-rs-eye-crossed togglePassword3"></i>
+                                            </div>
+                                            <input type="password" name="modal_user_conf_password" id="modal_user_conf_password" placeholder="{{ trans('site.user_password') }}" class="modal-password3 styled__Input-jo9xo0-1 jwXZdt check-input">
+                                            <span class="text-danger error-message-input error-modal_user_conf_password" style="position: relative; top: -6px; font-size: 12px;"></span>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="terms mb-10">
-                                    <div class="chek-form">
-                                        <div class="custome-checkbox">
-                                            <input class="form-check-input check-input" type="checkbox" name="modal_user_term_policy" id="modal_user_term_policy" value="1">
-                                            <label class="form-check-label" for="modal_user_term_policy"><span><a href="{{ route('actionMainTerms') }}">{{ trans('site.user_terms') }}</a></span></label>
-                                        </div>
-                                    </div>
+                                    <p style="color: #000; text-align: center; font-size: 13px;">{{ trans('site.user_terms_text') }}<a href="{{ route('actionMainTerms') }}"> {{ trans('site.user_terms') }}</a></p>
                                 </div>
                                 <button class="mb-10 styled__AuthPrimaryBtn-mh0716-2 dCwCil font-neue" type="button" onclick="UserSignUpSubmit()">{{ trans('site.sign-up') }}</button>
                             </form>
@@ -151,7 +159,7 @@
             </div>
         </div>
     </div>
-    <div class="compare-side no-print responsive_compare">
+    <!-- <div class="compare-side no-print responsive_compare">
         <div class="compare-side-blur blur"></div>
         <div class="compare-button" id="comparebtn">
             <span class="rotated">
@@ -191,7 +199,7 @@
             @endif
             <div class="c-circle-right" id="compare-close"></div>
         </div>
-    </div>
+    </div> -->
     <footer class="main">
         <section class="section-padding footer-mid">
             <div class="container pt-15 pb-20">
@@ -201,6 +209,13 @@
                         <ul class="footer-list mb-sm-4 mb-md-0">
                             <li><a href="{{ route('actionMainPrivacy') }}">{{ trans('site.privacy') }}</a></li>
                             <li><a href="{{ route('actionMainTerms') }}">{{ trans('site.terms') }}</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-link-widget col hide">
+                        <h4 class="widget-title font-neue">წესები & პირობები</h4>
+                        <ul class="footer-list mb-sm-4 mb-md-0">
+                            <li><a href="{{ route('actionVendorsIndex') }}">{{ trans('site.vendors') }}</a></li>
+                            <li><a href="{{ route('actionVendorsGuide') }}">{{ trans('site.vendors_guide') }}</a></li>
                         </ul>
                     </div>
                     <div class="footer-link-widget col hide">
@@ -264,9 +279,10 @@
     <script src="{{ asset('assets/js/shop.js?v=5.222') }}"></script>
     @yield('js')
     <script src="{{ asset('assets/scripts/global.js?v=1.1') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.blockUI/2.70/jquery.blockUI.min.js"></script>
     <script type="text/javascript" src="{{ asset('assets/scripts/users_scripts.js') }}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/owl.carousel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/df-number-format/2.1.6/jquery.number.min.js"></script>
     <script>
       window.fbAsyncInit = function() {
         FB.init({
