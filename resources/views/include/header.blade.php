@@ -83,6 +83,12 @@
                                 </a>
                             </div>
                             <div class="header-action-icon-2">
+                                <a class="mini-cart-icon" data-toggle="tooltip" data-placement="top" title="{{ trans('site.cart') }}" href="{{ route('actionMainCart') }}">
+                                    <img alt="Molline" src="{{ asset('/assets/imgs/theme/icons/icon-cart.svg') }}" width="24" height="24"/>
+                                    <span class="pro-count blue cart-item-count">{{ Cart::getTotalQuantity() }}</span>
+                                </a>
+                            </div>
+                            <div class="header-action-icon-2">
                                 <a class="mini-cart-icon" data-toggle="tooltip" data-placement="top" title="{{ trans('site.wishlist') }}" href="{{ route('actionMainWishlist') }}">
                                     <img alt="Molline" src="{{ asset('/assets/imgs/theme/icons/icon-heart.svg') }}" width="24" height="24"/>
                                     <span class="pro-count blue wishlist_counter1">{{ $wishlist_count }}</span>
