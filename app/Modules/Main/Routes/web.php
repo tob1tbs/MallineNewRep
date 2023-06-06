@@ -1,7 +1,7 @@
 <?php
 
 // GENERAL ROUTES
-Route::group(['middleware' => [], 'prefix' => LaravelLocalization::setLocale()], function () {
+Route::group(['middleware' => ['setup'], 'prefix' => LaravelLocalization::setLocale()], function () {
     Route::get('/', 'MainController@actionMainIndex')->name('actionMainIndex');
     Route::get('/checkout', 'MainController@actionMainCheckout')->name('actionMainCheckout');
     Route::get('/cart', 'MainController@actionMainCart')->name('actionMainCart');
