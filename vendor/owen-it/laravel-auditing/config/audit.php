@@ -38,7 +38,7 @@ return [
     | Audit Resolvers
     |--------------------------------------------------------------------------
     |
-    | Define the User, IP Address, User Agent and URL resolver implementations.
+    | Define the IP Address, User Agent and URL resolver implementations.
     |
     */
     'resolvers' => [
@@ -96,7 +96,8 @@ return [
     |
     | Some events may be empty on purpose. Use allowed_empty_values to exclude
     | those from the empty values check. For example when auditing
-    | model retrieved events which will never have new and old values
+    | model retrieved events which will never have new and old values.
+    |
     |
     */
 

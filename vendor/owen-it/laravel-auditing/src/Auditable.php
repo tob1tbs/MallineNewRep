@@ -17,8 +17,6 @@ use OwenIt\Auditing\Exceptions\AuditingException;
 
 trait Auditable
 {
-
-
     /**
      * Auditable attributes excluded from the Audit.
      *
@@ -65,7 +63,7 @@ trait Auditable
      */
     public static function bootAuditable()
     {
-        if (!self::$auditingDisabled && static::isAuditingEnabled()) {
+        if (static::isAuditingEnabled()) {
             static::observe(new AuditableObserver());
         }
     }
@@ -117,7 +115,12 @@ trait Auditable
 
         foreach ($attributes as $attribute => $value) {
             // Apart from null, non scalar values will be excluded
-            if (is_array($value) || (is_object($value) && !method_exists($value, '__toString'))) {
+            if (
+                is_array($value) ||
+                (is_object($value) &&
+                    !method_exists($value, '__toString') &&
+                    !($value instanceof \UnitEnum))
+            ) {
                 $this->excludedAttributes[] = $attribute;
             }
         }
@@ -356,6 +359,14 @@ trait Auditable
     {
         $userResolver = Config::get('audit.user.resolver');
 
+        if (is_null($userResolver) && Config::has('audit.resolver') && !Config::has('audit.user.resolver')) {
+            trigger_error(
+                'The config file audit.php is not updated to the new version 13.0. Please see https://laravel-auditing.com/guide/upgrading.html',
+                E_USER_DEPRECATED
+            );
+            $userResolver = Config::get('audit.resolver.user');
+        }
+
         if (is_subclass_of($userResolver, \OwenIt\Auditing\Contracts\UserResolver::class)) {
             return call_user_func([$userResolver, 'resolve']);
         }
@@ -366,7 +377,16 @@ trait Auditable
     protected function runResolvers(): array
     {
         $resolved = [];
-        foreach (Config::get('audit.resolvers', []) as $name => $implementation) {
+        $resolvers = Config::get('audit.resolvers', []);
+        if (empty($resolvers) && Config::has('audit.resolver')) {
+            trigger_error(
+                'The config file audit.php is not updated to the new version 13.0. Please see https://laravel-auditing.com/guide/upgrading.html',
+                E_USER_DEPRECATED
+            );
+            $resolvers = Config::get('audit.resolver', []);
+        }
+
+        foreach ($resolvers as $name => $implementation) {
             if (empty($implementation)) {
                 continue;
             }
@@ -570,8 +590,10 @@ trait Auditable
         // The Audit must be for this specific Auditable model
         if ($this->getKey() !== $audit->auditable_id) {
             throw new AuditableTransitionException(sprintf(
-                'Expected Auditable id %s, got %s instead',
+                'Expected Auditable id (%s)%s, got (%s)%s instead',
+                gettype($this->getKey()),
                 $this->getKey(),
+                gettype($audit->auditable_id),
                 $audit->auditable_id
             ));
         }
@@ -639,6 +661,7 @@ trait Auditable
             $relationName => $this->{$relationName}()->get()->isEmpty() ? [] : $this->{$relationName}()->get()->toArray()
         ];
         Event::dispatch(AuditCustom::class, [$this]);
+        $this->isCustomEvent = false;
     }
 
     /**
@@ -664,6 +687,7 @@ trait Auditable
             $relationName => $this->{$relationName}()->get()->isEmpty() ? [] : $this->{$relationName}()->get()->toArray()
         ];
         Event::dispatch(AuditCustom::class, [$this]);
+        $this->isCustomEvent = false;
         return empty($results) ? 0 : $results;
     }
 
@@ -671,6 +695,7 @@ trait Auditable
      * @param $relationName
      * @param \Illuminate\Support\Collection|\Illuminate\Database\Eloquent\Model|array $ids
      * @param bool $detaching
+     * @param bool $skipUnchanged
      * @return array
      * @throws AuditingException
      */
@@ -681,21 +706,33 @@ trait Auditable
         }
 
         $this->auditEvent = 'sync';
-        $this->isCustomEvent = true;
+
         $this->auditCustomOld = [
             $relationName => $this->{$relationName}()->get()->isEmpty() ? [] : $this->{$relationName}()->get()->toArray()
         ];
+
         $changes = $this->{$relationName}()->sync($ids, $detaching);
-        $this->auditCustomNew = [
-            $relationName => $this->{$relationName}()->get()->isEmpty() ? [] : $this->{$relationName}()->get()->toArray()
-        ];
+
+        if (collect($changes)->flatten()->isEmpty()) {
+            $this->auditCustomOld = [];
+            $this->auditCustomNew = [];
+        } else {
+            $this->auditCustomNew = [
+                $relationName => $this->{$relationName}()->get()->isEmpty() ? [] : $this->{$relationName}()->get()->toArray()
+            ];
+        }
+
+        $this->isCustomEvent = true;
         Event::dispatch(AuditCustom::class, [$this]);
+        $this->isCustomEvent = false;
+
         return $changes;
     }
 
     /**
      * @param string $relationName
      * @param \Illuminate\Support\Collection|\Illuminate\Database\Eloquent\Model|array $ids
+     * @param bool $skipUnchanged
      * @return array
      * @throws AuditingException
      */
