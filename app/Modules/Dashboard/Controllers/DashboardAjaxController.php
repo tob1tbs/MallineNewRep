@@ -66,6 +66,8 @@ class DashboardAjaxController extends Controller
 
             Artisan::call('storage:link');
 
+            $Request->session()->flush();
+
             $Host = substr(env("APP_URL"), 8);
             $WebParameter = new WebParameter();
             $WebParameter::find(1)->update(['host' => $Host, 'prestage' => 1]);
