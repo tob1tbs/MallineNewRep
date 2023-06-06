@@ -108,14 +108,17 @@
                                         <div class="col-md-6 mb-1">
                                             <label class="form-label font-helvetica" for="admin_name">თქვენი სახელი</label>
                                             <input type="text" name="admin_name" id="admin_name" class="form-control check-input">
+                                            <span id="admin_name_text" class="ajax-error-text error"></span>
                                         </div>
                                         <div class="col-md-6 mb-1">
                                             <label class="form-label font-helvetica" for="admin_lastname">თქვენი გვარი</label>
                                             <input type="email" name="admin_lastname" id="admin_lastname" class="form-control check-input">
+                                            <span id="admin_name_text" class="ajax-error-text error"></span>
                                         </div>
                                         <div class="col-md-12">
                                             <label class="form-label font-helvetica" for="admin_email">ელ-ფოსტა</label>
                                             <input type="email" name="admin_email" id="admin_email" class="form-control check-input">
+                                            <span id="admin_email_text" class="ajax-error-text error"></span>
                                         </div>
                                         <div class="col-md-6 mb-1">
                                             <label class="form-label font-helvetica" for="password">პაროლი</label>
@@ -123,6 +126,7 @@
                                                 <input type="password" name="admin_password" id="admin_password" class="form-control" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" />
                                                 <span class="input-group-text cursor-pointer"><i data-feather="eye"></i></span>
                                             </div>
+                                            <span id="admin_password_text" class="ajax-error-text error"></span>
                                         </div>
                                         <div class="col-md-6 mb-1">
                                             <label class="form-label font-helvetica" for="confirm-password">პაროლის განმეორება</label>
@@ -130,6 +134,7 @@
                                                 <input type="password" name="admin_cpassword" id="admin_cpassword" class="form-control" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" />
                                                 <span class="input-group-text cursor-pointer"><i data-feather="eye"></i></span>
                                             </div>
+                                            <span id="admin_cpassword_text" class="ajax-error-text error"></span>
                                         </div>
                                     </div>
                                     <span class="bs-stepper-label" style="margin: 10px 0"> 
@@ -139,14 +144,17 @@
                                         <div class="col-md-6 mb-1">
                                             <label class="form-label font-helvetica" for="name_ge">ვებ გვერდის დასახელება (ქართულად)</label>
                                             <input type="text" name="name_ge" id="name_ge" class="form-control check-input">
+                                            <span id="name_ge_text" class="ajax-error-text error"></span>
                                         </div>
                                         <div class="col-md-6 mb-1">
                                             <label class="form-label font-helvetica" for="name_en">ვებ გვერდის დასახელება (ინგლისურად)</label>
                                             <input type="email" name="name_en" id="name_en" class="form-control check-input">
+                                            <span id="name_en_text" class="ajax-error-text error"></span>
                                         </div>
                                         <div class="col-md-12">
                                             <label class="form-label font-helvetica" for="logotype">აირჩიეთ ლოგოს სურათო</label>
                                             <input type="file" name="logotype" id="logotype" class="form-control check-input">
+                                            <span id="logotype_text" class="ajax-error-text error"></span>
                                         </div>
                                     </div>
                                     <span class="bs-stepper-label" style="margin: 10px 0"> 
@@ -156,14 +164,17 @@
                                         <div class="col-md-6 mb-1">
                                             <label class="form-label font-helvetica" for="{{ $info_parameter[0]->key }}">ელ-ფოსტა</label>
                                             <input type="text" name="{{ $info_parameter[0]->key }}" id="{{ $info_parameter[0]->key }}" class="form-control check-input">
+                                            <span id="{{ $info_parameter[0]->key }}_text" class="ajax-error-text error"></span>
                                         </div>
                                         <div class="col-md-6 mb-1">
                                             <label class="form-label font-helvetica" for="{{ $info_parameter[1]->key }}">ტელეფონის ნომერი</label>
                                             <input type="email" name="{{ $info_parameter[1]->key }}" id="{{ $info_parameter[1]->key }}" class="form-control check-input">
+                                            <span id="{{ $info_parameter[1]->key }}_text" class="ajax-error-text error"></span>
                                         </div>
                                         <div class="col-md-12">
                                             <label class="form-label font-helvetica" for="{{ $info_parameter[2]->key }}">მისამართი</label>
                                             <input type="email" name="{{ $info_parameter[2]->key }}" id="{{ $info_parameter[2]->key }}" class="form-control check-input">
+                                            <span id="{{ $info_parameter[2]->key }}_text" class="ajax-error-text error"></span>
                                         </div>
                                     </div>
                                     <button class="btn btn-success font-neue mt-1" type="button" onclick="SaveSetup()">შექმენი</button>
@@ -233,17 +244,29 @@
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
+                beforeSend: function() {
+                    $('#setup_form').block({
+                        message: '<div class="spinner-border text-primary" role="status"></div>',
+                        css: {
+                          backgroundColor: 'transparent',
+                          border: '0'
+                        },
+                        overlayCSS: {
+                          backgroundColor: '#fff',
+                          opacity: 0.8
+                        }
+                    });
+                },
                 success: function(data) {
+                    $("#setup_form").unblock();
+                    $(".ajax-error-text").html('');
                     if(data['status'] == true) {
                         window.location.href = data['redirect_url'];
                     } else {
                         $(".check-input").removeClass('input-error');
                         $.each(data['message'], function(key, value) {
-                            toastr['error'](value, 'დაფიქსირდა შეცდომა!', {
-                              closeButton: false,
-                              tapToDismiss: true,
-                            });
                             $('#'+key).addClass('input-error');
+                            $('#'+key+'_text').append(value);
                         })
                     }
                 }

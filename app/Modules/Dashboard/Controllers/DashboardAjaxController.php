@@ -41,7 +41,7 @@ class DashboardAjaxController extends Controller
             'email.required' => 'გთხოვთ შეავსოთ საკონტაქტო ელ-ფოსტა',
             'phone.required' => 'გთხოვთ შეავსოთ საკონტაქტო ტელეფონის ნომერი',
             'admin_password.min' => trans('site.password_lengh_min'),
-            'admin_cpassword.same' => trans('site.password_dont_mach'),
+            'admin_password.same' => trans('site.password_dont_mach'),
             'logotype.required' => 'გთხოვთ აირჩიოთ ლოგო',
             'logotype.mimes' => 'ლოგოს ფორმატი არასწორია, დასაშვები ფორმატებია: jpeg, jpg, png, gif',
             'logotype.dimensions' => 'ლოგოს ზომები არასწორია, დასაშვები ზომებია: 280px X 65px',
@@ -49,11 +49,9 @@ class DashboardAjaxController extends Controller
         $validator = Validator::make($Request->all(), [
             'admin_name' => 'required|max:255',
             'admin_lastname' => 'required|max:255',
-            'admin_personal_id' => 'required|max:255',
-            'admin_bdate' => 'required|max:255',
             'admin_email' => 'required|max:255',
-            'admin_phone' => 'required|max:255',
             'admin_password' => 'min:6|same:admin_cpassword|required_with:admin_password',
+            'admin_cpassword' => 'required',
             'name_ge' => 'required|max:255',
             'name_en' => 'required|max:255',
             'email' => 'required|max:255',
@@ -131,7 +129,7 @@ class DashboardAjaxController extends Controller
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
-          CURLOPT_URL => 'https://mallline.ge/builder/api/parameters',
+          CURLOPT_URL => 'https://mallline.io/builder/api/parameters',
           CURLOPT_RETURNTRANSFER => true,
           CURLOPT_ENCODING => '',
           CURLOPT_MAXREDIRS => 10,
@@ -155,7 +153,7 @@ class DashboardAjaxController extends Controller
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
-          CURLOPT_URL => 'https://dashboard.mallline.ge/products/ajax/delete/api',
+          CURLOPT_URL => 'https://dashboard.mallline.io/products/ajax/delete/api',
           CURLOPT_RETURNTRANSFER => true,
           CURLOPT_ENCODING => '',
           CURLOPT_MAXREDIRS => 10,
@@ -176,7 +174,7 @@ class DashboardAjaxController extends Controller
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
-          CURLOPT_URL => 'https://dashboard.mallline.ge/products/ajax/submit/api',
+          CURLOPT_URL => 'https://dashboard.mallline.io/products/ajax/submit/api',
           CURLOPT_RETURNTRANSFER => true,
           CURLOPT_ENCODING => '',
           CURLOPT_MAXREDIRS => 10,
