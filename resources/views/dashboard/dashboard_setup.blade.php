@@ -10,7 +10,7 @@
     <meta name="description" content="Vuexy admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
     <meta name="keywords" content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
-    <title>Register Multi Steps Page - Vuexy - Bootstrap HTML admin template</title>
+    <title>Mallline Setup</title>
     <link rel="apple-touch-icon" href="{{ asset('assets-dashboard/images/ico/apple-icon-120.png') }}">
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets-dashboard/images/ico/favicon.ico') }}">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600" rel="stylesheet">
@@ -35,11 +35,14 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets-dashboard/css/plugins/forms/form-wizard.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets-dashboard/css/plugins/forms/form-validation.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets-dashboard/css/pages/authentication.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets-dashboard/vendors/css/extensions/toastr.min.css') }}">
     <!-- END: Page CSS-->
 
     <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets-dashboard/css/style.css') }}">
     <!-- END: Custom CSS-->
+
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
 </head>
 <!-- END: Head-->
@@ -97,384 +100,74 @@
                         <!-- Register-->
                         <div class="col-lg-9 d-flex align-items-center auth-bg px-2 px-sm-3 px-lg-5 pt-3">
                             <div class="mx-auto">
-                                <div class="bs-stepper register-multi-steps-wizard shadow-none">
-                                    <div class="bs-stepper-header px-0" role="tablist">
-                                        <div class="step" data-target="#account-details" role="tab" id="account-details-trigger">
-                                            <button type="button" class="step-trigger">
-                                                <span class="bs-stepper-box">
-                                                    <i data-feather="home" class="font-medium-3"></i>
-                                                </span>
-                                                <span class="bs-stepper-label">
-                                                    <span class="bs-stepper-title font-neue">თქვენი პირველი მომხმარებელი</span>
-                                                </span>
-                                            </button>
+                                <form class="bs-stepper register-multi-steps-wizard shadow-none" id="setup_form">
+                                    <span class="bs-stepper-label" style="margin: 10px 0"> 
+                                        <span class="bs-stepper-title font-neue"><b>თქვენი პირველი მომხმარებელი</b></span>
+                                    </span>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-1">
+                                            <label class="form-label font-helvetica" for="admin_name">თქვენი სახელი</label>
+                                            <input type="text" name="admin_name" id="admin_name" class="form-control check-input">
                                         </div>
-                                        <div class="line">
-                                            <i data-feather="chevron-right" class="font-medium-2"></i>
+                                        <div class="col-md-6 mb-1">
+                                            <label class="form-label font-helvetica" for="admin_lastname">თქვენი გვარი</label>
+                                            <input type="email" name="admin_lastname" id="admin_lastname" class="form-control check-input">
                                         </div>
-                                        <div class="step" data-target="#personal-info" role="tab" id="personal-info-trigger">
-                                            <button type="button" class="step-trigger">
-                                                <span class="bs-stepper-box">
-                                                    <i data-feather="user" class="font-medium-3"></i>
-                                                </span>
-                                                <span class="bs-stepper-label">
-                                                    <span class="bs-stepper-title font-neue">ძირითადი პარამეტრები</span>
-                                                </span>
-                                            </button>
+                                        <div class="col-md-12">
+                                            <label class="form-label font-helvetica" for="admin_email">ელ-ფოსტა</label>
+                                            <input type="email" name="admin_email" id="admin_email" class="form-control check-input">
                                         </div>
-                                        <div class="line">
-                                            <i data-feather="chevron-right" class="font-medium-2"></i>
-                                        </div>
-                                        <div class="step" data-target="#billing" role="tab" id="billing-trigger">
-                                            <button type="button" class="step-trigger">
-                                                <span class="bs-stepper-box">
-                                                    <i data-feather="credit-card" class="font-medium-3"></i>
-                                                </span>
-                                                <span class="bs-stepper-label">
-                                                    <span class="bs-stepper-title font-neue">საკონტაქტო ინფორმაცია</span>
-                                                </span>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div class="bs-stepper-content px-0 mt-4">
-                                        <div id="account-details" class="content" role="tabpanel" aria-labelledby="account-details-trigger">
-                                            <div class="row">
-                                                <div class="col-md-6 mb-1">
-                                                    <label class="form-label font-helvetica" for="admin_name">თქვენი სახელი</label>
-                                                    <input type="text" name="admin_name" id="admin_name" class="form-control">
-                                                </div>
-                                                <div class="col-md-6 mb-1">
-                                                    <label class="form-label font-helvetica" for="admin_lastname">თქვენი გვარი</label>
-                                                    <input type="email" name="admin_lastname" id="admin_lastname" class="form-control">
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <label class="form-label font-helvetica" for="admin_email">ელ-ფოსტა</label>
-                                                    <input type="email" name="admin_email" id="admin_email" class="form-control">
-                                                </div>
-                                                <div class="col-md-6 mb-1">
-                                                    <label class="form-label font-helvetica" for="password">პაროლი</label>
-                                                    <div class="input-group input-group-merge form-password-toggle">
-                                                        <input type="password" name="password" id="password" class="form-control" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" />
-                                                        <span class="input-group-text cursor-pointer"><i data-feather="eye"></i></span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6 mb-1">
-                                                    <label class="form-label font-helvetica" for="confirm-password">პაროლის განმეორება</label>
-                                                    <div class="input-group input-group-merge form-password-toggle">
-                                                        <input type="password" name="confirm-password" id="confirm-password" class="form-control" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" />
-                                                        <span class="input-group-text cursor-pointer"><i data-feather="eye"></i></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="d-flex justify-content-between mt-2">
-                                                <button class="btn btn-outline-secondary" disabled>
-                                                    <i data-feather="chevron-left" class="align-middle me-sm-25 me-0"></i>
-                                                    <span class="align-middle d-sm-inline-block d-none font-neue back">უკან დაბრუნება</span>
-                                                </button>
-                                                <button class="btn btn-primary">
-                                                    <span class="align-middle d-sm-inline-block d-none font-neue continue">გაგრძელება</span>
-                                                    <i data-feather="chevron-right" class="align-middle ms-sm-25 ms-0"></i>
-                                                </button>
+                                        <div class="col-md-6 mb-1">
+                                            <label class="form-label font-helvetica" for="password">პაროლი</label>
+                                            <div class="input-group input-group-merge form-password-toggle">
+                                                <input type="password" name="admin_password" id="admin_password" class="form-control" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" />
+                                                <span class="input-group-text cursor-pointer"><i data-feather="eye"></i></span>
                                             </div>
                                         </div>
-                                        <div id="personal-info" class="content" role="tabpanel" aria-labelledby="personal-info-trigger">
-                                            <div class="content-header mb-2">
-                                                <h2 class="fw-bolder mb-75">Personal Information</h2>
-                                                <span>Enter your Information</span>
-                                            </div>
-                                            <form>
-                                                <div class="row">
-                                                    <div class="mb-1 col-md-6">
-                                                        <label class="form-label" for="first-name">First Name</label>
-                                                        <input type="text" name="first-name" id="first-name" class="form-control" placeholder="John" />
-                                                    </div>
-                                                    <div class="mb-1 col-md-6">
-                                                        <label class="form-label" for="last-name">Last Name</label>
-                                                        <input type="text" name="last-name" id="last-name" class="form-control" placeholder="Doe" />
-                                                    </div>
-                                                    <div class="col-md-6 mb-1">
-                                                        <label class="form-label" for="mobile-number">Mobile number</label>
-                                                        <input type="text" name="mobile-number" id="mobile-number" class="form-control mobile-number-mask" placeholder="(472) 765-3654" />
-                                                    </div>
-                                                    <div class="col-md-6 mb-1">
-                                                        <label class="form-label" for="pin-code">PIN code</label>
-                                                        <input type="text" name="pin-code" id="pin-code" class="form-control pin-code-mask" placeholder="Code" maxlength="6" />
-                                                    </div>
-
-                                                    <div class="col-12 mb-1">
-                                                        <label class="form-label" for="home-address">Home Address</label>
-                                                        <input type="text" name="home-address" id="home-address" class="form-control" placeholder="Address" />
-                                                    </div>
-
-                                                    <div class="col-12 mb-1">
-                                                        <label class="form-label" for="area-address">Area, Street, Sector, Village</label>
-                                                        <input type="text" name="area-address" id="area-address" class="form-control" placeholder="Area, Street, Sector, Village" />
-                                                    </div>
-
-                                                    <div class="mb-1 col-md-6">
-                                                        <label class="form-label" for="town-city">Town/City</label>
-                                                        <input type="text" name="town-city" id="town-city" class="form-control" placeholder="Town/City" />
-                                                    </div>
-                                                    <div class="mb-1 col-md-6">
-                                                        <label class="form-label" for="country">Country</label>
-                                                        <select class="select2 w-100" name="country" id="country">
-                                                            <option value="" label="blank"></option>
-                                                            <option value="AK">Alaska</option>
-                                                            <option value="HI">Hawaii</option>
-                                                            <option value="CA">California</option>
-                                                            <option value="NV">Nevada</option>
-                                                            <option value="OR">Oregon</option>
-                                                            <option value="WA">Washington</option>
-                                                            <option value="AZ">Arizona</option>
-                                                            <option value="CO">Colorado</option>
-                                                            <option value="ID">Idaho</option>
-                                                            <option value="MT">Montana</option>
-                                                            <option value="NE">Nebraska</option>
-                                                            <option value="NM">New Mexico</option>
-                                                            <option value="ND">North Dakota</option>
-                                                            <option value="UT">Utah</option>
-                                                            <option value="WY">Wyoming</option>
-                                                            <option value="AL">Alabama</option>
-                                                            <option value="AR">Arkansas</option>
-                                                            <option value="IL">Illinois</option>
-                                                            <option value="IA">Iowa</option>
-                                                            <option value="KS">Kansas</option>
-                                                            <option value="KY">Kentucky</option>
-                                                            <option value="LA">Louisiana</option>
-                                                            <option value="MN">Minnesota</option>
-                                                            <option value="MS">Mississippi</option>
-                                                            <option value="MO">Missouri</option>
-                                                            <option value="OK">Oklahoma</option>
-                                                            <option value="SD">South Dakota</option>
-                                                            <option value="TX">Texas</option>
-                                                            <option value="TN">Tennessee</option>
-                                                            <option value="WI">Wisconsin</option>
-                                                            <option value="CT">Connecticut</option>
-                                                            <option value="DE">Delaware</option>
-                                                            <option value="FL">Florida</option>
-                                                            <option value="GA">Georgia</option>
-                                                            <option value="IN">Indiana</option>
-                                                            <option value="ME">Maine</option>
-                                                            <option value="MD">Maryland</option>
-                                                            <option value="MA">Massachusetts</option>
-                                                            <option value="MI">Michigan</option>
-                                                            <option value="NH">New Hampshire</option>
-                                                            <option value="NJ">New Jersey</option>
-                                                            <option value="NY">New York</option>
-                                                            <option value="NC">North Carolina</option>
-                                                            <option value="OH">Ohio</option>
-                                                            <option value="PA">Pennsylvania</option>
-                                                            <option value="RI">Rhode Island</option>
-                                                            <option value="SC">South Carolina</option>
-                                                            <option value="VT">Vermont</option>
-                                                            <option value="VA">Virginia</option>
-                                                            <option value="WV">West Virginia</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </form>
-
-                                            <div class="d-flex justify-content-between mt-2">
-                                                <button class="btn btn-primary btn-prev">
-                                                    <i data-feather="chevron-left" class="align-middle me-sm-25 me-0"></i>
-                                                    <span class="align-middle d-sm-inline-block d-none">Previous</span>
-                                                </button>
-                                                <button class="btn btn-primary btn-next">
-                                                    <span class="align-middle d-sm-inline-block d-none">Next</span>
-                                                    <i data-feather="chevron-right" class="align-middle ms-sm-25 ms-0"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <div id="billing" class="content" role="tabpanel" aria-labelledby="billing-trigger">
-                                            <div class="content-header mb-2">
-                                                <h2 class="fw-bolder mb-75">Select Plan</h2>
-                                                <span>Select plan as per your retirement</span>
-                                            </div>
-
-                                            <form>
-                                                <!-- select plan options -->
-                                                <div class="row custom-options-checkable gx-3 gy-2">
-                                                    <div class="col-md-4">
-                                                        <input class="custom-option-item-check" type="radio" name="plans" id="basicPlan" value="" />
-                                                        <label class="custom-option-item text-center p-1" for="basicPlan">
-                                                            <span class="custom-option-item-title h3 fw-bolder">Basic</span>
-                                                            <span class="d-block m-75">A simple start for everyone</span>
-                                                            <span class="plan-price">
-                                                                <sup class="font-medium-1 fw-bold text-primary">$</sup>
-                                                                <span class="pricing-value fw-bolder text-primary">0</span>
-                                                                <sub class="pricing-duration text-body font-medium-1 fw-bold">/month</sub>
-                                                            </span>
-                                                        </label>
-                                                    </div>
-
-                                                    <div class="col-md-4">
-                                                        <input class="custom-option-item-check" type="radio" name="plans" id="standardPlan" value="" checked />
-                                                        <label class="custom-option-item text-center p-1" for="standardPlan">
-                                                            <span class="custom-option-item-title h3 fw-bolder">Standard</span>
-                                                            <span class="d-block m-75">For small to medium businesses</span>
-                                                            <span class="plan-price">
-                                                                <sup class="font-medium-1 fw-bold text-primary">$</sup>
-                                                                <span class="pricing-value fw-bolder text-primary">99</span>
-                                                                <sub class="pricing-duration text-body font-medium-1 fw-bold">/month</sub>
-                                                            </span>
-                                                        </label>
-                                                    </div>
-
-                                                    <div class="col-md-4">
-                                                        <input class="custom-option-item-check" type="radio" name="plans" id="enterprisePlan" value="" />
-                                                        <label class="custom-option-item text-center p-1" for="enterprisePlan">
-                                                            <span class="custom-option-item-title h3 fw-bolder">Enterprise</span>
-                                                            <span class="d-block m-75">Solution for big organizations</span>
-                                                            <span class="plan-price">
-                                                                <sup class="font-medium-1 fw-bold text-primary">$</sup>
-                                                                <span class="pricing-value fw-bolder text-primary">499</span>
-                                                                <sub class="pricing-duration text-body font-medium-1 fw-bold">/month</sub>
-                                                            </span>
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                                <!-- / select plan options -->
-
-                                                <div class="content-header my-2 py-1">
-                                                    <h2 class="fw-bolder mb-75">Payment Information</h2>
-                                                    <span>Enter your card Information</span>
-                                                </div>
-
-                                                <div class="row gx-2">
-                                                    <div class="col-12 mb-1">
-                                                        <label class="form-label" for="addCardNumber">Card Number</label>
-                                                        <div class="input-group input-group-merge">
-                                                            <input id="addCardNumber" name="addCard" class="form-control credit-card-mask" type="text" placeholder="1356 3215 6548 7898" aria-describedby="addCard" data-msg="Please enter your credit card number" />
-                                                            <span class="input-group-text cursor-pointer p-25" id="addCard">
-                                                                <span class="card-type"></span>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-md-6 mb-1">
-                                                        <label class="form-label" for="addCardName">Name On Card</label>
-                                                        <input type="text" id="addCardName" class="form-control" placeholder="John Doe" />
-                                                    </div>
-
-                                                    <div class="col-6 col-md-3 mb-1">
-                                                        <label class="form-label" for="addCardExpiryDate">Exp. Date</label>
-                                                        <input type="text" id="addCardExpiryDate" class="form-control expiry-date-mask" placeholder="MM/YY" />
-                                                    </div>
-
-                                                    <div class="col-6 col-md-3 mb-1">
-                                                        <label class="form-label" for="addCardCvv">CVV</label>
-                                                        <input type="text" id="addCardCvv" class="form-control cvv-code-mask" maxlength="3" placeholder="654" />
-                                                    </div>
-                                                </div>
-                                            </form>
-
-                                            <div class="d-flex justify-content-between mt-1">
-                                                <button class="btn btn-primary btn-prev">
-                                                    <i data-feather="chevron-left" class="align-middle me-sm-25 me-0"></i>
-                                                    <span class="align-middle d-sm-inline-block d-none">Previous</span>
-                                                </button>
-                                                <button class="btn btn-success btn-submit">
-                                                    <i data-feather="check" class="align-middle me-sm-25 me-0"></i>
-                                                    <span class="align-middle d-sm-inline-block d-none">Submit</span>
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <div id="logo" class="content" role="tabpanel" aria-labelledby="logo-trigger">
-                                            <div class="content-header mb-2">
-                                                <h2 class="fw-bolder mb-75">Select Plan</h2>
-                                                <span>Select plan as per your retirement</span>
-                                            </div>
-
-                                            <form>
-                                                <!-- select plan options -->
-                                                <div class="row custom-options-checkable gx-3 gy-2">
-                                                    <div class="col-md-4">
-                                                        <input class="custom-option-item-check" type="radio" name="plans" id="basicPlan" value="" />
-                                                        <label class="custom-option-item text-center p-1" for="basicPlan">
-                                                            <span class="custom-option-item-title h3 fw-bolder">Basic</span>
-                                                            <span class="d-block m-75">A simple start for everyone</span>
-                                                            <span class="plan-price">
-                                                                <sup class="font-medium-1 fw-bold text-primary">$</sup>
-                                                                <span class="pricing-value fw-bolder text-primary">0</span>
-                                                                <sub class="pricing-duration text-body font-medium-1 fw-bold">/month</sub>
-                                                            </span>
-                                                        </label>
-                                                    </div>
-
-                                                    <div class="col-md-4">
-                                                        <input class="custom-option-item-check" type="radio" name="plans" id="standardPlan" value="" checked />
-                                                        <label class="custom-option-item text-center p-1" for="standardPlan">
-                                                            <span class="custom-option-item-title h3 fw-bolder">Standard</span>
-                                                            <span class="d-block m-75">For small to medium businesses</span>
-                                                            <span class="plan-price">
-                                                                <sup class="font-medium-1 fw-bold text-primary">$</sup>
-                                                                <span class="pricing-value fw-bolder text-primary">99</span>
-                                                                <sub class="pricing-duration text-body font-medium-1 fw-bold">/month</sub>
-                                                            </span>
-                                                        </label>
-                                                    </div>
-
-                                                    <div class="col-md-4">
-                                                        <input class="custom-option-item-check" type="radio" name="plans" id="enterprisePlan" value="" />
-                                                        <label class="custom-option-item text-center p-1" for="enterprisePlan">
-                                                            <span class="custom-option-item-title h3 fw-bolder">Enterprise</span>
-                                                            <span class="d-block m-75">Solution for big organizations</span>
-                                                            <span class="plan-price">
-                                                                <sup class="font-medium-1 fw-bold text-primary">$</sup>
-                                                                <span class="pricing-value fw-bolder text-primary">499</span>
-                                                                <sub class="pricing-duration text-body font-medium-1 fw-bold">/month</sub>
-                                                            </span>
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                                <!-- / select plan options -->
-
-                                                <div class="content-header my-2 py-1">
-                                                    <h2 class="fw-bolder mb-75">Payment Information</h2>
-                                                    <span>Enter your card Information</span>
-                                                </div>
-
-                                                <div class="row gx-2">
-                                                    <div class="col-12 mb-1">
-                                                        <label class="form-label" for="addCardNumber">Card Number</label>
-                                                        <div class="input-group input-group-merge">
-                                                            <input id="addCardNumber" name="addCard" class="form-control credit-card-mask" type="text" placeholder="1356 3215 6548 7898" aria-describedby="addCard" data-msg="Please enter your credit card number" />
-                                                            <span class="input-group-text cursor-pointer p-25" id="addCard">
-                                                                <span class="card-type"></span>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-md-6 mb-1">
-                                                        <label class="form-label" for="addCardName">Name On Card</label>
-                                                        <input type="text" id="addCardName" class="form-control" placeholder="John Doe" />
-                                                    </div>
-
-                                                    <div class="col-6 col-md-3 mb-1">
-                                                        <label class="form-label" for="addCardExpiryDate">Exp. Date</label>
-                                                        <input type="text" id="addCardExpiryDate" class="form-control expiry-date-mask" placeholder="MM/YY" />
-                                                    </div>
-
-                                                    <div class="col-6 col-md-3 mb-1">
-                                                        <label class="form-label" for="addCardCvv">CVV</label>
-                                                        <input type="text" id="addCardCvv" class="form-control cvv-code-mask" maxlength="3" placeholder="654" />
-                                                    </div>
-                                                </div>
-                                            </form>
-
-                                            <div class="d-flex justify-content-between mt-1">
-                                                <button class="btn btn-primary btn-prev">
-                                                    <i data-feather="chevron-left" class="align-middle me-sm-25 me-0"></i>
-                                                    <span class="align-middle d-sm-inline-block d-none">Previous</span>
-                                                </button>
-                                                <button class="btn btn-success btn-submit">
-                                                    <i data-feather="check" class="align-middle me-sm-25 me-0"></i>
-                                                    <span class="align-middle d-sm-inline-block d-none">Submit</span>
-                                                </button>
+                                        <div class="col-md-6 mb-1">
+                                            <label class="form-label font-helvetica" for="confirm-password">პაროლის განმეორება</label>
+                                            <div class="input-group input-group-merge form-password-toggle">
+                                                <input type="password" name="admin_cpassword" id="admin_cpassword" class="form-control" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" />
+                                                <span class="input-group-text cursor-pointer"><i data-feather="eye"></i></span>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                    <span class="bs-stepper-label" style="margin: 10px 0"> 
+                                        <span class="bs-stepper-title font-neue"><b>ვებ გვერდის პარამეტრები</b></span>
+                                    </span>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-1">
+                                            <label class="form-label font-helvetica" for="name_ge">ვებ გვერდის დასახელება (ქართულად)</label>
+                                            <input type="text" name="name_ge" id="name_ge" class="form-control check-input">
+                                        </div>
+                                        <div class="col-md-6 mb-1">
+                                            <label class="form-label font-helvetica" for="name_en">ვებ გვერდის დასახელება (ინგლისურად)</label>
+                                            <input type="email" name="name_en" id="name_en" class="form-control check-input">
+                                        </div>
+                                        <div class="col-md-12">
+                                            <label class="form-label font-helvetica" for="logotype">აირჩიეთ ლოგოს სურათო</label>
+                                            <input type="file" name="logotype" id="logotype" class="form-control check-input">
+                                        </div>
+                                    </div>
+                                    <span class="bs-stepper-label" style="margin: 10px 0"> 
+                                        <span class="bs-stepper-title font-neue"><b>საკონტაქტო ინფორმაცია</b></span>
+                                    </span>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-1">
+                                            <label class="form-label font-helvetica" for="{{ $info_parameter[0]->key }}">ელ-ფოსტა</label>
+                                            <input type="text" name="{{ $info_parameter[0]->key }}" id="{{ $info_parameter[0]->key }}" class="form-control check-input">
+                                        </div>
+                                        <div class="col-md-6 mb-1">
+                                            <label class="form-label font-helvetica" for="{{ $info_parameter[1]->key }}">ტელეფონის ნომერი</label>
+                                            <input type="email" name="{{ $info_parameter[1]->key }}" id="{{ $info_parameter[1]->key }}" class="form-control check-input">
+                                        </div>
+                                        <div class="col-md-12">
+                                            <label class="form-label font-helvetica" for="{{ $info_parameter[2]->key }}">მისამართი</label>
+                                            <input type="email" name="{{ $info_parameter[2]->key }}" id="{{ $info_parameter[2]->key }}" class="form-control check-input">
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-success font-neue mt-1" type="button" onclick="SaveSetup()">შექმენი</button>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -483,6 +176,11 @@
             </div>
         </div>
     </div>
+    <style type="text/css"> 
+        .input-error {
+            border: 1px solid red;
+        }
+    </style>
     <!-- END: Content-->
 
 
@@ -507,7 +205,8 @@
     <!-- BEGIN: Page JS-->
     <script src="{{ asset('assets-dashboard/js/scripts/pages/auth-register.js') }}"></script>
     <!-- END: Page JS-->
-
+    <script src="{{ asset('assets-dashboard/vendors/js/extensions/toastr.min.js') }}"></script>
+    <script src="{{ asset('assets-dashboard/js/scripts/components/components-bs-toast.js') }}"></script>
     <script>
         $(window).on('load', function() {
             if (feather) {
@@ -518,12 +217,38 @@
             }
         })
 
-        $('.continue').click(function(){
-          $('.nav-tabs > .active').next('li').find('a').trigger('click');
-        });
-        $('.back').click(function(){
-          $('.nav-tabs > .active').prev('li').find('a').trigger('click');
-        });
+        function SaveSetup() {
+            var form = $('#setup_form')[0];
+            var data = new FormData(form);
+
+            $.ajax({
+                dataType: 'json',
+                url: "/dashboard/ajax/setup",
+                type: "POST",
+                data: data,
+                enctype: 'multipart/form-data',
+                processData: false,
+                contentType: false,
+                cache: false,
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function(data) {
+                    if(data['status'] == true) {
+                        window.location.href = data['redirect_url'];
+                    } else {
+                        $(".check-input").removeClass('input-error');
+                        $.each(data['message'], function(key, value) {
+                            toastr['error'](value, 'დაფიქსირდა შეცდომა!', {
+                              closeButton: false,
+                              tapToDismiss: true,
+                            });
+                            $('#'+key).addClass('input-error');
+                        })
+                    }
+                }
+            });
+        }
     </script>
 </body>
 </html>
