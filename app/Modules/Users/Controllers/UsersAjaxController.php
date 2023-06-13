@@ -68,7 +68,7 @@ class UsersAjaxController extends Controller
                 $hash = md5(time());
 
                 $UserVerifyMail = new UserVerifyMail();
-                $UserVerifyMail->user_id = ;
+                $UserVerifyMail->user_id = $User->id;
                 $UserVerifyMail->hash = $hash;
                 $UserVerifyMail->save();
 
