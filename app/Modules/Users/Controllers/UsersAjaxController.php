@@ -104,7 +104,7 @@ class UsersAjaxController extends Controller
             if ($validator->fails()) {
                 return Response::json(['status' => true, 'errors' => true, 'message' => $validator->getMessageBag()->toArray()], 200);
             } else {
-                if(Auth::attempt(['email' => $Request->user_email, 'password' => $Request->user_password, 'deleted_at_int' => 1, 'active' => 1, 'verify_email' => 1], $Request->user_remember_me)) {
+                if(Auth::attempt(['email' => $Request->user_email, 'password' => $Request->user_password, 'deleted_at_int' => 1, 'active' => 1], $Request->user_remember_me)) {
                     return Response::json(['status' => true, 'errors' => false]);
                 } else {
                     return Response::json(['status' => true, 'errors' => true, 'message' => [0 =>  trans('site.incorect_email_or_password')]]);
