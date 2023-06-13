@@ -150,9 +150,6 @@ CREATE TABLE `new_customers` (
 -- Дамп данных таблицы `new_customers`
 --
 
-INSERT INTO `new_customers` (`id`, `name`, `lastname`, `personal_number`, `bdate`, `phone`, `email`, `type`, `password`, `remember_token`, `last_login`, `active`, `google_id`, `is_admin`, `created_at`, `updated_at`, `deleted_at`, `deleted_at_int`) VALUES
-(34, 'მიტო', 'ჩიხლაძე', '62001044774', '2022-01-31', '599002452', 'chikhladze.mt@gmail.com', NULL, '$2y$10$xHMlQQO.HU7SH6z3ygveBOZ7iqFUmAwMLTV24cp/rjgsv.Yadqu2y', NULL, NULL, 1, NULL, 1, '2022-10-21 07:14:45', '2022-10-21 07:14:45', NULL, 1);
-
 -- --------------------------------------------------------
 
 --
