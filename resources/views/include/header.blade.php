@@ -61,9 +61,11 @@
         <div class="container">
             <div class="header-wrap">
                 <div class="logo logo-width-1">
-                    <a href="{{ route('actionMainIndex') }}">
-                        <img src="{{ url('assets/imgs/theme/mallline.png') }}" alt="logo" />
-                    </a>
+                    @if(!empty($web_data->logotype))
+                    <img src="{{ asset('uploads/logotype/'.$web_data->logotype) }}">
+                    @else
+                    <img src="{{ asset('assets/imgs/theme/mallline.png') }}" alt="" />
+                    @endif
                 </div>
                 <div class="header-right">
                     <div class="search-style-2">

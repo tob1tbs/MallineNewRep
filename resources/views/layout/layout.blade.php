@@ -159,47 +159,6 @@
             </div>
         </div>
     </div>
-    <!-- <div class="compare-side no-print responsive_compare">
-        <div class="compare-side-blur blur"></div>
-        <div class="compare-button" id="comparebtn">
-            <span class="rotated">
-                კალათა
-            </span>
-            <span class="compare-arrow">
-                <svg xmlns="http://www.w3.org/2000/svg" width="21.763" height="21.841" viewBox="0 0 21.763 21.841">
-                    <path style="fill: #fff;fill-rule: evenodd;" d="M405.121,515.729a2.713,2.713,0,0,0-2.1-1H389.428v-1.365A1.365,1.365,0,0,0,388.063,512h-2.718a1.365,1.365,0,0,0,0,2.73h1.365v9.555a2.73,2.73,0,0,0,2.718,2.73H401.66a2.721,2.721,0,0,0,2.665-2.195L405.69,518a2.73,2.73,0,0,0-.569-2.266Zm-15.693,8.556V517.46h13.591l-1.365,6.825H389.421Zm-1.365,4.1a2.717,2.717,0,1,0,.005,0Zm13.592,0a2.715,2.715,0,1,0,.005,0Z" transform="translate(-383.98 -512)" />
-                </svg>
-            </span>
-        </div>
-        <div class="compare-content-b compare_not_responsive cart-body" id="compare-content" style="display: none;">
-            @if(count(Cart::getContent()) > 0)
-            @foreach(Cart::getContent() as $cart_item)
-            @if($loop->index <= 2)
-            <div class="comp-product cart-item-{{$cart_item->id}}">
-                <div class="comp-product-remove" onclick="RemoveFromCart({{ $cart_item->id }})"></div>
-                <div class="comp-product-img" style="background-image: url(@if(!empty($cart_item['attributes']['photo'])) {{ $cart_item['attributes']['photo'] }} @endif)">
-                </div>
-                <div class="comp-product-inf">
-                    <span style="cursor:pointer;" onclick="location.href = '{{ route('actionProductsView', $cart_item->id) }}'" class="font-neue">{{ $cart_item->name }}</span>
-                    <span class="font-neue">{{ $cart_item->quantity }} × ₾ {{ $cart_item->price}}</span>
-                </div>
-            </div>
-            @endif
-            @endforeach
-            <div>
-                <div class="comp-product-start" onclick="location.href = '{{ route('actionMainCart') }}'">
-                    {{ trans('site.full_cart') }}
-                </div>
-                <div class="comp-product-start white" onclick="location.href = '{{ route('actionMainCheckout') }}'">
-                    {{ trans('site.checkout') }}
-                </div>
-            </div>
-            @else
-            <div class="alert alert-primary text-center" role="alert" style="margin-bottom: 0;">{{ trans('site.your_cart_is_empty') }}</div>
-            @endif
-            <div class="c-circle-right" id="compare-close"></div>
-        </div>
-    </div> -->
     <footer class="main">
         <section class="section-padding footer-mid">
             <div class="container pt-15 pb-20">
@@ -235,8 +194,8 @@
                     <div class="footer-link-widget col hide">
                         <h4 class="widget-title font-neue">კონტაქტი</h4>
                         <ul class="footer-list footer-icon-list mb-sm-4 mb-md-0">
-                            <li><a href="tel: +995599002452" target="_blank"><img src="{{ url('assets/imgs/theme/icons/phone-call.svg') }}" alt="" style="filter: brightness(0.5);" />+995 599 002 452</a></li>
-                            <li><a href="mailto: chikhladze.mt@gmail.com" target="_blank"><img src="{{ url('assets/imgs/theme/icons/icon-email.svg') }}" alt="" style="filter: brightness(0.5);" />chikhladze.mt@gmail.com</a></li>
+                            <li><a href="tel: +{{ $parametersArray['phone'] }}" target="_blank"><img src="{{ url('assets/imgs/theme/icons/phone-call.svg') }}" alt="" style="filter: brightness(0.5);" />+{{ $parametersArray['phone'] }}</a></li>
+                            <li><a href="mailto: {{ $parametersArray['email'] }}" target="_blank"><img src="{{ url('assets/imgs/theme/icons/icon-email.svg') }}" alt="" style="filter: brightness(0.5);" />{{ $parametersArray['email'] }}</a></li>
                         </ul>
                     </div>
                 </div>
@@ -274,7 +233,7 @@
     <script src="{{ asset('assets/js/plugins/jquery.theia.sticky.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/jquery.elevatezoom.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-	<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.1/mdb.min.js"></script> -->
+    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.1/mdb.min.js"></script> -->
     <script src="{{ asset('assets/js/main.js?v=5.2') }}"></script>
     <script src="{{ asset('assets/js/shop.js?v=5.222') }}"></script>
     @yield('js')

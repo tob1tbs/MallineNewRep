@@ -13,6 +13,7 @@ use App\Modules\Main\Models\ParameterSocial;
 use App\Modules\Main\Models\Wishlist;
 use App\Modules\Products\Models\ProductCategory;
 use App\Modules\Dashboard\Models\WebParameter;
+use App\Modules\Dashboard\Models\InfoParameter;
 
 class ComposerViewProvider extends ServiceProvider
 {
@@ -39,6 +40,13 @@ class ComposerViewProvider extends ServiceProvider
             
             $WebParameter = new WebParameter();
             $WebParameterData = $WebParameter::find(1);
+
+            $InfoParameter = new InfoParameter();
+            $InfoParameterData = $InfoParameter::all();
+
+            foreach($InfoParameterData as $InfoItem) {
+                $ParameterArray[$InfoItem->key]  = $InfoItem->value;
+            }
 
             if(Auth::check() == true) {
                 $Wishlist = new Wishlist();
