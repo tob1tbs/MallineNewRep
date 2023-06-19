@@ -1,5 +1,5 @@
 function UserSignUpSubmit() {
-	var form = $('#user_signUp')[0];
+    var form = $('#user_signUp')[0];
     var data = new FormData(form);
 
     $.ajax({
@@ -14,27 +14,39 @@ function UserSignUpSubmit() {
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
-        success: function(data) {
-            if(data['status'] == true) {
-             	toastr.success('თქვენ წარმატებით გაიარეთ რეგისტრაცია!');
-                window.location.href = data['redirect_url'];
-            } else {
-                toastr.options = {
-                  "closeButton": true,
-                  "positionClass": "toast-bottom-right",
+        beforeSend: function() {
+            $('#user_signUp').block({
+                message: '<div class="spinner-border text-primary" role="status"></div>',
+                css: {
+                  backgroundColor: 'transparent',
+                  border: '0'
+                },
+                overlayCSS: {
+                  backgroundColor: '#fff',
+                  opacity: 0.8
                 }
+            });
+        },
+        success: function(data) {
+            $('#user_signUp').unblock();
+            if(data['status'] == true) {
+                $(".error-message-input").html('');
                 $(".check-input").removeClass('input-error');
-             	$.each(data['message'], function(key, value) {
-                    $('#'+key).addClass('input-error');
-                    toastr.warning(value);
-                })
+                if(data['errors'] == true) {
+                    $.each(data['message'], function(key, value) {
+                        $(".register-login-error").html('<div class="alert alert-danger text-center" role="alert">'+value+'</div>');
+                        $('#'+key).addClass('input-error');
+                    })
+                } else {
+                    location.reload();
+                }
             }
         }
     });
 }
 
 function UserSignInSubmit() {
-	var form = $('#user_signIn')[0];
+    var form = $('#user_signIn')[0];
     var data = new FormData(form);
 
     $.ajax({
@@ -49,18 +61,30 @@ function UserSignInSubmit() {
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
+        beforeSend: function() {
+            $('#user_signIn').block({
+                message: '<div class="spinner-border text-primary" role="status"></div>',
+                css: {
+                  backgroundColor: 'transparent',
+                  border: '0'
+                },
+                overlayCSS: {
+                  backgroundColor: '#fff',
+                  opacity: 0.8
+                }
+            });
+        },
         success: function(data) {
+            $('#user_signIn').unblock();
             if(data['status'] == true) {
+                $(".auth-login-error").html('');
+                $(".check-input").removeClass('input-error');
+                
                 if(data['errors'] == true) {
-                    toastr.options = {
-                      "closeButton": true,
-                      "positionClass": "toast-bottom-right",
-                    }
-                    $(".check-input").removeClass('input-error');
                     $.each(data['message'], function(key, value) {
+                        $(".auth-login-error").html('<div class="alert alert-danger text-center" role="alert">'+value+'</div>');
                         $('#'+key).addClass('input-error');
                     })
-                    toastr.warning(data['error_message'][0]);
                 } else {
                     location.reload();
                 }
@@ -153,28 +177,38 @@ function PasswordRestore() {
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
-        success: function(data) {
-            if(data['status'] == true) {
-				$('#restore_code_form')[0].reset();
-				$("#restore_code_phone").val(data['phone']);
-                $("#resetpasswordmodal").modal('show');
-            } else {
-                toastr.options = {
-                  "closeButton": true,
-                  "positionClass": "toast-bottom-right",
+        beforeSend: function() {
+            $('.form-block').block({
+                message: '<div class="spinner-border text-primary" role="status"></div>',
+                css: {
+                  backgroundColor: 'transparent',
+                  border: '0'
+                },
+                overlayCSS: {
+                  backgroundColor: '#fff',
+                  opacity: 0.8
                 }
-                $(".check-input").removeClass('input-error');
+            });
+        },
+        success: function(data) {
+            $('.form-block').unblock();
+            $(".check-input").removeClass('input-error');
+            $(".reset-login-error").html('');
+            
+            if(data['status'] == true) {
+                window.location.href = data['redirect_url'];
+            } else {
                 $.each(data['message'], function(key, value) {
+                    $(".reset-login-error").html('<div class="alert alert-danger text-center" role="alert">'+value+'</div>');
                     $('#'+key).addClass('input-error');
-                    toastr.warning(value);
                 })
             }
         }
     });
 }
 
-function SubmitRestoreCode() {
-    var form = $('#restore_code_form')[0];
+function PasswordRestoreSubmit() {
+    var form = $('#user_reset_form')[0];
     var data = new FormData(form);
 
     $.ajax({
@@ -189,16 +223,35 @@ function SubmitRestoreCode() {
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
+        beforeSend: function() {
+            $('.form-block').block({
+                message: '<div class="spinner-border text-primary" role="status"></div>',
+                css: {
+                  backgroundColor: 'transparent',
+                  border: '0'
+                },
+                overlayCSS: {
+                  backgroundColor: '#fff',
+                  opacity: 0.8
+                }
+            });
+        },
         success: function(data) {
+            $('.form-block').unblock();
+            $(".check-input").removeClass('input-error');
+            $(".reset-form-login-error").html('');
+            
             if(data['status'] == true) {
-                toastr.success(data['message'][0]);
-				setTimeout(function() {
-					window.location.href = data['redirect_url'];
-				}, 3000);
+                $(".reset-form-login-error").html('<div class="alert alert-success text-center" role="alert">პაროლი წარმატებით განახლდა!!!</div>');
+                setTimeout(function() { 
+                    window.location.href = data['redirect_url'];
+                }, 1500);
             } else {
-                toastr.warning(data['message'][0]);
+                $.each(data['message'], function(key, value) {
+                    $(".reset-form-login-error").html('<div class="alert alert-danger text-center" role="alert">'+value+'</div>');
+                    $('#'+key).addClass('input-error');
+                })
             }
         }
     });
 }
-

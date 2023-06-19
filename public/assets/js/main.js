@@ -6,6 +6,7 @@
         $("body").delay(450).css({
             overflow: "visible"
         });
+        $("#onloadModal").modal("show");
     });
     /*-----------------
         Menu Stick
@@ -45,10 +46,7 @@
         scrollSpeed: 900,
         animation: "fade"
     });
-
-    /*------ Wow Active ----*/
-    new WOW().init();
-
+    
     //sidebar sticky
     if ($(".sticky-sidebar").length) {
         $(".sticky-sidebar").theiaStickySidebar();
@@ -129,16 +127,6 @@
     var shopFiltericon = $(".-toogle");
     shopFiltericon.on("click", function () {
         $(".-toogle").toggleClass("active");
-    });
-
-    /*-----------------------
-        Magnific Popup
-    ------------------------*/
-    $(".img-popup").magnificPopup({
-        type: "image",
-        gallery: {
-            enabled: true
-        }
     });
 
     /*---------------------
@@ -445,8 +433,6 @@ $('#submit-payment').on('click', function() {
         $(".more_slide_open").slideToggle();
     });
 
-
-
     //Tabs
     $('#step11').click(function(){
         $('#step33').removeClass('activated_step2');
@@ -590,49 +576,49 @@ $('#submit-payment').on('click', function() {
 
     let in1 = document.getElementById('otc-1'),
     ins = document.querySelectorAll('input[type="number"]'),
-     splitNumber = function(e) {
-        let data = e.data || e.target.value; 
-        if ( ! data ) return; 
-        if ( data.length === 1 ) return; 
-        
-        popuNext(e.target, data);
-    },
-    popuNext = function(el, data) {
-        el.value = data[0];
-        data = data.substring(1); 
-        if ( el.nextElementSibling && data.length ) {
-            popuNext(el.nextElementSibling, data);
-        }
-    };
+	 splitNumber = function(e) {
+		let data = e.data || e.target.value; 
+		if ( ! data ) return; 
+		if ( data.length === 1 ) return; 
+		
+		popuNext(e.target, data);
+	},
+	popuNext = function(el, data) {
+		el.value = data[0];
+		data = data.substring(1); 
+		if ( el.nextElementSibling && data.length ) {
+			popuNext(el.nextElementSibling, data);
+		}
+	};
 
     ins.forEach(function(input) {
-    input.addEventListener('keyup', function(e){
-        if (e.keyCode === 16 || e.keyCode == 9 || e.keyCode == 224 || e.keyCode == 18 || e.keyCode == 17) {
-             return;
-        }
-        
-        if ( (e.keyCode === 8 || e.keyCode === 37) && this.previousElementSibling && this.previousElementSibling.tagName === "INPUT" ) {
-            this.previousElementSibling.select();
-        } else if (e.keyCode !== 8 && this.nextElementSibling) {
-            this.nextElementSibling.select();
-        }
-        
-        if ( e.target.value.length > 1 ) {
-            splitNumber(e);
-        }
-    });
-    
-    input.addEventListener('focus', function(e) {
-        if ( this === in1 ) return;
-        
-        if ( in1.value == '' ) {
-            in1.focus();
-        }
+	input.addEventListener('keyup', function(e){
+		if (e.keyCode === 16 || e.keyCode == 9 || e.keyCode == 224 || e.keyCode == 18 || e.keyCode == 17) {
+			 return;
+		}
+		
+		if ( (e.keyCode === 8 || e.keyCode === 37) && this.previousElementSibling && this.previousElementSibling.tagName === "INPUT" ) {
+			this.previousElementSibling.select();
+		} else if (e.keyCode !== 8 && this.nextElementSibling) {
+			this.nextElementSibling.select();
+		}
+		
+		if ( e.target.value.length > 1 ) {
+			splitNumber(e);
+		}
+	});
+	
+	input.addEventListener('focus', function(e) {
+		if ( this === in1 ) return;
+		
+		if ( in1.value == '' ) {
+			in1.focus();
+		}
 
-        if ( this.previousElementSibling.value == '' ) {
-            this.previousElementSibling.focus();
-        }
-    });
+		if ( this.previousElementSibling.value == '' ) {
+			this.previousElementSibling.focus();
+		}
+	});
 });
 
 })(jQuery);

@@ -356,7 +356,7 @@ class DashboardAjaxController extends Controller
                 'product_meta_keywords_ge' => 'required|max:255',
                 'product_meta_description_ge' => 'required|max:255',
                 'product_price' => 'required|max:255|not_in:0|numeric',
-                'product_photo' => 'required|max:255',
+                'product_photo' => 'required',
                 'product_count' => 'required|max:255',
             ], $messages);
 
@@ -446,27 +446,27 @@ class DashboardAjaxController extends Controller
                     }
                 }
 
-                if(!empty($Request->gallery_photo)) {
-                    $ProductGallery = new ProductGallery();
-                    $ProductGallery::where('product_id', $ProductData->id)->delete();
+                // if(!empty($Request->gallery_photo)) {
+                //     $ProductGallery = new ProductGallery();
+                //     $ProductGallery::where('product_id', $ProductData->id)->delete();
 
-                    $GalleryPath = explode(',', $Request->gallery_photo);
-                    if(count($GalleryPath) <= 5) {
+                //     $GalleryPath = explode(',', $Request->gallery_photo);
+                //     if(count($GalleryPath) <= 5) {
 
-                        foreach($GalleryPath as $GalleryItem) {
-                            $ProductGallery = new ProductGallery();
-                            $ProductGallery->path = $GalleryItem;
-                            $ProductGallery->product_id = $ProductData->id;
-                            $ProductGallery->save();
-                        }
-                    } else {
-                        return Response::json(['status' => true, 'errors' => true, 'message' => ['0' => 'დამატებითი სურათების რაოდენობა აღემატება 5ს']]);
-                    }
-                }
+                //         foreach($GalleryPath as $GalleryItem) {
+                //             $ProductGallery = new ProductGallery();
+                //             $ProductGallery->path = $GalleryItem;
+                //             $ProductGallery->product_id = $ProductData->id;
+                //             $ProductGallery->save();
+                //         }
+                //     } else {
+                //         return Response::json(['status' => true, 'errors' => true, 'message' => ['0' => 'დამატებითი სურათების რაოდენობა აღემატება 5ს']]);
+                //     }
+                // }
                 $Request->request->add(['product_id' => $ProductData->id, 'vendor_id' => $WebParameterData->vendor_id, 'product_n_photo' => $FullPath]);
                 $SendResponse = json_decode($this->sendProducts($Request));
                 $Product = new Product();
-                $Product::find($ProductData->id)->update(['root_id' => $SendResponse->root_id]);
+                // $Product::find($ProductData->id)->update(['root_id' => $SendResponse->root_id]);
                 return Response::json(['status' => true, 'message' => 'პროდუქტი წარმატებით დაემატა']);
             }
 

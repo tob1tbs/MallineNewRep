@@ -220,6 +220,7 @@
     <script src="{{ asset('assets/js/vendor/modernizr-3.6.0.min.js') }}"></script>
     <script src="{{ asset('assets/js/vendor/jquery-3.6.0.min.js') }}"></script>
     <script src="{{ asset('assets/js/vendor/jquery-migrate-3.3.0.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.blockUI/2.70/jquery.blockUI.min.js"></script>
     <script src="{{ asset('assets/js/vendor/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/slick.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/jquery.syotimer.min.js') }}"></script>
@@ -243,7 +244,6 @@
     <script src="{{ asset('assets/js/shop.js?v=5.222') }}"></script>
     @yield('js')
     <script src="{{ asset('assets/scripts/global.js?v=1.1') }}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.blockUI/2.70/jquery.blockUI.min.js"></script>
     <script type="text/javascript" src="{{ asset('assets/scripts/users_scripts.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/owl.carousel.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/df-number-format/2.1.6/jquery.number.min.js"></script>

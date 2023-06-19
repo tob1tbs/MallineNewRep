@@ -61,11 +61,13 @@
         <div class="container">
             <div class="header-wrap">
                 <div class="logo logo-width-1">
-                    @if(!empty($web_data->logotype))
-                    <img src="{{ asset('uploads/logotype/'.$web_data->logotype) }}">
-                    @else
-                    <img src="{{ asset('assets/imgs/theme/mallline.png') }}" alt="" />
-                    @endif
+                    <a href="{{ route('actionMainIndex') }}"> 
+                        @if(!empty($web_data->logotype))
+                        <img src="{{ asset('uploads/logotype/'.$web_data->logotype) }}">
+                        @else
+                        <img src="{{ asset('assets/imgs/theme/mallline.png') }}" alt="" />
+                        @endif
+                    </a>
                 </div>
                 <div class="header-right">
                     <div class="search-style-2">

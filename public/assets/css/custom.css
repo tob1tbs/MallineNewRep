@@ -613,6 +613,7 @@
 .kMBKen {
   margin-right: 0 !important;
   height: 45px;
+  display: block;
 }
 
 .cnAKTX .close {
@@ -629,6 +630,10 @@
 
 .header-style-1 .search-style-2 form input {
   font-size: 13px;
+}
+
+.mdl .passwords {
+  margin-bottom: 0;
 }
 
 .navbar-search__notfound {
@@ -689,32 +694,27 @@
 .cheaper-image {
     border-radius: 4px;
     background-color: #fff;
-    border: solid 1px #eee;
-    margin: auto;
+    border: solid 3px #2491e0;
     margin-bottom: 8px;
     position: relative
 }
 
 .cheaper-image img {
-    padding: 5px
+    padding: 8px
 }
 
 .cheaper-item .title {
     font-size: 15px;
-    text-align: center;
     display: -webkit-box;
-    font-family: 'helvetica';
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    height: 55px;
+    height: 25px;
     color: black;
 }
 
 .cheaper-item .price {
-    font-family: helvetica;
-    font-size: 15px;
-    text-align: center;
+    font-size: 17px;
     color: #2491e0;
 }
 
@@ -934,8 +934,6 @@
     background-color: #fff;
     width: 100%;
     margin-top: 0;
-    border-radius: 4px;
-    padding: 23px 24px;
     position: relative;
     display: flex;
 }
@@ -957,11 +955,11 @@
     width: 20% !important;
 }
 .cheaper-image {
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
 }
 .cheaper-image img {
-    height: 100px;
+    height: 150px;
 }
 .cheaper-description {
     padding: 0;
@@ -1331,5 +1329,23 @@ display: block;
 
 .product-cart-wrap .product-content-wrap .product-price span {
   font-size: 18px;
+}
+
+.stock-status {
+    display: inline-block;
+    padding: 4px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    font-family: 'helvetica';
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
+    position: relative;
+    top: -10px;
+    left: 10px;
+}
+
+.table >:not(:last-child)>:last-child>* {
+    text-align: left;
 }
 /*End Timeline*/

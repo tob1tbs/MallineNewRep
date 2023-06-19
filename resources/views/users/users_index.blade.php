@@ -20,6 +20,9 @@
                                             <a class="nav-link" id="account-detail-tab" data-bs-toggle="tab" href="#account-detail" role="tab" aria-controls="account-detail" aria-selected="true"><i class="fi-rs-settings mr-10"></i>{{ trans('site.acc_details') }}</a>
                                         </li>
                                         <li class="nav-item">
+                                            <a class="nav-link" href="{{ route('actionDashboardIndex') }}"><i class="fi-rs-sign-out mr-10"></i>{{ trans('site.dashboard') }}</a>
+                                        </li>
+                                        <li class="nav-item">
                                             <a class="nav-link active" id="orders-tab" data-bs-toggle="tab" href="#orders" role="tab" aria-controls="orders" aria-selected="true"><i class="fi-rs-shopping-bag mr-10"></i>{{ trans('site.my_orders') }}</a>
                                         </li>
                                         <li class="nav-item">

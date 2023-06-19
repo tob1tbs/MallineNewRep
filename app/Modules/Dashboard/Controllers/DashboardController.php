@@ -14,6 +14,7 @@ use App\Modules\Dashboard\Models\Product;
 use App\Modules\Dashboard\Models\ProductCategory;
 use App\Modules\Dashboard\Models\Slider;
 use Auth;
+use Hash;
 
 class DashboardController extends Controller
 {

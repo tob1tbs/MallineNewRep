@@ -10,7 +10,6 @@ use App\Services\SocialFacebookAccountService;
 use App\Services\SocialGoogleAccountService;
 use App\Services\MailSendService;
 
-use App\Modules\Builder\Models\Builder;
 use App\Modules\Main\Models\Wishlist;
 
 use App\Mail\SetupMail;
@@ -33,9 +32,6 @@ class UsersController extends Controller
             return redirect()->route('actionUsersSignIn');
         } else {
             if (view()->exists('users.users_index')) {
-				
-				$Builder = new Builder();
-				$BuilderData = $Builder::where('user_id', Auth::user()->id)->get();
 
                 if(Auth::check() == true) {
                     $Wishlist = new Wishlist();
@@ -45,7 +41,6 @@ class UsersController extends Controller
                 }
 								
                 $data = [
-					'host_list' => $BuilderData,
                     'wishlist_list' => $WishlistData,
                 ];
                 
